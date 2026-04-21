@@ -38,7 +38,7 @@ export default function ViewCounter({
       try {
         const res = await fetch('/api/analytics');
         const data = await res.json();
-        const newTotal = data.totalViews ?? 0;
+        const newTotal = data.totalVisitors ?? data.uniqueVisitors ?? data.totalViews ?? 0;
         if (newTotal !== prevCount.current) {
           setIsNew(true);
           animateCount(prevCount.current, newTotal, 1500, setCount);

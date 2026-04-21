@@ -1,19 +1,7 @@
 import { prisma } from '@/lib/prisma';
+import { getClientIdentity } from '@/lib/clientIdentity';
 import { trackFallbackVisit } from '@/lib/visitorFallbackStore';
 import { NextRequest, NextResponse } from 'next/server';
-
-// Deduplicate: 1 IP per path per hour
-function getStartOfHour() {
-  const d = new Date();
-  d.setMinutes(0, 0, 0);
-  return d;
-}
-
-function getClientIP(request: NextRequest): string {
-  const forwarded = request.headers.get('x-forwarded-for');
-  if (forwarded) return forwarded.split(',')[0].trim();
-  return request.headers.get('x-real-ip') ?? 'unknown';
-}
 
 export async function POST(request: NextRequest) {
   const body = await request.json().catch(() => ({} as { path?: string }));
@@ -26,35 +14,69 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true, skipped: true });
   }
 
-  const ip = getClientIP(request);
+  const identity = getClientIdentity(request);
 
   try {
     const userAgent = request.headers.get('user-agent') ?? undefined;
-    const hourStart = getStartOfHour();
 
-    // Dedup: has this IP visited this path in the last hour?
+    // Deduplicate by visitor and path, persisted in DB.
     const existing = await prisma.pageView.findFirst({
       where: {
-        ip,
+        ip: identity.visitorKey,
         path,
-        createdAt: { gte: hourStart },
       },
     });
 
     if (!existing) {
       await prisma.pageView.create({
-        data: { path, ip, userAgent },
+        data: { path, ip: identity.visitorKey, userAgent },
       });
     }
 
-    // Return current count for the path
-    const count = await prisma.pageView.count({ where: { path } });
-    const totalCount = await prisma.pageView.count();
+    // Unique visitors per path and globally.
+    const pathVisitors = await prisma.pageView.findMany({
+      where: { path },
+      select: { ip: true },
+      distinct: ['ip'],
+    });
+    const allVisitors = await prisma.pageView.findMany({
+      select: { ip: true },
+      distinct: ['ip'],
+    });
 
-    return NextResponse.json({ ok: true, count, totalCount });
+    const count = pathVisitors.length;
+    const totalVisitors = allVisitors.length;
+
+    const response = NextResponse.json({
+      ok: true,
+      count,
+      totalCount: totalVisitors,
+      totalVisitors,
+    });
+    if (identity.newVisitorCookie) {
+      response.cookies.set('visitor_id', identity.newVisitorCookie, {
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 60 * 60 * 24 * 365,
+        path: '/',
+      });
+    }
+    return response;
+
   } catch {
-    const fallback = trackFallbackVisit(path, ip);
+    const fallback = trackFallbackVisit(path, identity.visitorKey);
     console.error('[track] fallback mode due to DB error');
-    return NextResponse.json({ ok: true, ...fallback, fallback: true });
+    const response = NextResponse.json({ ok: true, ...fallback, fallback: true });
+    if (identity.newVisitorCookie) {
+      response.cookies.set('visitor_id', identity.newVisitorCookie, {
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 60 * 60 * 24 * 365,
+        path: '/',
+      });
+    }
+    return response;
   }
 }

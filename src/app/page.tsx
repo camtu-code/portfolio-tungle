@@ -5,24 +5,25 @@ import Experience from '@/components/Experience';
 import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import ThemeToggle from '@/components/ThemeToggle';
+import styles from './HomeHeader.module.css';
 
 export const dynamic = 'force-dynamic';
 
 export default function Home() {
   return (
     <>
-      <header style={{ padding: '1.5rem', position: 'fixed', top: 0, width: '100%', zIndex: 20 }}>
+      <header className={styles.header}>
         <div className="container">
-          <div className="glass" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderRadius: '999px', padding: '0.9rem 1.2rem' }}>
-            <div style={{ fontWeight: 800, fontSize: '1.5rem', letterSpacing: '-0.05em' }}>
-              <span style={{ color: 'var(--primary)' }}>Tung</span>.dev
+          <div className={`glass ${styles.bar}`}>
+            <div className={styles.brand}>
+              <span className={styles.brandAccent}>Tung</span>.dev
             </div>
-            <nav style={{ display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
-              <a href="#projects" style={{ fontWeight: 500 }}>Projects</a>
-              <a href="#skills" style={{ fontWeight: 500 }}>Skills</a>
-              <a href="#experience" style={{ fontWeight: 500 }}>Philosophy</a>
-              <a href="#testimonials" style={{ fontWeight: 500 }}>What People Say</a>
-              <a href="#contact" style={{ fontWeight: 500 }}>Contact</a>
+            <nav className={styles.nav}>
+              <a href="#projects" className={styles.link}>Projects</a>
+              <a href="#skills" className={styles.link}>Skills</a>
+              <a href="#experience" className={styles.link}>Philosophy</a>
+              <a href="#testimonials" className={styles.link}>What People Say</a>
+              <a href="#contact" className={styles.link}>Contact</a>
               <ThemeToggle />
             </nav>
           </div>

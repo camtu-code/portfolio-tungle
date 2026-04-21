@@ -19,28 +19,23 @@ function getState(): VisitorFallbackState {
   return globalThis.__visitorFallbackState;
 }
 
-function getHourStart(now: Date) {
-  const d = new Date(now);
-  d.setMinutes(0, 0, 0);
-  return d;
-}
-
 export function trackFallbackVisit(path: string, ip: string) {
   const state = getState();
   const now = new Date();
-  const hourStart = getHourStart(now);
 
-  const exists = state.events.find(
-    (e) => e.path === path && e.ip === ip && e.createdAt >= hourStart
-  );
+  const exists = state.events.find((e) => e.path === path && e.ip === ip);
 
   if (!exists) {
     state.events.push({ path, ip, createdAt: now });
   }
 
+  const uniqueVisitors = new Set(state.events.map((e) => e.ip)).size;
+  const count = new Set(state.events.filter((e) => e.path === path).map((e) => e.ip)).size;
+
   return {
-    count: state.events.filter((e) => e.path === path).length,
-    totalCount: state.events.length,
+    count,
+    totalCount: uniqueVisitors,
+    totalVisitors: uniqueVisitors,
   };
 }
 
@@ -56,6 +51,7 @@ export function getFallbackAnalytics() {
 
   const totalViews = state.events.length;
   const uniqueVisitors = new Set(state.events.map((e) => e.ip)).size;
+  const totalVisitors = uniqueVisitors;
   const last7DaysViews = state.events.filter((e) => e.createdAt >= last7Days).length;
   const last24hViews = state.events.filter((e) => e.createdAt >= last24h).length;
 
@@ -76,5 +72,5 @@ export function getFallbackAnalytics() {
   }
   const viewsPerDay = Object.entries(dayCounts).map(([day, count]) => ({ day, count }));
 
-  return { totalViews, uniqueVisitors, last7DaysViews, last24hViews, topPages, viewsPerDay };
+  return { totalViews, uniqueVisitors, totalVisitors, last7DaysViews, last24hViews, topPages, viewsPerDay };
 }

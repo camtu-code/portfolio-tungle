@@ -18,6 +18,7 @@ export async function GET() {
     // Unique visitors (unique IPs)
     const allIPs = await prisma.pageView.findMany({ select: { ip: true }, distinct: ['ip'] });
     const uniqueVisitors = allIPs.length;
+    const totalVisitors = uniqueVisitors;
 
     // Views in last 7 days
     const last7DaysViews = await prisma.pageView.count({
@@ -57,6 +58,7 @@ export async function GET() {
     return NextResponse.json({
       totalViews,
       uniqueVisitors,
+      totalVisitors,
       last7DaysViews,
       last24hViews,
       topPages,
