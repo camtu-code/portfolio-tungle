@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma';
+import { getFallbackAnalytics } from '@/lib/visitorFallbackStore';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -61,8 +62,9 @@ export async function GET() {
       topPages,
       viewsPerDay,
     });
-  } catch (error) {
-    console.error('[analytics] error:', error);
-    return NextResponse.json({ error: 'Internal error', detail: String(error) }, { status: 500 });
+  } catch {
+    const fallback = getFallbackAnalytics();
+    console.error('[analytics] fallback mode due to DB error');
+    return NextResponse.json({ ...fallback, fallback: true });
   }
 }
