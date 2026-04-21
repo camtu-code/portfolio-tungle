@@ -1,0 +1,135 @@
+.experience {
+  padding: 6rem 0;
+}
+
+.sectionTitle {
+  margin-bottom: 4rem;
+  text-align: center;
+  color: var(--foreground);
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Vertical line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--surface-border);
+}
+
+@media (min-width: 768px) {
+  .timeline::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.timelineItem {
+  position: relative;
+  margin-bottom: 3rem;
+  padding-left: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .timelineItem {
+    width: 50%;
+    padding-left: 0;
+    padding-right: 3rem;
+  }
+  
+  .timelineItem:nth-child(even) {
+    margin-left: 50%;
+    padding-left: 3rem;
+    padding-right: 0;
+  }
+}
+
+.timelineDot {
+  position: absolute;
+  left: -12px;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 10px var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.dotIcon {
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .timelineItem:nth-child(odd) .timelineDot {
+    left: auto;
+    right: -13px;
+  }
+  
+  .timelineItem:nth-child(even) .timelineDot {
+    left: -13px;
+  }
+}
+
+.timelineContent {
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 1rem;
+}
+
+.timelineItem:hover .timelineContent {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px -10px var(--primary-light);
+  border-color: rgba(193, 154, 107, 0.5); /* Accent color hover */
+}
+
+.timelineHeader {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .timelineHeader {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+}
+
+.title {
+  font-size: 1.25rem;
+  color: var(--foreground);
+}
+
+.period {
+  color: var(--accent);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.company {
+  color: var(--primary);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.description {
+  color: var(--text-muted);
+  line-height: 1.6;
+}

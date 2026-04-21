@@ -1,66 +1,44 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Hero from '@/components/Hero';
+import Projects from '@/components/Projects';
+import Skills from '@/components/Skills';
+import Experience from '@/components/Experience';
+import Testimonials from '@/components/Testimonials';
+import Contact from '@/components/Contact';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <header style={{ padding: '1.5rem', position: 'fixed', top: 0, width: '100%', zIndex: 20 }}>
+        <div className="container">
+          <div className="glass" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderRadius: '999px', padding: '0.9rem 1.2rem' }}>
+            <div style={{ fontWeight: 800, fontSize: '1.5rem', letterSpacing: '-0.05em' }}>
+              <span style={{ color: 'var(--primary)' }}>Tung</span>.dev
+            </div>
+            <nav style={{ display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
+              <a href="#projects" style={{ fontWeight: 500 }}>Projects</a>
+              <a href="#skills" style={{ fontWeight: 500 }}>Skills</a>
+              <a href="#experience" style={{ fontWeight: 500 }}>Philosophy</a>
+              <a href="#testimonials" style={{ fontWeight: 500 }}>What People Say</a>
+              <a href="#contact" style={{ fontWeight: 500 }}>Contact</a>
+              <ThemeToggle />
+            </nav>
+          </div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </header>
+
+      <Hero />
+      <Projects />
+      <Skills />
+      <Experience />
+      <Testimonials />
+      <Contact />
+
+      <footer style={{ padding: '3rem 0', textAlign: 'center', color: 'var(--text-dark)', borderTop: '1px solid var(--surface-border)' }}>
+        <div className="container">
+          <p>© {new Date().getFullYear()} Tung Le. All rights reserved.</p>
         </div>
-      </main>
-    </div>
+      </footer>
+    </>
   );
 }
