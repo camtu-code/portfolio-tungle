@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model Project {
@@ -15,7 +15,7 @@ model Project {
   title       String
   description String
   role        String?
-  techStack   String   // Storing as JSON string or comma separated for simplicity in SQLite
+  techStack   String
   demoUrl     String?
   githubUrl   String?
   imageUrl    String?

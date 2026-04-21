@@ -6,6 +6,8 @@ import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import ThemeToggle from '@/components/ThemeToggle';
 
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
   return (
     <>

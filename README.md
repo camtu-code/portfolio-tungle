@@ -5,6 +5,7 @@
 - React 19
 - Prisma
 - NextAuth v5 (Credentials)
+- TiDB Serverless (MySQL)
 
 ### Local setup
 ```bash
@@ -25,15 +26,17 @@ npm run build
 3. Build command: `npm run build`
 4. Install command: `npm install` (default)
 5. Add environment variables in Vercel:
+   - `DATABASE_URL` (TiDB connection string)
    - `AUTH_SECRET`
    - `AUTH_URL` (for example: `https://your-domain.vercel.app`)
    - `AUTH_TRUST_HOST=true`
-   - `DATABASE_URL`
 
 ### Database note for Vercel
-- Current setup can run with SQLite using `DATABASE_URL=file:/tmp/dev.db`.
-- `/tmp` on Vercel is writable but ephemeral (data can reset).
-- For persistent production data, use managed Postgres and update Prisma datasource accordingly.
+- Prisma datasource is configured for MySQL-compatible databases (TiDB).
+- Use TiDB URL format:
+  `mysql://<USER>:<PASSWORD>@<HOST>:4000/<DATABASE>?sslaccept=strict`
+- Apply schema to TiDB:
+  `npm run db:push`
 
 ### Avatar upload note
 - Avatar is served through `/api/avatar`.
