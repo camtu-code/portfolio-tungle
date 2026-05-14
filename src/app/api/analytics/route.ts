@@ -2,6 +2,9 @@ import { prisma } from '@/lib/prisma';
 import { getFallbackAnalytics } from '@/lib/visitorFallbackStore';
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET() {
   try {
     const now = new Date();
@@ -55,18 +58,36 @@ export async function GET() {
     }
     const viewsPerDay = Object.entries(dayCounts).map(([day, count]) => ({ day, count }));
 
-    return NextResponse.json({
-      totalViews,
-      uniqueVisitors,
-      totalVisitors,
-      last7DaysViews,
-      last24hViews,
-      topPages,
-      viewsPerDay,
-    });
+    return NextResponse.json(
+      {
+        totalViews,
+        uniqueVisitors,
+        totalVisitors,
+        last7DaysViews,
+        last24hViews,
+        topPages,
+        viewsPerDay,
+      },
+      {
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          Pragma: 'no-cache',
+          Expires: '0',
+        },
+      }
+    );
   } catch {
     const fallback = getFallbackAnalytics();
     console.error('[analytics] fallback mode due to DB error');
-    return NextResponse.json({ ...fallback, fallback: true });
+    return NextResponse.json(
+      { ...fallback, fallback: true },
+      {
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+          Pragma: 'no-cache',
+          Expires: '0',
+        },
+      }
+    );
   }
 }

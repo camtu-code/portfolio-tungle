@@ -5,6 +5,7 @@ import {
   View,
   StyleSheet,
   Font,
+  Image,
 } from '@react-pdf/renderer';
 
 // Register fonts
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
     padding: '36 40 28 40',
   },
   headerName: {
-    fontSize: 30,
+    fontSize: 26,
     fontFamily: 'Helvetica-Bold',
     color: COLORS.white,
     letterSpacing: 1,
@@ -80,21 +81,21 @@ const styles = StyleSheet.create({
     paddingLeft: 40,
     paddingRight: 40,
     paddingTop: 28,
-    gap: 24,
+    gap: 18,
   },
 
   // Left column (narrower)
   leftCol: {
-    width: '35%',
+    width: '34%',
     flexDirection: 'column',
-    gap: 20,
+    gap: 16,
   },
 
   // Right column
   rightCol: {
-    width: '65%',
+    width: '66%',
     flexDirection: 'column',
-    gap: 20,
+    gap: 16,
   },
 
   // Section
@@ -140,10 +141,21 @@ const styles = StyleSheet.create({
   },
 
   // About
+  profileWrap: {
+    alignItems: 'center',
+    marginBottom: 6,
+  },
+  profileImage: {
+    width: 100,
+    height: 128,
+    objectFit: 'cover',
+    borderRadius: 6,
+    border: `1px solid ${COLORS.border}`,
+  },
   aboutText: {
-    fontSize: 9.5,
+    fontSize: 9,
     color: COLORS.textMuted,
-    lineHeight: 1.6,
+    lineHeight: 1.5,
   },
 
   // Contact
@@ -202,6 +214,28 @@ const styles = StyleSheet.create({
     color: COLORS.textMuted,
     lineHeight: 1.6,
   },
+  projectItem: {
+    marginBottom: 10,
+    paddingBottom: 10,
+    borderBottom: `1px solid ${COLORS.border}`,
+  },
+  projectName: {
+    fontSize: 11,
+    fontFamily: 'Helvetica-Bold',
+    color: COLORS.foreground,
+    marginBottom: 4,
+  },
+  projectRole: {
+    fontSize: 9,
+    color: COLORS.primary,
+    marginBottom: 5,
+    fontFamily: 'Helvetica-Bold',
+  },
+  projectDescription: {
+    fontSize: 9,
+    color: COLORS.textMuted,
+    lineHeight: 1.55,
+  },
 
   // Education / other
   eduItem: {
@@ -230,10 +264,13 @@ export interface ResumeData {
   title: string;
   email: string;
   phone?: string;
+  birthDate?: string;
   location?: string;
   github?: string;
   linkedin?: string;
+  profileImage?: string;
   about: string;
+  mainProject?: { name: string; role: string; description: string };
   skills: { category: string; items: string[] }[];
   experience: { title: string; company: string; period: string; description: string }[];
   education?: { degree: string; school: string; year: string }[];
@@ -254,8 +291,9 @@ export function ResumePDF({ data }: { data: ResumeData }) {
           <View style={styles.headerMeta}>
             {data.email && <Text style={styles.headerMetaItem}>✉ {data.email}</Text>}
             {data.phone && <Text style={styles.headerMetaItem}>☎ {data.phone}</Text>}
+            {data.birthDate && <Text style={styles.headerMetaItem}>DOB: {data.birthDate}</Text>}
             {data.location && <Text style={styles.headerMetaItem}>⌂ {data.location}</Text>}
-            {data.github && <Text style={styles.headerMetaItem}>⌥ {data.github}</Text>}
+            {data.github && <Text style={styles.headerMetaItem}>GitHub: {data.github}</Text>}
             {data.linkedin && <Text style={styles.headerMetaItem}>in {data.linkedin}</Text>}
           </View>
         </View>
@@ -264,6 +302,12 @@ export function ResumePDF({ data }: { data: ResumeData }) {
         <View style={styles.body}>
           {/* Left column */}
           <View style={styles.leftCol}>
+            {data.profileImage && (
+              <View style={styles.profileWrap}>
+                <Image style={styles.profileImage} src={data.profileImage} />
+              </View>
+            )}
+
             {/* About */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>About</Text>
@@ -303,6 +347,17 @@ export function ResumePDF({ data }: { data: ResumeData }) {
 
           {/* Right column */}
           <View style={styles.rightCol}>
+            {data.mainProject && (
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>Main Project</Text>
+                <View style={styles.projectItem}>
+                  <Text style={styles.projectName}>{data.mainProject.name}</Text>
+                  <Text style={styles.projectRole}>{data.mainProject.role}</Text>
+                  <Text style={styles.projectDescription}>{data.mainProject.description}</Text>
+                </View>
+              </View>
+            )}
+
             {/* Experience */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Work Experience</Text>

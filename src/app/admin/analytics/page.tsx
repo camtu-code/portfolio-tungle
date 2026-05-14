@@ -76,7 +76,7 @@ export default function AnalyticsPage() {
 
   const fetchData = useCallback(async () => {
     try {
-      const res = await fetch('/api/analytics');
+      const res = await fetch(`/api/analytics?t=${Date.now()}`, { cache: 'no-store' });
       const json = await res.json();
       setData(json);
       setLastUpdated(new Date());

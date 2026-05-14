@@ -48,3 +48,9 @@ npm run build
 - `npm run lint`
 - `npm run build`
 - `npm run db:push`
+- `npm run db:seed`
+
+### Default local admin accounts
+- `admin@example.com` / `admin123`
+- `editor@example.com` / `editor123`
+- `manager@example.com` / `manager123`

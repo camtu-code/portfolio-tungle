@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+
 type VisitorEvent = {
   path: string;
   ip: string;
@@ -12,9 +15,52 @@ declare global {
   var __visitorFallbackState: VisitorFallbackState | undefined;
 }
 
+const FALLBACK_DIR = path.join(process.cwd(), '.data');
+const FALLBACK_FILE = path.join(FALLBACK_DIR, 'visitor-fallback.json');
+
+function loadStateFromDisk(): VisitorFallbackState {
+  try {
+    if (!fs.existsSync(FALLBACK_FILE)) return { events: [] };
+    const raw = fs.readFileSync(FALLBACK_FILE, 'utf8');
+    const parsed = JSON.parse(raw) as { events?: Array<{ path: string; ip: string; createdAt: string }> };
+    if (!Array.isArray(parsed.events)) return { events: [] };
+    return {
+      events: parsed.events
+        .filter((e) => typeof e?.path === 'string' && typeof e?.ip === 'string' && typeof e?.createdAt === 'string')
+        .map((e) => ({ path: e.path, ip: e.ip, createdAt: new Date(e.createdAt) }))
+        .filter((e) => !Number.isNaN(e.createdAt.getTime())),
+    };
+  } catch {
+    return { events: [] };
+  }
+}
+
+function persistStateToDisk(state: VisitorFallbackState) {
+  try {
+    if (!fs.existsSync(FALLBACK_DIR)) fs.mkdirSync(FALLBACK_DIR, { recursive: true });
+    fs.writeFileSync(
+      FALLBACK_FILE,
+      JSON.stringify(
+        {
+          events: state.events.map((e) => ({
+            path: e.path,
+            ip: e.ip,
+            createdAt: e.createdAt.toISOString(),
+          })),
+        },
+        null,
+        2
+      ),
+      'utf8'
+    );
+  } catch {
+    // best-effort persistence
+  }
+}
+
 function getState(): VisitorFallbackState {
   if (!globalThis.__visitorFallbackState) {
-    globalThis.__visitorFallbackState = { events: [] };
+    globalThis.__visitorFallbackState = loadStateFromDisk();
   }
   return globalThis.__visitorFallbackState;
 }
@@ -27,6 +73,7 @@ export function trackFallbackVisit(path: string, ip: string) {
 
   if (!exists) {
     state.events.push({ path, ip, createdAt: now });
+    persistStateToDisk(state);
   }
 
   const uniqueVisitors = new Set(state.events.map((e) => e.ip)).size;

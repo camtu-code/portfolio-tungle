@@ -12,14 +12,16 @@ export default function DownloadResumeBtn() {
     setState('loading');
 
     try {
-      const res = await fetch('/api/resume');
+      const res = await fetch(`/api/resume?ts=${Date.now()}`, {
+        cache: 'no-store',
+      });
       if (!res.ok) throw new Error('Failed');
 
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'TungLe-Resume.pdf';
+      a.download = `LeThanhTung-CV-${Date.now()}.pdf`;
       a.click();
       URL.revokeObjectURL(url);
 

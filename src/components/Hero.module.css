@@ -58,13 +58,13 @@
 
 .greeting {
   color: var(--accent);
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   margin-bottom: 1rem;
   font-weight: 500;
 }
 
 .name {
-  font-size: 2.25rem;
+  font-size: 2.05rem;
   line-height: 1.15;
   margin-bottom: 1rem;
   font-weight: 800;
@@ -73,7 +73,7 @@
 
 @media (min-width: 768px) {
   .name {
-    font-size: 3rem;
+    font-size: 2.7rem;
   }
 }
 
@@ -86,7 +86,7 @@
 
 .description {
   color: var(--text-dark);
-  font-size: 1.125rem;
+  font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
   max-width: 540px;
@@ -340,7 +340,7 @@
 }
 
 .typewriterSubtitle {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--text-dark);
   margin-bottom: 1rem;

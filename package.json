@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:push": "prisma db push"
+    "db:push": "prisma db push",
+    "db:seed": "node scripts/seedUsers.mjs"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

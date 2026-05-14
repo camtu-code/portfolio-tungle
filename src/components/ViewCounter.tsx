@@ -28,6 +28,7 @@ export default function ViewCounter({
   label = 'Total Visitors',
   icon = '👁️',
   refreshInterval = 30_000,
+  apiPath = '/api/analytics',
 }: ViewCounterProps) {
   const [count, setCount] = useState(initialCount);
   const prevCount = useRef(initialCount);
@@ -36,7 +37,7 @@ export default function ViewCounter({
   useEffect(() => {
     async function refresh() {
       try {
-        const res = await fetch('/api/analytics');
+        const res = await fetch(`${apiPath}?t=${Date.now()}`, { cache: 'no-store' });
         const data = await res.json();
         const newTotal = data.totalVisitors ?? data.uniqueVisitors ?? data.totalViews ?? 0;
         if (newTotal !== prevCount.current) {
@@ -51,7 +52,7 @@ export default function ViewCounter({
     refresh();
     const interval = setInterval(refresh, refreshInterval);
     return () => clearInterval(interval);
-  }, [refreshInterval]);
+  }, [apiPath, refreshInterval]);
 
   return (
     <div className={`${styles.counter} ${isNew ? styles.pulse : ''}`}>
