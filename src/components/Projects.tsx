@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, CheckCircle2 } from 'lucide-react';
-import { FaGithub } from 'react-icons/fa';
+import { ExternalLink, CheckCircle2, LockKeyhole } from 'lucide-react';
 import styles from './Projects.module.css';
 
 export default function Projects() {
@@ -78,9 +77,9 @@ export default function Projects() {
                   <a href="https://edutech-ai-platform-1.vercel.app/" className={styles.link} target="_blank" rel="noopener noreferrer" style={{ padding: '0.5rem 1rem', background: 'var(--primary)', color: '#fff', borderRadius: '8px' }}>
                     <ExternalLink size={16} /> Live Demo
                   </a>
-                  <a href="#" className={styles.link} target="_blank" rel="noopener noreferrer" style={{ padding: '0.5rem 1rem', border: '1px solid var(--surface-border)', borderRadius: '8px' }}>
-                    <FaGithub size={16} /> GitHub Repo
-                  </a>
+                  <span className={`${styles.link} ${styles.privateLink}`} aria-label="Repository is private">
+                    <LockKeyhole size={16} /> Private Repo
+                  </span>
                 </div>
               </div>
             </div>

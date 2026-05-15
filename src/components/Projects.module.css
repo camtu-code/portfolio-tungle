@@ -121,3 +121,16 @@
   color: var(--primary-hover);
   text-decoration: none;
 }
+
+.privateLink {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+  color: var(--text-dark);
+  cursor: default;
+  opacity: 0.8;
+}
+
+.privateLink:hover {
+  color: var(--text-dark);
+}
