@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Send, MessageSquareHeart, Star } from 'lucide-react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaFacebook } from 'react-icons/fa';
 import { submitContactMessage } from '../app/actions';
 import { submitTestimonial } from '../app/actions/testimonial';
 import styles from './Contact.module.css';
@@ -101,14 +101,11 @@ export default function Contact() {
               💬 If you find my portfolio impressive, feel free to leave a testimonial — I&apos;d love to feature it here!
             </p>
             <div className={styles.links}>
-              <a href="mailto:hello@example.com" className={styles.link}>
-                <Mail className={styles.icon} /> hello@example.com
+              <a href="mailto:lethanhtung6803@gmail.com" className={styles.link}>
+                <Mail className={styles.icon} /> lethanhtung6803@gmail.com
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                <FaLinkedin className={styles.icon} /> LinkedIn
-              </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                <FaGithub className={styles.icon} /> GitHub
+              <a href="https://www.facebook.com/share/1EB3BREhPk/" target="_blank" rel="noopener noreferrer" className={styles.link}>
+                <FaFacebook className={styles.icon} /> Lê Thanhh Tùngg
               </a>
             </div>
           </motion.div>

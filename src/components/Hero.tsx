@@ -54,18 +54,18 @@ export default function Hero() {
               <span className={styles.statusDot}></span> Available for new opportunities
             </div>
 
-            <h2 className={styles.greeting}>Hi, I am Tung Le</h2>
+            <h2 className={styles.greeting}>Hi there, I&apos;m Tung Le 👋</h2>
             <h1 className={styles.name}>
-              Full Stack Developer.<br/>
-              <span className={styles.highlight}>Passionate about building real products.</span>
+              A CS student who loves coding.<br/>
+              <span className={styles.highlight}>Building things from scratch.</span>
             </h1>
             
             <h3 className={styles.typewriterSubtitle} suppressHydrationWarning>
-              Also a <TypewriterText words={['Designer', 'Marketer', 'AI Enthusiast', 'Problem Solver']} />
+              Also a <TypewriterText words={['Curious Learner', 'Problem Solver', 'Tech Enthusiast', 'Trainee']} />
             </h3>
             
             <p className={styles.description}>
-              Mastering Next.js and Node.js to architect comprehensive applications. Aiming to be a software engineer with strong system design thinking.
+              I enjoy playing around with Next.js and Node.js to build actual working web apps. My goal is to become a solid Software Engineer with good system design skills, not just someone who writes code.
             </p>
 
             <div className={styles.statsRow}>

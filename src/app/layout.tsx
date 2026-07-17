@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   description: "Portfolio of Tung Le, a Fullstack Developer building modern web applications.",
 };
 
+import SmoothScroll from "@/components/SmoothScroll";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,10 +25,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable}`}>
       <body>
+        <SmoothScroll>
         <Suspense fallback={null}>
           <PageViewTracker />
         </Suspense>
         <main>{children}</main>
+        </SmoothScroll>
       </body>
     </html>
   );

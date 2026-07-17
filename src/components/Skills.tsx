@@ -55,7 +55,7 @@ export default function Skills() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          Tech Stack & Tools
+          My Toolbox
         </motion.h2>
         
         <motion.p
@@ -65,40 +65,29 @@ export default function Skills() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          Utilizing TypeScript and Prisma to ensure Type-Safety from Frontend to Database, focusing on maintainable and scalable systems.
+          I really like using TypeScript with Prisma to ensure Type-Safety from the Frontend down to the Database. It helps me sleep better at night knowing things won't randomly break.
         </motion.p>
         
-        <div className={styles.grid}>
-          {SKILLS_DATA.map((group, idx) => (
-            <motion.div 
-              key={group.category} 
-              className={`${styles.skillGroup} glass`}
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: idx * 0.2, type: "spring", bounce: 0.4 }}
-            >
-              <h3 className={styles.categoryTitle}>
-                <span className={styles.categoryIcon}>{group.icon}</span>
-                {group.category}
-              </h3>
-              <ul className={styles.skillList}>
-                {group.items.map((skill, skillIdx) => (
-                  <motion.li 
-                    key={skill.name} 
-                    className={styles.skillItem}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: (idx * 0.2) + (skillIdx * 0.1) }}
-                  >
-                    {skill.logo}
-                    {skill.name}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+        <div className={styles.marqueeContainer}>
+          {/* Row 1: Frontend & Design */}
+          <div className={styles.marqueeRow} style={{ '--duration': '35s' } as React.CSSProperties}>
+            {[...SKILLS_DATA[0].items, ...SKILLS_DATA[0].items, ...SKILLS_DATA[0].items, ...SKILLS_DATA[0].items].map((skill, idx) => (
+              <div key={`${skill.name}-${idx}`} className={styles.skillItem}>
+                {skill.logo}
+                {skill.name}
+              </div>
+            ))}
+          </div>
+
+          {/* Row 2: Backend & Tools (Reverse) */}
+          <div className={`${styles.marqueeRow} ${styles.reverse}`} style={{ '--duration': '45s' } as React.CSSProperties}>
+            {[...SKILLS_DATA[1].items, ...SKILLS_DATA[2].items, ...SKILLS_DATA[1].items, ...SKILLS_DATA[2].items, ...SKILLS_DATA[1].items, ...SKILLS_DATA[2].items].map((skill, idx) => (
+              <div key={`${skill.name}-${idx}`} className={styles.skillItem}>
+                {skill.logo}
+                {skill.name}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,78 +1,80 @@
 .skills {
   padding: 6rem 0;
   background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--surface) 58%, transparent) 100%);
+  overflow: hidden;
 }
 
 .sectionTitle {
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   text-align: center;
   color: var(--foreground);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
-}
-
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.skillGroup {
-  padding: 2.5rem 2rem;
-  border-radius: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.skillGroup:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px -10px var(--primary-light);
-}
-
-.categoryTitle {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-  color: var(--accent);
-  border-bottom: 1px solid var(--surface-border);
-  padding-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.categoryIcon {
-  color: var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.skillList {
-  list-style: none;
+.marqueeContainer {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 2rem;
+  margin-top: 4rem;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marqueeRow {
+  display: flex;
+  width: max-content;
+  animation: scroll var(--duration, 40s) linear infinite;
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.marqueeRow:hover {
+  animation-play-state: paused;
+}
+
+.marqueeRow.reverse {
+  animation-direction: reverse;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .skillItem {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 1.05rem;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
   color: var(--text-dark);
-  transition: color 0.2s ease, transform 0.2s ease;
-  font-weight: 500;
+  font-weight: 600;
+  border-radius: 100px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .skillItem:hover {
   color: var(--primary-hover);
-  transform: translateX(5px);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 30px -10px var(--primary);
+  border-color: var(--primary);
 }
 
 .bulletIcon {
   color: var(--primary);
-  min-width: 16px;
+  font-size: 1.5rem;
 }

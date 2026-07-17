@@ -8,27 +8,27 @@ import styles from './Experience.module.css';
 const EXPERIENCES = [
   {
     id: 1,
-    title: 'Clean Code is the #1 Priority',
-    company: 'Clarity & Maintainability',
+    title: 'Clean, readable code',
+    company: 'Rule #1',
     period: 'Principle 01',
     icon: <Code size={14} className={styles.dotIcon} />,
-    description: 'I believe code is written for humans to read first. I prioritize clear variable naming, modular components, and an organized directory structure.'
+    description: 'I always remind myself that code is read by humans first (especially future me) and executed by machines second. Naming variables clearly and splitting components neatly is a must for me.'
   },
   {
     id: 2,
-    title: 'Test Thoroughly Before Commit',
-    company: 'Quality Assurance',
+    title: 'Test thoroughly before pushing',
+    company: 'Rule #2',
     period: 'Principle 02',
     icon: <ShieldCheck size={14} className={styles.dotIcon} />,
-    description: 'Proactively test edge cases and anticipate potential errors to mitigate risks before pushing features to the Production environment.'
+    description: 'I try my best to test the main flows and catch edge cases early so I don\'t make life harder for the reviewers or testers.'
   },
   {
     id: 3,
-    title: 'Dive Deep into Documentation',
-    company: 'Understand the Core',
+    title: 'Read the Docs',
+    company: 'Rule #3',
     period: 'Principle 03',
     icon: <BookOpen size={14} className={styles.dotIcon} />,
-    description: 'Instead of rushing to copy external solutions, I maintain the habit of reading official documentation to truly understand how tools work under the hood.'
+    description: 'Instead of just copy-pasting from StackOverflow, I actually enjoy reading official docs to figure out how libraries work under the hood.'
   }
 ];
 
@@ -43,7 +43,7 @@ export default function Experience() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          My Developer Philosophy
+          My Working Style
         </motion.h2>
         
         <div className={styles.timeline}>

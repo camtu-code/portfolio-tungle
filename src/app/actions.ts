@@ -4,21 +4,40 @@ import { prisma } from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { auth } from '@/auth';
 
+import { z } from 'zod';
+import DOMPurify from 'isomorphic-dompurify';
+
+const contactSchema = z.object({
+  name: z.string().min(1, 'Name is required').max(100),
+  email: z.string().email('Invalid email address'),
+  message: z.string().min(1, 'Message is required').max(5000),
+});
+
 export async function submitContactMessage(formData: FormData) {
   try {
-    const name = formData.get('name') as string;
-    const email = formData.get('email') as string;
-    const message = formData.get('message') as string;
+    const rawData = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      message: formData.get('message') as string,
+    };
 
-    if (!name || !email || !message) {
-      return { success: false, error: 'Missing fields' };
+    const validatedData = contactSchema.safeParse(rawData);
+
+    if (!validatedData.success) {
+      return { success: false, error: validatedData.error.errors[0].message };
     }
+
+    const { name, email, message } = validatedData.data;
+    
+    // Sanitize user input to prevent XSS if rendered later
+    const sanitizedName = DOMPurify.sanitize(name);
+    const sanitizedMessage = DOMPurify.sanitize(message);
 
     await prisma.contactMessage.create({
       data: {
-        name,
-        email,
-        message,
+        name: sanitizedName,
+        email, // Email is already validated by zod, no need to sanitize HTML
+        message: sanitizedMessage,
       },
     });
 
