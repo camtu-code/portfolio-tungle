@@ -8,9 +8,9 @@ const rateLimitMap = new Map<string, { count: number; lastReset: number }>();
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 const MAX_REQUESTS = 100; // 100 requests per minute
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   // 1. Rate Limiting Logic
-  const ip = request.headers.get('x-forwarded-for') ?? request.ip ?? '127.0.0.1';
+  const ip = request.headers.get('x-forwarded-for') ?? request.headers.get('x-real-ip') ?? '127.0.0.1';
   const now = Date.now();
   
   const rateLimitInfo = rateLimitMap.get(ip);
