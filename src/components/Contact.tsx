@@ -46,12 +46,17 @@ export default function Contact() {
   async function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setContactStatus('loading');
-    const formData = new FormData(e.currentTarget);
-    const res = await submitContactMessage(formData);
-    if (res.success) {
-      setContactStatus('success');
-      contactFormRef.current?.reset();
-    } else {
+    try {
+      const formData = new FormData(e.currentTarget);
+      const res = await submitContactMessage(formData);
+      if (res.success) {
+        setContactStatus('success');
+        contactFormRef.current?.reset();
+      } else {
+        setContactStatus('error');
+      }
+    } catch (error) {
+      console.error(error);
       setContactStatus('error');
     }
   }
@@ -59,14 +64,19 @@ export default function Contact() {
   async function handleGuestSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setGuestStatus('loading');
-    const formData = new FormData(e.currentTarget);
-    formData.set('rating', String(rating));
-    const res = await submitTestimonial(formData);
-    if (res.success) {
-      setGuestStatus('success');
-      guestFormRef.current?.reset();
-      setRating(5);
-    } else {
+    try {
+      const formData = new FormData(e.currentTarget);
+      formData.set('rating', String(rating));
+      const res = await submitTestimonial(formData);
+      if (res.success) {
+        setGuestStatus('success');
+        guestFormRef.current?.reset();
+        setRating(5);
+      } else {
+        setGuestStatus('error');
+      }
+    } catch (error) {
+      console.error(error);
       setGuestStatus('error');
     }
   }

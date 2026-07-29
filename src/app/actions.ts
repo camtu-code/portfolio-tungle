@@ -5,7 +5,6 @@ import { revalidatePath } from 'next/cache';
 import { auth } from '@/auth';
 
 import { z } from 'zod';
-import DOMPurify from 'isomorphic-dompurify';
 
 const contactSchema = z.object({
   name: z.string().min(1, 'Name is required').max(100),
@@ -28,16 +27,12 @@ export async function submitContactMessage(formData: FormData) {
     }
 
     const { name, email, message } = validatedData.data;
-    
-    // Sanitize user input to prevent XSS if rendered later
-    const sanitizedName = DOMPurify.sanitize(name);
-    const sanitizedMessage = DOMPurify.sanitize(message);
 
     await prisma.contactMessage.create({
       data: {
-        name: sanitizedName,
-        email, // Email is already validated by zod, no need to sanitize HTML
-        message: sanitizedMessage,
+        name,
+        email,
+        message,
       },
     });
 
