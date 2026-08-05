@@ -29,6 +29,73 @@ export default function Projects() {
         >
           <div className={`${styles.card} glass`} style={{ padding: '3rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             <div style={{ borderBottom: '1px solid var(--surface-border)', paddingBottom: '1.5rem' }}>
+              <h3 className={styles.title} style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>GiftLove Code IT</h3>
+              <p style={{ fontSize: '1.2rem', color: 'var(--text-dark)', fontWeight: 500 }}>
+                Nền tảng thương mại điện tử ngách cho phép tùy biến giao diện web cá nhân hóa
+              </p>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div>
+                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Context</h4>
+                  <p style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}>Dự án chứng minh tư duy kinh doanh, giải quyết bài toán thực tế và nắm vững quy trình thanh toán. Xây dựng nền tảng thương mại điện tử ngách cho phép người dùng tùy biến giao diện web cá nhân hóa.</p>
+                </div>
+                <div>
+                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>My Role</h4>
+                  <p style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}><strong>Fullstack Developer / Founder</strong>.</p>
+                </div>
+                <div>
+                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Tech Stack</h4>
+                  <div className={styles.tags} style={{ marginTop: '0.5rem' }}>
+                    {['Next.js', 'TypeScript', 'Prisma', 'TiDB / MySQL', 'Vercel', 'API VietQR', 'Webhook (Casso/SePay)'].map(tech => (
+                      <span key={tech} className={styles.tag}>{tech}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div>
+                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Challenges & Solutions</h4>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                      <CheckCircle2 size={20} color="var(--primary)" style={{ flexShrink: 0, marginTop: '0.2rem' }} />
+                      <span style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}><strong>Tích hợp thanh toán tự động:</strong> Tích hợp thành công API ngân hàng (VietQR) và hệ thống Webhook tự động đối soát đơn hàng.</span>
+                    </li>
+                    <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                      <CheckCircle2 size={20} color="var(--primary)" style={{ flexShrink: 0, marginTop: '0.2rem' }} />
+                      <span style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}><strong>Dynamic Routing & Customization:</strong> Xử lý routing động (Dynamic Routes) sinh ra hàng loạt link sản phẩm độc lập mà không cần deploy lại.</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Result</h4>
+                  <p style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}>Hệ thống chạy ổn định trên môi trường production, tự động hóa 100% quy trình từ thanh toán đến giao mã nguồn.</p>
+                </div>
+                <div className={styles.links} style={{ marginTop: 'auto', paddingTop: '1rem' }}>
+                  <a href="https://onlylovegift.vercel.app/" className={styles.link} target="_blank" rel="noopener noreferrer" style={{ padding: '0.5rem 1rem', background: 'var(--primary)', color: '#fff', borderRadius: '8px' }}>
+                    <ExternalLink size={16} /> Live Demo
+                  </a>
+                  <span className={`${styles.link} ${styles.privateLink}`} aria-label="Repository is private">
+                    <LockKeyhole size={16} /> Private Repo
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div 
+          className="glowing-border"
+          style={{ maxWidth: '1000px', margin: '4rem auto 0' }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
+        >
+          <div className={`${styles.card} glass`} style={{ padding: '3rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <div style={{ borderBottom: '1px solid var(--surface-border)', paddingBottom: '1.5rem' }}>
               <h3 className={styles.title} style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>MyStudyVibes</h3>
               <p style={{ fontSize: '1.2rem', color: 'var(--text-dark)', fontWeight: 500 }}>
                 Next-gen Learning Management System with AI

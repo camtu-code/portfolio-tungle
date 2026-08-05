@@ -3,8 +3,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Monitor, Server, Database } from 'lucide-react';
-import { SiNextdotjs, SiTypescript, SiTailwindcss, SiPrisma, SiPostgresql, SiMongodb, SiPostman, SiVercel, SiSocketdotio, SiFramer, SiRender, SiNetlify } from 'react-icons/si';
-import { FaReact, FaNodeJs, FaJava, FaGitAlt, FaDocker, FaPython } from 'react-icons/fa';
+import { SiNextdotjs, SiTypescript, SiTailwindcss, SiPrisma, SiPostgresql, SiMongodb, SiPostman, SiVercel, SiSocketdotio, SiFramer, SiRender, SiNetlify, SiMysql } from 'react-icons/si';
+import { FaReact, FaNodeJs, FaJava, FaGitAlt, FaDocker, FaPython, FaMoneyCheck, FaLink } from 'react-icons/fa';
 import { GrOracle } from 'react-icons/gr';
 import styles from './Skills.module.css';
 
@@ -30,6 +30,7 @@ const SKILLS_DATA = [
       { name: 'WebSockets', logo: <SiSocketdotio size={16} className={styles.bulletIcon} /> },
       { name: 'Prisma', logo: <SiPrisma size={16} className={styles.bulletIcon} /> },
       { name: 'PostgreSQL', logo: <SiPostgresql size={16} className={styles.bulletIcon} /> },
+      { name: 'MySQL / TiDB', logo: <SiMysql size={16} className={styles.bulletIcon} /> },
       { name: 'Oracle', logo: <GrOracle size={16} className={styles.bulletIcon} /> },
       { name: 'MongoDB', logo: <SiMongodb size={16} className={styles.bulletIcon} /> }
     ] 
@@ -43,7 +44,9 @@ const SKILLS_DATA = [
       { name: 'Postman', logo: <SiPostman size={16} className={styles.bulletIcon} /> },
       { name: 'Vercel', logo: <SiVercel size={16} className={styles.bulletIcon} /> },
       { name: 'Render', logo: <SiRender size={16} className={styles.bulletIcon} /> },
-      { name: 'Netlify', logo: <SiNetlify size={16} className={styles.bulletIcon} /> }
+      { name: 'Netlify', logo: <SiNetlify size={16} className={styles.bulletIcon} /> },
+      { name: 'VietQR API', logo: <FaMoneyCheck size={16} className={styles.bulletIcon} /> },
+      { name: 'Webhooks (Casso/SePay)', logo: <FaLink size={16} className={styles.bulletIcon} /> }
     ] 
   }
 ];
