@@ -10,7 +10,7 @@ export default function Projects() {
         <h2 className="text-2xl font-semibold tracking-tight">Selected Work</h2>
         <p className="text-zinc-500 dark:text-zinc-400">A collection of projects I&apos;ve built and shipped to production.</p>
       </div>
-      
+
       <div className="flex flex-col gap-16">
         {/* ─── PROJECT 1: CogniAssess ─── */}
         <div className="flex flex-col gap-6">
@@ -41,10 +41,10 @@ export default function Projects() {
                 <li><strong>CogniAssess Engine:</strong> Tracks per-question behavioral data (time spent, answer changes) and generates AI-powered analysis reports via Gemini API.</li>
                 <li><strong>AI Anti-Cheat:</strong> Integrated TensorFlow.js (COCO-SSD) to detect face absence and tab-switching in real-time.</li>
                 <li><strong>AI Exam Generator:</strong> Integrates Cohere command-r with automatic retry and a 4-layer JSON safety pipeline to ensure generation stability.</li>
-                <li><strong>Economy:</strong> Built a complete virtual wallet with auto commission splits and QR-based PRO upgrades.</li>
+                <li><strong>Platform Usage:</strong> Serving 105+ real users (excluding demo accounts) with a robust bank of over 1,000 AI-generated questions across 39 exam courses.</li>
               </ul>
               <div className="flex items-center gap-4 mt-auto pt-4">
-                <a href="https://cna.io.vn" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4">
+                <a href="https://cna.io.vn/?demo=BaoVe_Cogni2026" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4">
                   Live Demo <ExternalLink size={14} />
                 </a>
                 <span className="inline-flex items-center gap-1.5 text-zinc-400 dark:text-zinc-500 cursor-not-allowed">
@@ -82,8 +82,8 @@ export default function Projects() {
             <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
               <ul className="list-disc pl-4 space-y-2 marker:text-zinc-400 dark:marker:text-zinc-600">
                 <li><strong>Real-Time WS Server:</strong> Separate Express + Socket.IO server handling live presence, timers, and chat with a 5-min heartbeat DB write buffer.</li>
-                <li><strong>Deep Gamification:</strong> 20+ DB tables managing 17 rarity tiers of shop items, quests, team competitions, and historical KPI tracking.</li>
-                <li><strong>Production Ops:</strong> Self-maintained with real active users, custom anti-spam detection, and cross-ping mechanisms to keep servers awake.</li>
+                <li><strong>Deep Gamification:</strong> 20+ DB tables managing 640+ shop items across 17 rarity tiers, daily quests, team competitions, and historical KPI tracking.</li>
+                <li><strong>Production Metrics:</strong> Actively serving 440+ real users, tracking over 7,000 study sessions and nearly 7,000 hours of focused study time across 20 active study teams.</li>
               </ul>
               <div className="flex items-center gap-4 mt-auto pt-4">
                 <a href="https://s2g.io.vn" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4">
