@@ -6,7 +6,8 @@ import Contact from '@/components/Contact';
 
 import Philosophy from '@/components/Philosophy';
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
+export const revalidate = 3600; // ISR: update cache every 1 hour
 
 export default function Home() {
   return (
