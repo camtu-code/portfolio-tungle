@@ -9,7 +9,7 @@
 .formBox {
   background: white;
   padding: 2.5rem;
-  border-radius: 12px;
+  border-radius: 4px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
@@ -38,7 +38,7 @@
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ddd;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 1rem;
   transition: border-color 0.2s ease;
 }
@@ -52,7 +52,7 @@
   color: #dc3545;
   background: #f8d7da;
   padding: 0.75rem;
-  border-radius: 6px;
+  border-radius: 4px;
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
   text-align: center;
@@ -64,7 +64,7 @@
   background-color: #333; /* Dark theme button */
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.2s ease;

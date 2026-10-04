@@ -1,82 +1,70 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { BookOpen, ShieldCheck, Code, CheckCircle2 } from 'lucide-react';
-import styles from './Experience.module.css';
 
-const EXPERIENCES = [
+const TIMELINE = [
   {
-    id: 1,
-    title: 'Clean, readable code',
-    company: 'Rule #1',
-    period: 'Principle 01',
-    icon: <Code size={14} className={styles.dotIcon} />,
-    description: 'I always remind myself that code is read by humans first (especially future me) and executed by machines second. Naming variables clearly and splitting components neatly is a must for me.'
+    year: '2024 - Present',
+    title: 'Fullstack Developer / Founder',
+    company: 'OnlyGift.online',
+    description: 'Architected an automated e-commerce platform integrating VietQR and Casso Webhooks for zero-manual order reconciliation.'
   },
   {
-    id: 2,
-    title: 'Test thoroughly before pushing',
-    company: 'Rule #2',
-    period: 'Principle 02',
-    icon: <ShieldCheck size={14} className={styles.dotIcon} />,
-    description: 'I try my best to test the main flows and catch edge cases early so I don\'t make life harder for the reviewers or testers.'
+    year: '2023 - 2024',
+    title: 'Solo Fullstack Developer',
+    company: 'CogniAssess Platform',
+    description: 'Built a 5-role RBAC EdTech platform with AI-proctored exams (TensorFlow.js), cognitive assessment engine, and a 4-persona AI tutor.'
   },
   {
-    id: 3,
-    title: 'Read the Docs',
-    company: 'Rule #3',
-    period: 'Principle 03',
-    icon: <BookOpen size={14} className={styles.dotIcon} />,
-    description: 'Instead of just copy-pasting from StackOverflow, I actually enjoy reading official docs to figure out how libraries work under the hood.'
+    year: '2022 - 2024',
+    title: 'Fullstack Developer & Product Owner',
+    company: 'StudyStream (S2G)',
+    description: 'Developed and maintained a real-time virtual study community serving real active users, utilizing a dedicated Socket.IO server and 20+ DB tables for gamification.'
   }
 ];
 
 export default function Experience() {
   return (
-    <section id="experience" className={styles.experience}>
-      <div className="container">
-        <motion.h2 
-          className={styles.sectionTitle}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          My Working Style
-        </motion.h2>
-        
-        <div className={styles.timeline}>
-          {EXPERIENCES.map((exp, idx) => (
-            <div key={exp.id} className={styles.timelineItem}>
-              <motion.div 
-                className={styles.timelineDot}
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.4, delay: idx * 0.2 }}
-              >
-                {exp.icon}
-              </motion.div>
-              
-              <motion.div 
-                className={`${styles.timelineContent} glass`}
-                initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: idx * 0.2, type: "spring", bounce: 0.3 }}
-              >
-                <div className={styles.timelineHeader}>
-                  <h3 className={styles.title}>{exp.title}</h3>
-                  <span className={styles.period}>
-                    <CheckCircle2 size={14} /> {exp.period}
-                  </span>
-                </div>
-                <h4 className={styles.company}>{exp.company}</h4>
-                <p className={styles.description}>{exp.description}</p>
-              </motion.div>
+    <section id="experience" className="flex flex-col gap-8">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-2xl font-semibold tracking-tight">Experience</h2>
+        <p className="text-zinc-500 dark:text-zinc-400">My journey so far.</p>
+      </div>
+
+      <div className="flex flex-col gap-8">
+        {TIMELINE.map((item, idx) => (
+          <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 group">
+            <span className="text-sm text-zinc-400 dark:text-zinc-500 min-w-[120px] pt-1">
+              {item.year}
+            </span>
+            <div className="flex flex-col gap-2">
+              <h3 className="text-base font-medium text-zinc-900 dark:text-zinc-100">
+                {item.title} <span className="text-zinc-400 dark:text-zinc-500 font-normal">· {item.company}</span>
+              </h3>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xl">
+                {item.description}
+              </p>
             </div>
-          ))}
+          </div>
+        ))}
+      </div>
+
+      <div className="flex flex-col gap-8 mt-8 pt-8 border-t-2 border-zinc-300 dark:border-zinc-700">
+        <div className="flex flex-col gap-2">
+          <h2 className="text-2xl font-semibold tracking-tight">Education</h2>
+        </div>
+        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 group">
+          <span className="text-sm text-zinc-400 dark:text-zinc-500 min-w-[120px] pt-1">
+            Expected 2025
+          </span>
+          <div className="flex flex-col gap-2">
+            <h3 className="text-base font-medium text-zinc-900 dark:text-zinc-100">
+              Information Technology <span className="text-zinc-400 dark:text-zinc-500 font-normal">· University of Transport and Communications</span>
+            </h3>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xl">
+              Final-year IT student. Hold a professional Pedagogical Certificate, enabling a unique combination of technical engineering and effective educational product design.
+            </p>
+          </div>
         </div>
       </div>
     </section>

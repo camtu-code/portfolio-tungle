@@ -1,47 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Send, MessageSquareHeart, Star } from 'lucide-react';
-import { FaFacebook } from 'react-icons/fa';
-import { submitContactMessage } from '../app/actions';
-import { submitTestimonial } from '../app/actions/testimonial';
-import styles from './Contact.module.css';
-
-function StarRating({ value, onChange }: { value: number; onChange: (v: number) => void }) {
-  const [hovered, setHovered] = useState(0);
-  return (
-    <div className={styles.starRow}>
-      {[1, 2, 3, 4, 5].map((star) => (
-        <button
-          key={star}
-          type="button"
-          className={styles.starBtn}
-          onMouseEnter={() => setHovered(star)}
-          onMouseLeave={() => setHovered(0)}
-          onClick={() => onChange(star)}
-          aria-label={`Rate ${star} stars`}
-        >
-          <Star
-            size={24}
-            fill={(hovered || value) >= star ? '#C19A6B' : 'none'}
-            stroke={(hovered || value) >= star ? '#C19A6B' : '#ccc'}
-            strokeWidth={1.5}
-          />
-        </button>
-      ))}
-      <span className={styles.starLabel}>{value}/5</span>
-    </div>
-  );
-}
+import React, { useState, useRef } from 'react';
+import { Mail, MapPin, Send, MessageSquareHeart, Phone } from 'lucide-react';
+import { submitContactMessage } from '@/app/actions';
+import { submitTestimonial } from '@/app/actions/testimonial';
 
 export default function Contact() {
   const [tab, setTab] = useState<'contact' | 'guestbook'>('contact');
   const [contactStatus, setContactStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [guestStatus, setGuestStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [rating, setRating] = useState(5);
-  const contactFormRef = React.useRef<HTMLFormElement>(null);
-  const guestFormRef = React.useRef<HTMLFormElement>(null);
+  
+  const contactFormRef = useRef<HTMLFormElement>(null);
+  const guestFormRef = useRef<HTMLFormElement>(null);
 
   async function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -52,12 +22,15 @@ export default function Contact() {
       if (res.success) {
         setContactStatus('success');
         contactFormRef.current?.reset();
+        setTimeout(() => setContactStatus('idle'), 5000);
       } else {
         setContactStatus('error');
+        setTimeout(() => setContactStatus('idle'), 5000);
       }
     } catch (error) {
       console.error(error);
       setContactStatus('error');
+      setTimeout(() => setContactStatus('idle'), 5000);
     }
   }
 
@@ -66,166 +39,162 @@ export default function Contact() {
     setGuestStatus('loading');
     try {
       const formData = new FormData(e.currentTarget);
-      formData.set('rating', String(rating));
+      formData.set('rating', '5'); // Default to 5 stars since we removed the custom Star component for minimal UI
       const res = await submitTestimonial(formData);
       if (res.success) {
         setGuestStatus('success');
         guestFormRef.current?.reset();
-        setRating(5);
+        setTimeout(() => setGuestStatus('idle'), 5000);
       } else {
         setGuestStatus('error');
+        setTimeout(() => setGuestStatus('idle'), 5000);
       }
     } catch (error) {
       console.error(error);
       setGuestStatus('error');
+      setTimeout(() => setGuestStatus('idle'), 5000);
     }
   }
 
   return (
-    <section id="contact" className={styles.contact}>
-      <div className="container">
-        <motion.h2
-          className={styles.sectionTitle}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-        >
-          Get In Touch
-        </motion.h2>
+    <section id="contact" className="flex flex-col gap-8 pb-12 border-b-2 border-zinc-300 dark:border-zinc-700">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-2xl font-semibold tracking-tight">Get In Touch</h2>
+        <p className="text-zinc-500 dark:text-zinc-400">Available for new opportunities and collaborations.</p>
+      </div>
 
-        <div className={styles.contactContent}>
-          {/* Left: info */}
-          <motion.div
-            className={styles.contactInfo}
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, type: 'spring', bounce: 0.3 }}
-          >
-            <h3 style={{ lineHeight: 1.4 }}>Looking for a passionate addition to your team?</h3>
-            <p>
-              I&apos;m currently open for new opportunities. Whether you have a question, a project in mind, or just want to say hi — I&apos;ll get back to you!
-            </p>
-            <p className={styles.guestbookHint}>
-              💬 If you find my portfolio impressive, feel free to leave a testimonial — I&apos;d love to feature it here!
-            </p>
-            <div className={styles.links}>
-              <a href="mailto:lethanhtung6803@gmail.com" className={styles.link}>
-                <Mail className={styles.icon} /> lethanhtung6803@gmail.com
-              </a>
-              <a href="https://www.facebook.com/share/1EB3BREhPk/" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                <FaFacebook className={styles.icon} /> Lê Thanhh Tùngg
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
+              <Mail size={16} className="text-zinc-400 dark:text-zinc-500" />
+              <a href="mailto:lethanhtung6803@gmail.com" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                lethanhtung6803@gmail.com
               </a>
             </div>
-          </motion.div>
-
-          {/* Right: tabbed form */}
-          <motion.div
-            className={`${styles.formWrapper} glass`}
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, type: 'spring', bounce: 0.3, delay: 0.2 }}
-          >
-            {/* Tabs */}
-            <div className={styles.tabs}>
-              <button
-                className={`${styles.tabBtn} ${tab === 'contact' ? styles.tabActive : ''}`}
-                onClick={() => setTab('contact')}
-              >
-                <Send size={15} /> Send Message
-              </button>
-              <button
-                className={`${styles.tabBtn} ${tab === 'guestbook' ? styles.tabActive : ''}`}
-                onClick={() => setTab('guestbook')}
-              >
-                <MessageSquareHeart size={15} /> Leave Testimonial
-              </button>
+            <div className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
+              <Phone size={16} className="text-zinc-400 dark:text-zinc-500" />
+              <a href="https://zalo.me/0848290617" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                0848 290 617 (Zalo)
+              </a>
             </div>
+            <div className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
+              <MapPin size={16} className="text-zinc-400 dark:text-zinc-500" />
+              <span>Hanoi, Vietnam</span>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-sm">
+            <p>Feel free to reach out if you want to build something together, have a question, or just want to connect.</p>
+            <p className="mt-2 text-zinc-400 dark:text-zinc-500 italic">💬 If you find my portfolio impressive, feel free to leave a testimonial!</p>
+          </div>
+        </div>
 
-            <AnimatePresence mode="wait">
-              {tab === 'contact' ? (
-                <motion.form
-                  key="contact"
-                  ref={contactFormRef}
-                  className={styles.form}
-                  onSubmit={handleContactSubmit}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2 }}
+        <div className="flex flex-col gap-6">
+          {/* Tabs */}
+          <div className="flex items-center gap-1 p-1 bg-zinc-100 dark:bg-zinc-900/50 rounded-lg w-fit">
+            <button
+              onClick={() => setTab('contact')}
+              className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                tab === 'contact' 
+                  ? 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm' 
+                  : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
+              }`}
+            >
+              <Send size={14} /> Send Message
+            </button>
+            <button
+              onClick={() => setTab('guestbook')}
+              className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                tab === 'guestbook' 
+                  ? 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm' 
+                  : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
+              }`}
+            >
+              <MessageSquareHeart size={14} /> Leave Testimonial
+            </button>
+          </div>
+
+          {/* Form Content */}
+          {tab === 'contact' ? (
+            <form ref={contactFormRef} className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300" onSubmit={handleContactSubmit}>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <input 
+                  type="text" 
+                  name="name"
+                  placeholder="Name" 
+                  required
+                  className="w-full px-4 py-2 bg-transparent border border-zinc-200 dark:border-zinc-800 rounded-md text-sm placeholder:text-zinc-400 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors"
+                />
+                <input 
+                  type="email" 
+                  name="email"
+                  placeholder="Email" 
+                  required
+                  className="w-full px-4 py-2 bg-transparent border border-zinc-200 dark:border-zinc-800 rounded-md text-sm placeholder:text-zinc-400 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors"
+                />
+              </div>
+              <textarea 
+                name="message"
+                placeholder="Message" 
+                rows={4}
+                required
+                className="w-full px-4 py-2 bg-transparent border border-zinc-200 dark:border-zinc-800 rounded-md text-sm placeholder:text-zinc-400 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors resize-none"
+              ></textarea>
+              <div className="flex items-center gap-4">
+                <button 
+                  type="submit" 
+                  disabled={contactStatus === 'loading'}
+                  className="px-6 py-2.5 bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-900 text-sm font-medium rounded-md hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors disabled:opacity-50"
                 >
-                  <div className={styles.formGroup}>
-                    <label htmlFor="c-name">Name</label>
-                    <input type="text" id="c-name" name="name" required placeholder="John Doe" />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <label htmlFor="c-email">Email</label>
-                    <input type="email" id="c-email" name="email" required placeholder="john@example.com" />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <label htmlFor="c-message">Message</label>
-                    <textarea id="c-message" name="message" required rows={4} placeholder="Hello Tung, I'd like to discuss..." />
-                  </div>
-                  <button type="submit" className={styles.submitBtn} disabled={contactStatus === 'loading'}>
-                    {contactStatus === 'loading' ? 'Sending...' : (<>Send Message <Send size={16} /></>)}
-                  </button>
-                  {contactStatus === 'success' && <p className={styles.successMessage}>✅ Message sent! I&apos;ll reply soon.</p>}
-                  {contactStatus === 'error' && <p className={styles.errorMessage}>❌ Something went wrong. Please try again.</p>}
-                </motion.form>
-              ) : (
-                <motion.form
-                  key="guestbook"
-                  ref={guestFormRef}
-                  className={styles.form}
-                  onSubmit={handleGuestSubmit}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2 }}
+                  {contactStatus === 'loading' ? 'Sending...' : 'Send Message'}
+                </button>
+                {contactStatus === 'success' && <span className="text-sm text-green-600 dark:text-green-500 font-medium">Message sent!</span>}
+                {contactStatus === 'error' && <span className="text-sm text-red-600 dark:text-red-500 font-medium">Error sending message.</span>}
+              </div>
+            </form>
+          ) : (
+            <form ref={guestFormRef} className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300" onSubmit={handleGuestSubmit}>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <input 
+                  type="text" 
+                  name="name"
+                  placeholder="Your Name *" 
+                  required
+                  className="w-full px-4 py-2 bg-transparent border border-zinc-200 dark:border-zinc-800 rounded-md text-sm placeholder:text-zinc-400 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors"
+                />
+                <input 
+                  type="text" 
+                  name="role"
+                  placeholder="Role / Title" 
+                  className="w-full px-4 py-2 bg-transparent border border-zinc-200 dark:border-zinc-800 rounded-md text-sm placeholder:text-zinc-400 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors"
+                />
+              </div>
+              <input 
+                type="text" 
+                name="company"
+                placeholder="Company (Optional)" 
+                className="w-full px-4 py-2 bg-transparent border border-zinc-200 dark:border-zinc-800 rounded-md text-sm placeholder:text-zinc-400 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors"
+              />
+              <textarea 
+                name="message"
+                placeholder="Your Testimonial *" 
+                rows={4}
+                required
+                className="w-full px-4 py-2 bg-transparent border border-zinc-200 dark:border-zinc-800 rounded-md text-sm placeholder:text-zinc-400 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors resize-none"
+              ></textarea>
+              <div className="flex items-center gap-4">
+                <button 
+                  type="submit" 
+                  disabled={guestStatus === 'loading'}
+                  className="px-6 py-2.5 bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-900 text-sm font-medium rounded-md hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors flex items-center gap-2 disabled:opacity-50"
                 >
-                  <div className={styles.formRow}>
-                    <div className={styles.formGroup}>
-                      <label htmlFor="g-name">Your Name *</label>
-                      <input type="text" id="g-name" name="name" required placeholder="Jane Smith" />
-                    </div>
-                    <div className={styles.formGroup}>
-                      <label htmlFor="g-role">Role / Title</label>
-                      <input type="text" id="g-role" name="role" placeholder="HR Manager" />
-                    </div>
-                  </div>
-                  <div className={styles.formGroup}>
-                    <label htmlFor="g-company">Company</label>
-                    <input type="text" id="g-company" name="company" placeholder="Acme Corp" />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <label htmlFor="g-message">Your Testimonial *</label>
-                    <textarea
-                      id="g-message"
-                      name="message"
-                      required
-                      rows={4}
-                      placeholder="Tung is an exceptional developer who..."
-                    />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <label>Rating</label>
-                    <StarRating value={rating} onChange={setRating} />
-                  </div>
-                  <button type="submit" className={styles.submitBtn} disabled={guestStatus === 'loading'}>
-                    {guestStatus === 'loading' ? 'Submitting...' : (<><MessageSquareHeart size={16} /> Submit Testimonial</>)}
-                  </button>
-                  {guestStatus === 'success' && (
-                    <p className={styles.successMessage}>
-                      🎉 Thank you! Your testimonial is pending review and will appear here soon.
-                    </p>
-                  )}
-                  {guestStatus === 'error' && <p className={styles.errorMessage}>❌ Something went wrong. Please try again.</p>}
-                </motion.form>
-              )}
-            </AnimatePresence>
-          </motion.div>
+                  <MessageSquareHeart size={16} /> {guestStatus === 'loading' ? 'Submitting...' : 'Submit Testimonial'}
+                </button>
+                {guestStatus === 'success' && <span className="text-sm text-green-600 dark:text-green-500 font-medium">Testimonial submitted!</span>}
+                {guestStatus === 'error' && <span className="text-sm text-red-600 dark:text-red-500 font-medium">Error submitting.</span>}
+              </div>
+            </form>
+          )}
         </div>
       </div>
     </section>

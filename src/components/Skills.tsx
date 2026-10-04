@@ -1,105 +1,33 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Monitor, Server, Database } from 'lucide-react';
-import { SiNextdotjs, SiTypescript, SiTailwindcss, SiPrisma, SiPostgresql, SiMongodb, SiPostman, SiVercel, SiSocketdotio, SiFramer, SiRender, SiNetlify, SiMysql } from 'react-icons/si';
-import { FaReact, FaNodeJs, FaJava, FaGitAlt, FaDocker, FaPython, FaMoneyCheck, FaLink } from 'react-icons/fa';
-import { GrOracle } from 'react-icons/gr';
-import styles from './Skills.module.css';
 
-const SKILLS_DATA = [
-  { 
-    category: 'Frontend & UI', 
-    icon: <Monitor size={24} />,
-    items: [
-      { name: 'Next.js', logo: <SiNextdotjs size={16} className={styles.bulletIcon} /> },
-      { name: 'React', logo: <FaReact size={16} className={styles.bulletIcon} /> },
-      { name: 'TypeScript', logo: <SiTypescript size={16} className={styles.bulletIcon} /> },
-      { name: 'Tailwind CSS', logo: <SiTailwindcss size={16} className={styles.bulletIcon} /> },
-      { name: 'Framer Motion', logo: <SiFramer size={16} className={styles.bulletIcon} /> }
-    ] 
-  },
-  { 
-    category: 'Backend & Database', 
-    icon: <Server size={24} />,
-    items: [
-      { name: 'Node.js', logo: <FaNodeJs size={16} className={styles.bulletIcon} /> },
-      { name: 'Python', logo: <FaPython size={16} className={styles.bulletIcon} /> },
-      { name: 'Java', logo: <FaJava size={16} className={styles.bulletIcon} /> },
-      { name: 'WebSockets', logo: <SiSocketdotio size={16} className={styles.bulletIcon} /> },
-      { name: 'Prisma', logo: <SiPrisma size={16} className={styles.bulletIcon} /> },
-      { name: 'PostgreSQL', logo: <SiPostgresql size={16} className={styles.bulletIcon} /> },
-      { name: 'MySQL / TiDB', logo: <SiMysql size={16} className={styles.bulletIcon} /> },
-      { name: 'Oracle', logo: <GrOracle size={16} className={styles.bulletIcon} /> },
-      { name: 'MongoDB', logo: <SiMongodb size={16} className={styles.bulletIcon} /> }
-    ] 
-  },
-  { 
-    category: 'Tools & Workflow', 
-    icon: <Database size={24} />,
-    items: [
-      { name: 'Git', logo: <FaGitAlt size={16} className={styles.bulletIcon} /> },
-      { name: 'Docker', logo: <FaDocker size={16} className={styles.bulletIcon} /> },
-      { name: 'Postman', logo: <SiPostman size={16} className={styles.bulletIcon} /> },
-      { name: 'Vercel', logo: <SiVercel size={16} className={styles.bulletIcon} /> },
-      { name: 'Render', logo: <SiRender size={16} className={styles.bulletIcon} /> },
-      { name: 'Netlify', logo: <SiNetlify size={16} className={styles.bulletIcon} /> },
-      { name: 'VietQR API', logo: <FaMoneyCheck size={16} className={styles.bulletIcon} /> },
-      { name: 'Webhooks (Casso/SePay)', logo: <FaLink size={16} className={styles.bulletIcon} /> }
-    ] 
-  }
+const SKILLS = [
+  { category: 'Frontend', items: ['Next.js 16 (App Router)', 'React 19', 'TypeScript', 'Tailwind CSS v4', 'Framer Motion', 'Zustand', 'Shadcn UI'] },
+  { category: 'Backend', items: ['Node.js', 'Express.js', 'Socket.IO', 'NextAuth', 'REST APIs', 'Webhooks (Casso/SePay)'] },
+  { category: 'Database & ORM', items: ['Prisma ORM', 'Drizzle ORM', 'TiDB Serverless', 'MySQL', 'PostgreSQL'] },
+  { category: 'AI & ML', items: ['Cohere API (command-r)', 'Google Gemini (Flash)', 'TensorFlow.js (COCO-SSD)', 'face-api.js'] },
+  { category: 'DevOps & Tools', items: ['Git/GitHub', 'Vercel', 'Render', 'GitHub Actions', 'Capacitor', 'Supabase Storage'] },
+  { category: 'Testing', items: ['Pytest', 'Playwright (E2E)'] },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className={styles.skills}>
-      <div className="container">
-        <motion.h2 
-          className={styles.sectionTitle}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          My Toolbox
-        </motion.h2>
-        
-        <motion.p
-          style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 3rem auto', color: 'var(--text-dark)', lineHeight: 1.6 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          I really like using TypeScript with Prisma to ensure Type-Safety from the Frontend down to the Database. It helps me sleep better at night knowing things won't randomly break.
-        </motion.p>
-        
-        <div className={styles.gridContainer}>
-          {SKILLS_DATA.map((category, idx) => (
-            <motion.div 
-              key={category.category} 
-              className={`${styles.categoryCard} glass`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-            >
-              <div className={styles.categoryHeader}>
-                <div className={styles.categoryIcon}>{category.icon}</div>
-                <h3 className={styles.categoryTitle}>{category.category}</h3>
-              </div>
-              <div className={styles.skillsList}>
-                {category.items.map((skill) => (
-                  <div key={skill.name} className={styles.skillBadge}>
-                    {skill.logo}
-                    <span>{skill.name}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+    <section id="skills" className="flex flex-col gap-8">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-2xl font-semibold tracking-tight">Technical Skills</h2>
+        <p className="text-zinc-500 dark:text-zinc-400">Technologies I use to build and deploy applications.</p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+        {SKILLS.map((skillGroup, idx) => (
+          <div key={idx} className="flex flex-col gap-2">
+            <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{skillGroup.category}</h3>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              {skillGroup.items.join(', ')}
+            </p>
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -1,224 +1,139 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, CheckCircle2, LockKeyhole } from 'lucide-react';
-import styles from './Projects.module.css';
+import { ExternalLink, LockKeyhole } from 'lucide-react';
 
 export default function Projects() {
   return (
-    <section id="projects" className={styles.projects}>
-      <div className="container">
-        <motion.h2 
-          className={styles.sectionTitle}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          Featured Projects
-        </motion.h2>
-        
-        <motion.div 
-          className="glowing-border"
-          style={{ maxWidth: '1000px', margin: '0 auto' }}
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
-        >
-          <div className={`${styles.card} glass`} style={{ padding: '3rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <div style={{ borderBottom: '1px solid var(--surface-border)', paddingBottom: '1.5rem' }}>
-              <h3 className={styles.title} style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>GiftLove Code IT</h3>
-              <p style={{ fontSize: '1.2rem', color: 'var(--text-dark)', fontWeight: 500 }}>
-                Nền tảng thương mại điện tử ngách cho phép tùy biến giao diện web cá nhân hóa
+    <section id="projects" className="flex flex-col gap-12">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-2xl font-semibold tracking-tight">Selected Work</h2>
+        <p className="text-zinc-500 dark:text-zinc-400">A collection of projects I&apos;ve built and shipped to production.</p>
+      </div>
+      
+      <div className="flex flex-col gap-16">
+        {/* ─── PROJECT 1: CogniAssess ─── */}
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b-2 border-zinc-300 dark:border-zinc-700 pb-4">
+            <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">CogniAssess Platform</h3>
+            <span className="text-sm text-zinc-500 dark:text-zinc-400">AI-Proctored Exams & Cognitive Engine</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <p>
+                Independently built a comprehensive EdTech platform with 5-role RBAC, live online exam rooms, AI-driven learning paths, a social learning community, and an in-app virtual currency (CogniCredit). <strong>Solo Fullstack Developer</strong>.
               </p>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {[
+                  'Next.js', 'Prisma', 'TiDB', 'Cohere API', 'Gemini API',
+                  'TensorFlow.js', 'Playwright', 'Capacitor'
+                ].map(tech => (
+                  <span key={tech} className="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-300 rounded text-xs font-medium border border-zinc-200 dark:border-zinc-700/50">
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Context</h4>
-                  <p style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}>Dự án chứng minh tư duy kinh doanh, giải quyết bài toán thực tế và nắm vững quy trình thanh toán. Xây dựng nền tảng thương mại điện tử ngách cho phép người dùng tùy biến giao diện web cá nhân hóa.</p>
-                </div>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>My Role</h4>
-                  <p style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}><strong>Fullstack Developer / Founder</strong>.</p>
-                </div>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Tech Stack</h4>
-                  <div className={styles.tags} style={{ marginTop: '0.5rem' }}>
-                    {['Next.js', 'TypeScript', 'Prisma', 'TiDB / MySQL', 'Vercel', 'API VietQR', 'Webhook (Casso/SePay)'].map(tech => (
-                      <span key={tech} className={styles.tag}>{tech}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Challenges & Solutions</h4>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                      <CheckCircle2 size={20} color="var(--primary)" style={{ flexShrink: 0, marginTop: '0.2rem' }} />
-                      <span style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}><strong>Tích hợp thanh toán tự động:</strong> Tích hợp thành công API ngân hàng (VietQR) và hệ thống Webhook tự động đối soát đơn hàng.</span>
-                    </li>
-                    <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                      <CheckCircle2 size={20} color="var(--primary)" style={{ flexShrink: 0, marginTop: '0.2rem' }} />
-                      <span style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}><strong>Dynamic Routing & Customization:</strong> Xử lý routing động (Dynamic Routes) sinh ra hàng loạt link sản phẩm độc lập mà không cần deploy lại.</span>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Result</h4>
-                  <p style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}>Hệ thống chạy ổn định trên môi trường production, tự động hóa 100% quy trình từ thanh toán đến giao mã nguồn.</p>
-                </div>
-                <div className={styles.links} style={{ marginTop: 'auto', paddingTop: '1rem' }}>
-                  <a href="https://onlylovegift.vercel.app/" className={styles.link} target="_blank" rel="noopener noreferrer" style={{ padding: '0.5rem 1rem', background: 'var(--primary)', color: '#fff', borderRadius: '8px' }}>
-                    <ExternalLink size={16} /> Live Demo
-                  </a>
-                  <span className={`${styles.link} ${styles.privateLink}`} aria-label="Repository is private">
-                    <LockKeyhole size={16} /> Private Repo
-                  </span>
-                </div>
+            <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <ul className="list-disc pl-4 space-y-2 marker:text-zinc-400 dark:marker:text-zinc-600">
+                <li><strong>CogniAssess Engine:</strong> Tracks per-question behavioral data (time spent, answer changes) and generates AI-powered analysis reports via Gemini API.</li>
+                <li><strong>AI Anti-Cheat:</strong> Integrated TensorFlow.js (COCO-SSD) to detect face absence and tab-switching in real-time.</li>
+                <li><strong>AI Exam Generator:</strong> Integrates Cohere command-r with automatic retry and a 4-layer JSON safety pipeline to ensure generation stability.</li>
+                <li><strong>Economy:</strong> Built a complete virtual wallet with auto commission splits and QR-based PRO upgrades.</li>
+              </ul>
+              <div className="flex items-center gap-4 mt-auto pt-4">
+                <a href="https://cna.io.vn" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4">
+                  Live Demo <ExternalLink size={14} />
+                </a>
+                <span className="inline-flex items-center gap-1.5 text-zinc-400 dark:text-zinc-500 cursor-not-allowed">
+                  Private Repo <LockKeyhole size={14} />
+                </span>
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div 
-          className="glowing-border"
-          style={{ maxWidth: '1000px', margin: '4rem auto 0' }}
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
-        >
-          <div className={`${styles.card} glass`} style={{ padding: '3rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <div style={{ borderBottom: '1px solid var(--surface-border)', paddingBottom: '1.5rem' }}>
-              <h3 className={styles.title} style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>MyStudyVibes</h3>
-              <p style={{ fontSize: '1.2rem', color: 'var(--text-dark)', fontWeight: 500 }}>
-                Next-gen Learning Management System with AI
+        {/* ─── PROJECT 2: StudyStream ─── */}
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b-2 border-zinc-300 dark:border-zinc-700 pb-4">
+            <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">StudyStream (S2G)</h3>
+            <span className="text-sm text-zinc-500 dark:text-zinc-400">Virtual Study Community & Live Rooms</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <p>
+                A full-featured virtual study community with live study rooms, per-subject timers, a deep gamification ecosystem (shop, 9-tier league, teams), daily KPI tracking, and a social feed. <strong>Fullstack Developer & Product Owner</strong>.
               </p>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {[
+                  'Next.js', 'Drizzle ORM', 'Socket.IO', 'Express.js',
+                  'Zustand', 'Supabase', 'Pusher'
+                ].map(tech => (
+                  <span key={tech} className="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-300 rounded text-xs font-medium border border-zinc-200 dark:border-zinc-700/50">
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Context</h4>
-                  <p style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}>I wanted to create a smart educational platform that goes beyond simple grading. MyStudyVibes analyzes student weaknesses, provides detailed feedback like a real tutor, and recommends personalized learning paths.</p>
-                </div>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>My Role</h4>
-                  <p style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}><strong>Solo Developer</strong> (Did everything from designing the database, building the APIs, to the UI/UX).</p>
-                </div>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Tech Stack</h4>
-                  <div className={styles.tags} style={{ marginTop: '0.5rem' }}>
-                    {['Next.js App Router', 'Server Actions', 'Prisma', 'PostgreSQL', 'OpenAI API'].map(tech => (
-                      <span key={tech} className={styles.tag}>{tech}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Challenges & Solutions</h4>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                      <CheckCircle2 size={20} color="var(--primary)" style={{ flexShrink: 0, marginTop: '0.2rem' }} />
-                      <span style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}><strong>AI Integration for Smart Grading:</strong> Implemented AI to not just mark answers correct or incorrect, but to explain the logic and act as a virtual tutor.</span>
-                    </li>
-                    <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                      <CheckCircle2 size={20} color="var(--primary)" style={{ flexShrink: 0, marginTop: '0.2rem' }} />
-                      <span style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}><strong>Personalized Learning Paths:</strong> Built a system to track student history, identify knowledge gaps, and dynamically suggest targeted exercises to overcome them.</span>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Result</h4>
-                  <p style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}>Successfully launched a robust AI-driven LMS that personalizes learning, saves teachers time, and provides students with 24/7 intelligent support.</p>
-                </div>
-                <div className={styles.links} style={{ marginTop: 'auto', paddingTop: '1rem' }}>
-                  <a href="https://edutech-ai-platform-1.vercel.app/" className={styles.link} target="_blank" rel="noopener noreferrer" style={{ padding: '0.5rem 1rem', background: 'var(--primary)', color: '#fff', borderRadius: '8px' }}>
-                    <ExternalLink size={16} /> Live Demo
-                  </a>
-                  <span className={`${styles.link} ${styles.privateLink}`} aria-label="Repository is private">
-                    <LockKeyhole size={16} /> Private Repo
-                  </span>
-                </div>
+            <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <ul className="list-disc pl-4 space-y-2 marker:text-zinc-400 dark:marker:text-zinc-600">
+                <li><strong>Real-Time WS Server:</strong> Separate Express + Socket.IO server handling live presence, timers, and chat with a 5-min heartbeat DB write buffer.</li>
+                <li><strong>Deep Gamification:</strong> 20+ DB tables managing 17 rarity tiers of shop items, quests, team competitions, and historical KPI tracking.</li>
+                <li><strong>Production Ops:</strong> Self-maintained with real active users, custom anti-spam detection, and cross-ping mechanisms to keep servers awake.</li>
+              </ul>
+              <div className="flex items-center gap-4 mt-auto pt-4">
+                <a href="https://s2g.io.vn" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4">
+                  Live Demo <ExternalLink size={14} />
+                </a>
+                <span className="inline-flex items-center gap-1.5 text-zinc-400 dark:text-zinc-500 cursor-not-allowed">
+                  Private Repo <LockKeyhole size={14} />
+                </span>
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div 
-          className="glowing-border"
-          style={{ maxWidth: '1000px', margin: '4rem auto 0' }}
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
-        >
-          <div className={`${styles.card} glass`} style={{ padding: '3rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <div style={{ borderBottom: '1px solid var(--surface-border)', paddingBottom: '1.5rem' }}>
-              <h3 className={styles.title} style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>StudyTogether</h3>
-              <p style={{ fontSize: '1.2rem', color: 'var(--text-dark)', fontWeight: 500 }}>
-                Next-Gen Virtual Study Room & Pomodoro Timer
+        {/* ─── PROJECT 3: OnlyGift.online ─── */}
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b-2 border-zinc-300 dark:border-zinc-700 pb-4">
+            <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">OnlyGift.online</h3>
+            <span className="text-sm text-zinc-500 dark:text-zinc-400">Niche E-commerce Platform</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <p>
+                Developed a specialized e-commerce platform allowing users to customize and purchase personalized web interfaces, demonstrating business acumen and end-to-end technical execution. <strong>Fullstack Developer / Founder</strong>.
               </p>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {['Next.js', 'Prisma', 'TiDB', 'VietQR API', 'Webhook (Casso)'].map(tech => (
+                  <span key={tech} className="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-300 rounded text-xs font-medium border border-zinc-200 dark:border-zinc-700/50">
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Context</h4>
-                  <p style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}>I wanted to create a distraction-free, engaging virtual space for students to study together using the Pomodoro technique, complete with real-time rooms and progress tracking.</p>
-                </div>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>My Role</h4>
-                  <p style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}><strong>Solo Developer</strong> (Designed the UI/UX, implemented real-time features, state management, and responsive layouts).</p>
-                </div>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Tech Stack</h4>
-                  <div className={styles.tags} style={{ marginTop: '0.5rem' }}>
-                    {['Next.js', 'Tailwind CSS', 'WebSockets', 'Framer Motion'].map(tech => (
-                      <span key={tech} className={styles.tag}>{tech}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Challenges & Solutions</h4>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                      <CheckCircle2 size={20} color="var(--primary)" style={{ flexShrink: 0, marginTop: '0.2rem' }} />
-                      <span style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}><strong>Real-time Synchronization:</strong> Kept study timers and user presence synced across multiple clients in real-time rooms.</span>
-                    </li>
-                    <li style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                      <CheckCircle2 size={20} color="var(--primary)" style={{ flexShrink: 0, marginTop: '0.2rem' }} />
-                      <span style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}><strong>Engaging UI/UX:</strong> Built a dynamic and interactive interface with smooth animations and a custom design system to keep users motivated.</span>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Result</h4>
-                  <p style={{ color: 'var(--text-dark)', lineHeight: 1.6 }}>Launched a fully functional MVP with real-time capabilities. Students can easily join rooms, track their focus time, and compete on leaderboards.</p>
-                </div>
-                <div className={styles.links} style={{ marginTop: 'auto', paddingTop: '1rem' }}>
-                  <a href="https://study-together-vibes.vercel.app/" className={styles.link} target="_blank" rel="noopener noreferrer" style={{ padding: '0.5rem 1rem', background: 'var(--primary)', color: '#fff', borderRadius: '8px' }}>
-                    <ExternalLink size={16} /> Live Demo
-                  </a>
-                  <span className={`${styles.link} ${styles.privateLink}`} aria-label="Repository is private">
-                    <LockKeyhole size={16} /> Private Repo
-                  </span>
-                </div>
+            <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <ul className="list-disc pl-4 space-y-2 marker:text-zinc-400 dark:marker:text-zinc-600">
+                <li><strong>Automated Payment Integration:</strong> Successfully integrated VietQR API and Webhook system for seamless, automated order reconciliation.</li>
+                <li><strong>Dynamic Routing:</strong> Engineered dynamic routes to generate thousands of independent product links instantly without redeployment.</li>
+              </ul>
+              <div className="flex items-center gap-4 mt-auto pt-4">
+                <a href="https://onlygift.online/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4">
+                  Live Demo <ExternalLink size={14} />
+                </a>
+                <span className="inline-flex items-center gap-1.5 text-zinc-400 dark:text-zinc-500 cursor-not-allowed">
+                  Private Repo <LockKeyhole size={14} />
+                </span>
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

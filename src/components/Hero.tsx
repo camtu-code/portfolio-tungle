@@ -1,138 +1,52 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Mail } from 'lucide-react';
-import { SiNextdotjs, SiTypescript, SiPrisma, SiPostgresql, SiMongodb } from 'react-icons/si';
-import { FaReact, FaNodeJs, FaDocker, FaGitAlt } from 'react-icons/fa';
-import styles from './Hero.module.css';
+import { ArrowRight, Mail, Download } from 'lucide-react';
 import ViewCounter from './ViewCounter';
 import DownloadResumeBtn from './DownloadResumeBtn';
-import dynamic from 'next/dynamic';
-
-const TypewriterText = dynamic(() => import('./TypewriterText'), {
-  ssr: false, 
-  loading: () => <span style={{ color: 'var(--primary)' }}>Designer</span>
-});
-
-const getCoordinates = (angleInDegrees: number) => {
-  const rad = (angleInDegrees * Math.PI) / 180;
-  return {
-    left: `calc(50% + ${Math.cos(rad) * 50}%)`,
-    top: `calc(50% + ${Math.sin(rad) * 50}%)`
-  };
-};
-
-const ring1Planets = [
-  { icon: <SiNextdotjs size={24} color="#000" />, angle: 0 },
-  { icon: <FaReact size={24} color="#61DAFB" />, angle: 90 },
-  { icon: <FaNodeJs size={24} color="#339933" />, angle: 180 },
-  { icon: <SiTypescript size={24} color="#3178C6" />, angle: 270 },
-];
-
-const ring2Planets = [
-  { icon: <SiPrisma size={24} color="#2D3748" />, angle: -90 },
-  { icon: <SiPostgresql size={24} color="#336791" />, angle: -18 },
-  { icon: <FaDocker size={24} color="#2496ED" />, angle: 54 },
-  { icon: <FaGitAlt size={24} color="#F05032" />, angle: 126 },
-  { icon: <SiMongodb size={24} color="#47A248" />, angle: 198 },
-];
 
 export default function Hero() {
   return (
-    <section className={styles.hero}>
-      <div className="container">
-        <div className={styles.content} suppressHydrationWarning>
-          <motion.div 
-            className={styles.textContent}
-            initial={{ opacity: 0, y: 50, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-            suppressHydrationWarning
-          >
-            <div className={styles.statusBadge}>
-              <span className={styles.statusDot}></span> Available for new opportunities
-            </div>
+    <section className="flex flex-col items-start gap-8">
+      <div className="flex flex-col gap-4">
+        <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+          Full-Stack Software Engineer
+        </h1>
+        <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed">
+          I build production-grade web applications with a focus on performance, 
+          scalability, and user experience. Final-year CS student with a background in 
+          pedagogy, passionate about crafting solid digital products from scratch.
+        </p>
+      </div>
 
-            <h2 className={styles.greeting}>Hi there, I&apos;m Tung Le 👋</h2>
-            <h1 className={styles.name}>
-              A CS student who loves coding.<br/>
-              <span className={styles.highlight}>Building things from scratch.</span>
-            </h1>
-            
-            <h3 className={styles.typewriterSubtitle} suppressHydrationWarning>
-              Also a <TypewriterText words={['Curious Learner', 'Problem Solver', 'Tech Enthusiast', 'Trainee']} />
-            </h3>
-            
-            <p className={styles.description}>
-              I enjoy playing around with Next.js and Node.js to build actual working web apps. My goal is to become a solid Software Engineer with good system design skills, not just someone who writes code.
-            </p>
+      <div className="flex flex-wrap items-center gap-4 mt-4">
+        <a 
+          href="#projects" 
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-900 font-medium text-sm rounded-full hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors"
+        >
+          View Projects <ArrowRight size={16} />
+        </a>
+        <a 
+          href="#contact" 
+          className="inline-flex items-center gap-2 px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 font-medium text-sm rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
+        >
+          Contact Me <Mail size={16} />
+        </a>
+      </div>
 
-            <div className={styles.statsRow}>
-              <div className={styles.statItem}>
-                <strong>3+</strong>
-                <span>Years Exp.</span>
-              </div>
-              <div className={styles.statDivider}></div>
-              <div className={styles.statItem}>
-                <strong>10+</strong>
-                <span>Projects</span>
-              </div>
-              <div className={styles.statDivider}></div>
-              <div className={styles.statItem}>
-                <strong>100%</strong>
-                <span>Dedication</span>
-              </div>
-            </div>
-
-            <div className={styles.ctaGroup}>
-              <a href="#projects" className={styles.primaryBtn}>
-                View Projects <ArrowRight size={18} />
-              </a>
-              <a href="#contact" className={styles.secondaryBtn}>
-                Contact Me <Mail size={18} />
-              </a>
-            </div>
-            <div className={styles.utilsGroup}>
-              <DownloadResumeBtn />
-              <ViewCounter label="Total Visitors" icon="👁️" refreshInterval={30000} />
-            </div>
-          </motion.div>
-          
-          <motion.div 
-            className={styles.imageWrapper}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, type: "spring", bounce: 0.4, delay: 0.2 }}
-          >
-            {/* Ambient Light Orbs */}
-            <div className={styles.lightOrb1}></div>
-            <div className={styles.lightOrb2}></div>
-
-            {/* Orbit System */}
-            <div className={styles.orbitSystem}>
-              <div className={styles.orbitRing2}>
-                {ring2Planets.map((p, i) => (
-                  <div key={i} className={`${styles.planet} ${styles.planetReverse}`} style={getCoordinates(p.angle)}>
-                    {p.icon}
-                  </div>
-                ))}
-              </div>
-
-              <div className={styles.orbitRing1}>
-                {ring1Planets.map((p, i) => (
-                  <div key={i} className={`${styles.planet} ${styles.planetForward}`} style={getCoordinates(p.angle)}>
-                    {p.icon}
-                  </div>
-                ))}
-              </div>
-
-              {/* Sun (Avatar) */}
-              <div className={styles.photoContainer}>
-                <img src="/api/avatar" alt="Avatar" className={styles.avatarImg} />
-              </div>
-            </div>
-          </motion.div>
+      <div className="flex items-center gap-6 mt-8 pt-8 border-t-2 border-zinc-300 dark:border-zinc-700 w-full text-sm text-zinc-500 dark:text-zinc-400">
+        <div className="flex items-center gap-2">
+           <strong className="text-zinc-900 dark:text-zinc-100 font-semibold text-base">3+</strong>
+           <span>Years Coding</span>
+        </div>
+        <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-800"></div>
+        <div className="flex items-center gap-2">
+           <strong className="text-zinc-900 dark:text-zinc-100 font-semibold text-base">3</strong>
+           <span>Live Products</span>
+        </div>
+        <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-800"></div>
+        <div className="flex items-center gap-2">
+           <DownloadResumeBtn />
         </div>
       </div>
     </section>

@@ -1,64 +1,40 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import styles from './ViewCounter.module.css';
+import { useState, useEffect } from 'react';
+import { Eye } from 'lucide-react';
 
 interface ViewCounterProps {
-  initialCount?: number;
   label?: string;
-  icon?: string;
-  refreshInterval?: number; // ms
-  apiPath?: string; // if set, polls this endpoint for { totalCount }
+  icon?: React.ReactNode;
+  refreshInterval?: number;
 }
 
-function animateCount(from: number, to: number, duration: number, setter: (v: number) => void) {
-  const start = performance.now();
-  const diff = to - from;
-  function tick(now: number) {
-    const elapsed = Math.min((now - start) / duration, 1);
-    const eased = 1 - (1 - elapsed) ** 3;
-    setter(Math.round(from + diff * eased));
-    if (elapsed < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
-export default function ViewCounter({
-  initialCount = 0,
-  label = 'Total Visitors',
-  icon = '👁️',
-  refreshInterval = 30_000,
-  apiPath = '/api/analytics',
-}: ViewCounterProps) {
-  const [count, setCount] = useState(initialCount);
-  const prevCount = useRef(initialCount);
-  const [isNew, setIsNew] = useState(false);
+export default function ViewCounter({ label = 'Views', icon, refreshInterval = 30000 }: ViewCounterProps) {
+  const [views, setViews] = useState<number | null>(null);
 
   useEffect(() => {
-    async function refresh() {
+    const fetchViews = async () => {
       try {
-        const res = await fetch(`${apiPath}?t=${Date.now()}`, { cache: 'no-store' });
+        const res = await fetch('/api/analytics/views');
+        if (!res.ok) return;
         const data = await res.json();
-        const newTotal = data.totalVisitors ?? data.uniqueVisitors ?? data.totalViews ?? 0;
-        if (newTotal !== prevCount.current) {
-          setIsNew(true);
-          animateCount(prevCount.current, newTotal, 1500, setCount);
-          prevCount.current = newTotal;
-          setTimeout(() => setIsNew(false), 2000);
-        }
-      } catch {}
-    }
+        setViews(data.views);
+      } catch (e) {
+        // Silently fail
+      }
+    };
 
-    refresh();
-    const interval = setInterval(refresh, refreshInterval);
+    fetchViews();
+    const interval = setInterval(fetchViews, refreshInterval);
     return () => clearInterval(interval);
-  }, [apiPath, refreshInterval]);
+  }, [refreshInterval]);
+
+  if (views === null) return null;
 
   return (
-    <div className={`${styles.counter} ${isNew ? styles.pulse : ''}`}>
-      <span className={styles.icon}>{icon}</span>
-      <span className={styles.count}>{count.toLocaleString()}</span>
-      <span className={styles.label}>{label}</span>
+    <div className="flex items-center gap-2">
+      {icon ? <span className="text-zinc-400 dark:text-zinc-500">{icon}</span> : <Eye size={16} className="text-zinc-400 dark:text-zinc-500" />}
+      <span>{views.toLocaleString()}</span>
     </div>
   );
 }
