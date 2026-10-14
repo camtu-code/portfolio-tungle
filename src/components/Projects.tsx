@@ -58,19 +58,19 @@ export default function Projects() {
         {/* ─── PROJECT 2: StudyStream ─── */}
         <div className="flex flex-col gap-6">
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b-2 border-zinc-300 dark:border-zinc-700 pb-4">
-            <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">StudyStream (S2G)</h3>
+            <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">StudyStream (S2G / Sunstudy)</h3>
             <span className="text-sm text-zinc-500 dark:text-zinc-400">Virtual Study Community & Live Rooms</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
               <p>
-                A full-featured virtual study community with live study rooms, per-subject timers, a deep gamification ecosystem (shop, 9-tier league, teams), daily KPI tracking, and a social feed. <strong>Fullstack Developer & Product Owner</strong>.
+                A full-featured virtual study community with live study rooms, per-subject timers, a deep gamification ecosystem (shop, 9-tier league, teams), daily KPI tracking, and a social feed. Scaled to high concurrency with dual mirror domains (<strong>s2g.io.vn</strong> &amp; <strong>sunstudy.app</strong>) to distribute load. <strong>Fullstack Developer &amp; Product Owner</strong>.
               </p>
               <div className="flex flex-wrap gap-2 mt-2">
                 {[
                   'Next.js', 'Drizzle ORM', 'Socket.IO', 'Express.js',
-                  'Zustand', 'Supabase', 'Pusher'
+                  'LiveKit', 'Zustand', 'Supabase', 'TiDB Serverless'
                 ].map(tech => (
                   <span key={tech} className="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-300 rounded text-xs font-medium border border-zinc-200 dark:border-zinc-700/50">
                     {tech}
@@ -81,13 +81,59 @@ export default function Projects() {
 
             <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
               <ul className="list-disc pl-4 space-y-2 marker:text-zinc-400 dark:marker:text-zinc-600">
+                <li><strong>Traffic Distribution:</strong> Configured secondary domain <code>sunstudy.app</code> alongside <code>s2g.io.vn</code> to mitigate traffic bottlenecks and ensure zero-downtime availability.</li>
                 <li><strong>Real-Time WS Server:</strong> Separate Express + Socket.IO server handling live presence, timers, and chat with a 5-min heartbeat DB write buffer.</li>
                 <li><strong>Deep Gamification:</strong> 20+ DB tables managing 640+ shop items across 17 rarity tiers, daily quests, team competitions, and historical KPI tracking.</li>
                 <li><strong>Production Metrics:</strong> Actively serving 440+ real users, tracking over 7,000 study sessions and nearly 7,000 hours of focused study time across 20 active study teams.</li>
               </ul>
-              <div className="flex items-center gap-4 mt-auto pt-4">
+              <div className="flex flex-wrap items-center gap-4 mt-auto pt-4">
                 <a href="https://s2g.io.vn" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4">
-                  Live Demo <ExternalLink size={14} />
+                  s2g.io.vn <ExternalLink size={14} />
+                </a>
+                <a href="https://sunstudy.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4">
+                  sunstudy.app <ExternalLink size={14} />
+                </a>
+                <span className="inline-flex items-center gap-1.5 text-zinc-400 dark:text-zinc-500 cursor-not-allowed">
+                  Private Repo <LockKeyhole size={14} />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ─── PROJECT 3: Prelynx (pre.sunstudy.app) ─── */}
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b-2 border-zinc-300 dark:border-zinc-700 pb-4">
+            <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">Prelynx (SunStudy Prep)</h3>
+            <span className="text-sm text-zinc-500 dark:text-zinc-400">Intelligent IELTS &amp; Digital SAT Learning Ecosystem</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <p>
+                An intelligent test-prep platform built for IELTS (Reading, Listening, Writing, Speaking) and Digital SAT (Math &amp; Verbal). Features step-by-step diagnostic entry testing, custom practice roadmaps, vocabulary decks, and real-time learning analytics. <strong>Lead Fullstack Developer</strong>.
+              </p>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {[
+                  'Next.js 16', 'React 19', 'Drizzle ORM', 'TiDB Serverless',
+                  'Cloudflare Edge', 'NextAuth v5', 'Turnstile', 'Tailwind CSS v4'
+                ].map(tech => (
+                  <span key={tech} className="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-300 rounded text-xs font-medium border border-zinc-200 dark:border-zinc-700/50">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <ul className="list-disc pl-4 space-y-2 marker:text-zinc-400 dark:marker:text-zinc-600">
+                <li><strong>Comprehensive Curriculum:</strong> 2,800+ lessons and exercises across IELTS 4.0–8.5 and Digital SAT with diagnostic entrance tests.</li>
+                <li><strong>Real-Time Learning Analytics:</strong> Detailed analytics dashboard tracking accuracy rate, weak skill diagnostics, and target score projections.</li>
+                <li><strong>Cloudflare Edge Architecture:</strong> Edge runtime deployment (@cloudflare/next-on-pages) combined with Cloudflare Turnstile anti-bot protection and anti-scraping safeguards.</li>
+              </ul>
+              <div className="flex items-center gap-4 mt-auto pt-4">
+                <a href="https://pre.sunstudy.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4">
+                  Live Demo (pre.sunstudy.app) <ExternalLink size={14} />
                 </a>
                 <span className="inline-flex items-center gap-1.5 text-zinc-400 dark:text-zinc-500 cursor-not-allowed">
                   Private Repo <LockKeyhole size={14} />

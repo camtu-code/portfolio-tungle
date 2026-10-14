@@ -5,6 +5,12 @@ import React from 'react';
 const TIMELINE = [
   {
     year: '2024 - Present',
+    title: 'Lead Fullstack Developer',
+    company: 'Prelynx (pre.sunstudy.app)',
+    description: 'Developed an intelligent test-prep platform for IELTS & Digital SAT with 2,800+ learning modules, diagnostic entrance tests, Edge deployment, and real-time learning analytics.'
+  },
+  {
+    year: '2024 - Present',
     title: 'Fullstack Developer / Founder',
     company: 'OnlyGift.online',
     description: 'Architected an automated e-commerce platform integrating VietQR and Casso Webhooks for zero-manual order reconciliation.'
@@ -18,8 +24,8 @@ const TIMELINE = [
   {
     year: '2022 - 2024',
     title: 'Fullstack Developer & Product Owner',
-    company: 'StudyStream (S2G)',
-    description: 'Developed and maintained a real-time virtual study community serving real active users, utilizing a dedicated Socket.IO server and 20+ DB tables for gamification.'
+    company: 'StudyStream / Sunstudy (S2G)',
+    description: 'Developed and maintained a real-time virtual study community serving real active users across s2g.io.vn & sunstudy.app, utilizing a dedicated Socket.IO server and 20+ DB tables for gamification.'
   }
 ];
 

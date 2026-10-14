@@ -51,11 +51,11 @@ Independently designed, built, and deployed a comprehensive EdTech platform from
 
 ---
 
-### StudyStream (S2G — Study Together) | Fullstack Developer & Product Owner
+### StudyStream (S2G / Sunstudy) | Fullstack Developer & Product Owner
 *Real-Time Virtual Study Community · Gamified Learning Ecosystem · Live Rooms*
-[https://study-together-vibes.vercel.app](https://study-together-vibes.vercel.app)
+[https://s2g.io.vn](https://s2g.io.vn) · [https://sunstudy.app](https://sunstudy.app)
 
-Built and actively maintain a full-featured virtual study community with **real active users**. 20+ DB tables designed with Drizzle ORM on TiDB (MySQL).
+Built and actively maintain a full-featured virtual study community with **real active users**. Deployed across dual mirror domains (`s2g.io.vn` & `sunstudy.app`) to handle traffic surges with zero downtime. 20+ DB tables designed with Drizzle ORM on TiDB (MySQL).
 
 **Real-Time Architecture:**
 - Architected a **dedicated Express + Socket.IO server** deployed on Render.com (separate from Next.js frontend on Vercel) handling: user registration/online presence, `timer_start`/`timer_ping` events, `join_room`/`leave_room`, real-time leaderboard updates, DMs with rate-limiting (20 msgs/min), friend requests, and post/comment broadcasting.
@@ -75,7 +75,19 @@ Built and actively maintain a full-featured virtual study community with **real 
 
 **Production Operations:**
 - Self-maintained with real users: 50+ admin TypeScript & Python scripts for analytics, anti-spam detection, session audits, DB backup/restore, user buff/migration, and streak repairs.
-- **Tech:** Next.js 16, TypeScript, Drizzle ORM, TiDB/MySQL, Socket.IO, Express.js, NextAuth v5, Zustand, Tailwind CSS v4, Framer Motion, Supabase Storage, Vercel Blob, Pusher, Capacitor, Vercel + Render.com
+- **Tech:** Next.js 16, TypeScript, Drizzle ORM, TiDB/MySQL, Socket.IO, Express.js, NextAuth v5, LiveKit WebRTC, Zustand, Tailwind CSS v4, Framer Motion, Supabase Storage, Vercel Blob, Pusher, Capacitor, Vercel + Render.com
+
+---
+
+### Prelynx (SunStudy Prep) | Lead Fullstack Developer
+*Intelligent IELTS & Digital SAT Learning Platform*
+[https://pre.sunstudy.app](https://pre.sunstudy.app)
+
+- Designed and engineered a complete test-prep platform with **2,800+ lessons and practice questions** across all 4 IELTS skills (Reading, Listening, Writing, Speaking) and Digital SAT (Math & Verbal).
+- Built a **4-step diagnostic entrance flow** identifying skill gaps and recommending tailored daily practice roadmaps.
+- Designed an interactive **Analytics Dashboard** tracking user accuracy rates, skill distribution, and target score projections.
+- Architected for high performance and security using **Cloudflare Edge runtime** (`@cloudflare/next-on-pages`), **Cloudflare Turnstile** anti-bot verification, and anti-scraping safeguards.
+- **Tech:** Next.js 16, React 19, TypeScript, Drizzle ORM, TiDB Serverless, NextAuth v5, Cloudflare Edge / Pages, Tailwind CSS v4
 
 ---
 

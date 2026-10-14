@@ -41,7 +41,7 @@ export default function Hero() {
         </div>
         <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-800"></div>
         <div className="flex items-center gap-2">
-           <strong className="text-zinc-900 dark:text-zinc-100 font-semibold text-base">3</strong>
+           <strong className="text-zinc-900 dark:text-zinc-100 font-semibold text-base">4</strong>
            <span>Live Products</span>
         </div>
         <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-800"></div>

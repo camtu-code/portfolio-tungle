@@ -4,10 +4,10 @@ import React from 'react';
 
 const SKILLS = [
   { category: 'Frontend', items: ['Next.js 16 (App Router)', 'React 19', 'TypeScript', 'Tailwind CSS v4', 'Framer Motion', 'Zustand', 'Shadcn UI'] },
-  { category: 'Backend', items: ['Node.js', 'Express.js', 'Socket.IO', 'NextAuth', 'REST APIs', 'Webhooks (Casso/SePay)'] },
+  { category: 'Backend', items: ['Node.js', 'Express.js', 'Socket.IO', 'LiveKit WebRTC', 'NextAuth v5', 'REST APIs', 'Webhooks (Casso/SePay)'] },
   { category: 'Database & ORM', items: ['Prisma ORM', 'Drizzle ORM', 'TiDB Serverless', 'MySQL', 'PostgreSQL'] },
   { category: 'AI & ML', items: ['Cohere API (command-r)', 'Google Gemini (Flash)', 'TensorFlow.js (COCO-SSD)', 'face-api.js'] },
-  { category: 'DevOps & Tools', items: ['Git/GitHub', 'Vercel', 'Render', 'GitHub Actions', 'Capacitor', 'Supabase Storage'] },
+  { category: 'DevOps & Tools', items: ['Git/GitHub', 'Vercel', 'Cloudflare Pages/Edge', 'Render', 'GitHub Actions', 'Capacitor', 'Supabase Storage'] },
   { category: 'Testing', items: ['Pytest', 'Playwright (E2E)'] },
 ];
 
