@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   leftCol: {
     width: '34%',
     flexDirection: 'column',
-    gap: 16,
+    gap: 12,
   },
 
   // Right column

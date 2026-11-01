@@ -1,105 +1,20 @@
-'use client';
-
 import React from 'react';
 import { ExternalLink, LockKeyhole } from 'lucide-react';
+import FeaturedProject from './FeaturedProject';
+import { FEATURED_PROJECTS } from '@/data/featuredProjects';
 
 export default function Projects() {
   return (
     <section id="projects" className="flex flex-col gap-12">
       <div className="flex flex-col gap-2">
         <h2 className="text-2xl font-semibold tracking-tight">Selected Work</h2>
-        <p className="text-zinc-500 dark:text-zinc-400">A collection of projects I&apos;ve built and shipped to production.</p>
+        <p className="text-zinc-500 dark:text-zinc-400">Products I build, operate and improve with real usage data.</p>
       </div>
 
       <div className="flex flex-col gap-16">
-        {/* ─── PROJECT 1: CogniAssess ─── */}
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b-2 border-zinc-300 dark:border-zinc-700 pb-4">
-            <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">CogniAssess Platform</h3>
-            <span className="text-sm text-zinc-500 dark:text-zinc-400">AI-Proctored Exams & Cognitive Engine</span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              <p>
-                Independently built a comprehensive EdTech platform with 5-role RBAC, live online exam rooms, AI-driven learning paths, a social learning community, and an in-app virtual currency (CogniCredit). <strong>Solo Fullstack Developer</strong>.
-              </p>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {[
-                  'Next.js', 'Prisma', 'TiDB', 'Cohere API', 'Gemini API',
-                  'TensorFlow.js', 'Playwright', 'Capacitor'
-                ].map(tech => (
-                  <span key={tech} className="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-300 rounded text-xs font-medium border border-zinc-200 dark:border-zinc-700/50">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              <ul className="list-disc pl-4 space-y-2 marker:text-zinc-400 dark:marker:text-zinc-600">
-                <li><strong>CogniAssess Engine:</strong> Tracks per-question behavioral data (time spent, answer changes) and generates AI-powered analysis reports via Gemini API.</li>
-                <li><strong>AI Anti-Cheat:</strong> Integrated TensorFlow.js (COCO-SSD) to detect face absence and tab-switching in real-time.</li>
-                <li><strong>AI Exam Generator:</strong> Integrates Cohere command-r with automatic retry and a 4-layer JSON safety pipeline to ensure generation stability.</li>
-                <li><strong>Platform Usage:</strong> Serving 105+ real users (excluding demo accounts) with a robust bank of over 1,000 AI-generated questions across 39 exam courses.</li>
-              </ul>
-              <div className="flex items-center gap-4 mt-auto pt-4">
-                <a href="https://cna.io.vn/?demo=BaoVe_Cogni2026" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4">
-                  Live Demo <ExternalLink size={14} />
-                </a>
-                <span className="inline-flex items-center gap-1.5 text-zinc-400 dark:text-zinc-500 cursor-not-allowed">
-                  Private Repo <LockKeyhole size={14} />
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ─── PROJECT 2: StudyStream ─── */}
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b-2 border-zinc-300 dark:border-zinc-700 pb-4">
-            <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">StudyStream (S2G / Sunstudy)</h3>
-            <span className="text-sm text-zinc-500 dark:text-zinc-400">Virtual Study Community & Live Rooms</span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              <p>
-                A full-featured virtual study community with live study rooms, per-subject timers, a deep gamification ecosystem (shop, 9-tier league, teams), daily KPI tracking, and a social feed. Scaled to high concurrency with dual mirror domains (<strong>s2g.io.vn</strong> &amp; <strong>sunstudy.app</strong>) to distribute load. <strong>Fullstack Developer &amp; Product Owner</strong>.
-              </p>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {[
-                  'Next.js', 'Drizzle ORM', 'Socket.IO', 'Express.js',
-                  'LiveKit', 'Zustand', 'Supabase', 'TiDB Serverless'
-                ].map(tech => (
-                  <span key={tech} className="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-300 rounded text-xs font-medium border border-zinc-200 dark:border-zinc-700/50">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              <ul className="list-disc pl-4 space-y-2 marker:text-zinc-400 dark:marker:text-zinc-600">
-                <li><strong>Traffic Distribution:</strong> Configured secondary domain <code>sunstudy.app</code> alongside <code>s2g.io.vn</code> to mitigate traffic bottlenecks and ensure zero-downtime availability.</li>
-                <li><strong>Real-Time WS Server:</strong> Separate Express + Socket.IO server handling live presence, timers, and chat with a 5-min heartbeat DB write buffer.</li>
-                <li><strong>Deep Gamification:</strong> 20+ DB tables managing 640+ shop items across 17 rarity tiers, daily quests, team competitions, and historical KPI tracking.</li>
-                <li><strong>Production Metrics:</strong> Actively serving 440+ real users, tracking over 7,000 study sessions and nearly 7,000 hours of focused study time across 20 active study teams.</li>
-              </ul>
-              <div className="flex flex-wrap items-center gap-4 mt-auto pt-4">
-                <a href="https://s2g.io.vn" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4">
-                  s2g.io.vn <ExternalLink size={14} />
-                </a>
-                <a href="https://sunstudy.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-zinc-900 dark:text-zinc-100 hover:underline underline-offset-4">
-                  sunstudy.app <ExternalLink size={14} />
-                </a>
-                <span className="inline-flex items-center gap-1.5 text-zinc-400 dark:text-zinc-500 cursor-not-allowed">
-                  Private Repo <LockKeyhole size={14} />
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+        {FEATURED_PROJECTS.map(project => (
+          <FeaturedProject key={project.id} project={project} />
+        ))}
 
         {/* ─── PROJECT 3: Prelynx (pre.sunstudy.app) ─── */}
         <div className="flex flex-col gap-6">

@@ -1,7 +1,7 @@
 # TUNG LE
 **Full-Stack Software Engineer**
 
-`lethanhtung6803@gmail.com` | `[Your Phone]` | `[Your LinkedIn]` | `[Your GitHub]` | Portfolio: [study-together-vibes.vercel.app](https://study-together-vibes.vercel.app)
+`lethanhtung6803@gmail.com` | `0848 290 617` | Portfolio: [study-together-vibes.vercel.app](https://study-together-vibes.vercel.app)
 
 ---
 
@@ -14,68 +14,59 @@ Final-year Computer Science student specializing in production-grade full-stack 
 - **Frontend:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Framer Motion, Shadcn UI, Zustand, Recharts
 - **Backend:** Node.js, Express.js, Socket.IO, Next.js API Routes / Server Actions, NextAuth.js (v4 & v5 beta), REST API Design
 - **Database & ORM:** Prisma ORM, Drizzle ORM, TiDB Serverless / MySQL, PostgreSQL
-- **AI & ML:** Cohere API (command-r), Google Gemini API (Flash), TensorFlow.js (COCO-SSD), face-api.js, Google Generative AI SDK
-- **DevOps & Tools:** Git, GitHub, Vercel, GitHub Actions (CI/CD), Render.com, Capacitor (PWA → Android APK), Supabase Storage, Vercel Blob, Pusher, Payment APIs (VietQR, Casso/SePay Webhooks)
+- **AI & ML:** Google Gemini API, Cohere API, Python/OpenCV, ONNX (YuNet face detection, YOLOX object detection)
+- **DevOps & Tools:** Git, GitHub, Vercel, GitHub Actions (CI/CD), VPS / Nginx / PM2, Capacitor (PWA → Android APK), Supabase Storage, Vercel Blob, Pusher, Payment APIs (VietQR, Casso/SePay Webhooks)
 - **Testing:** Pytest (API routes), Playwright (E2E)
 
 ---
 
 ## FEATURED PROJECTS (PRODUCTION-READY)
 
-### CogniAssess Platform | Solo Fullstack Developer
-*Full-Scale EdTech Platform · AI-Proctored Exams · Cognitive Assessment Engine*
-[https://edutech-ai-platform-1.vercel.app](https://edutech-ai-platform-1.vercel.app)
+### CogniAssess | Solo Fullstack Developer
+*Online Assessment · Exam Operations · Cognitive Feedback*
+[https://cna.io.vn](https://cna.io.vn)
 
-Independently designed, built, and deployed a comprehensive EdTech platform from scratch. Completed **18/18 core features**, covered by **122 automated test cases**.
+Independently build and operate an assessment platform for teachers, students and education institutions. The current product centers on creating, assigning, supervising and evaluating exams. Students use the platform free; optional service plans provide teacher tools.
 
-**Architecture:**
-- Implemented a **5-role RBAC** system (Admin, Teacher, Dept. Head, Student, Developer) with hierarchical permissions, Single Active Session enforcement via `currentLoginToken`, in-memory session caching for perf, and a Demo Mode via session cookies (no-account access).
-- Designed **26 API route groups** in Next.js covering auth, courses, exams, AI (chat, exam gen), cogniassess, economy, classrooms, community, quests, notifications, and developer tooling.
-- **Soft Delete** mechanism across all financial records for 100% data integrity (no cascade data loss on user disable).
+**Production snapshot — 1 November 2026:**
+- **105 registered accounts excluding 9 demo accounts.** This is a registration count, not a recent-activity metric.
+- **47 retained exams** containing **1,075 questions**, excluding soft-deleted exams.
+- **31 approved public-directory exams**, a subset of retained exams.
 
-**CogniAssess Engine:**
-- Built a **Bloom's Taxonomy-based cognitive assessment layer** with per-question behavioral tracking: `timeSpent`, `answerChanges`, `isGuessed` (auto-flagged if `timeSpent < 5s` for high-difficulty questions).
-- Exam results store: `integrityScore`, `cognitiveMetrics`, `knowledgeGaps` (Radar Chart data), `behaviorMetrics`, and `aiFeedback` (JSON from Gemini, cached in DB to avoid re-generation cost).
-- Post-exam AI feedback generated via **Google Gemini** (`gemini-3.6-flash`) analyzing real behavioral data; result cached in `ExamResult.aiFeedback` field.
-
-**AI Systems:**
-- **AI Exam Generator:** Integrates **Cohere** `command-r-08-2024` with automatic retry mechanism. Prompt uses Bloom's taxonomy distribution (2 recall + 3 understanding + 3 applying + 2 analysis). 4-layer JSON safety pipeline: `[SLASH]` restoration, backtick-math fixing, control-char stripping, trailing-comma removal. Auto-retries up to 3 times to ensure generation stability.
-- **AI Anti-Cheat Proctoring:** **TensorFlow.js (COCO-SSD)** detects non-person/absent state in real-time webcam; **face-api.js** handles face presence. Tab-switch events tracked separately. Auto-suspends exam after 3 violations (`violationCount`, `isSuspended`, `TIMEOUT_CHEATING` status).
-- **4-Persona AI Tutor:** 4 specialist chatbot personas — General (CogniAssess AI), IELTS (Ms. Sarah), Math (Prof. Newton), Code (Dev Senior). Full Markdown + **KaTeX** (LaTeX math rendering) via `react-markdown` + `rehype-katex`. Conversation history persisted per `ChatSession` in DB.
-
-**Economy & Community:**
-- **CogniCredit Virtual Wallet:** Full transaction model: `DEPOSIT`, `PAYMENT`, `RECEIVE`, `COMMISSION`, `WITHDRAWAL`. Auto commission splits (configurable `commissionRate` in `SystemConfig`). QR-based PRO upgrade flow. Teacher payout request system.
-- **Social Network:** Posts, nested comments, follows/likes, notifications. Hierarchical RBAC for Department/Faculty management.
-- **Cross-Platform:** Deployed as PWA and Android APK from single Next.js codebase via **Capacitor**.
-- **Tech:** Next.js 16, TypeScript, Prisma ORM, TiDB/MySQL, Cohere API, Google Gemini API, TensorFlow.js, face-api.js, NextAuth.js, Shadcn UI, Recharts, Playwright + Pytest, Vercel + GitHub Actions CI/CD
+**Engineering:**
+- Built institutional permissions, independent academic review, subject catalogs, approved subject/grade curriculum and teaching assignments. Authors cannot approve their own exams.
+- Implemented AI-assisted authoring from PDF, images, Word and Excel, with multiple-choice, true/false and short-answer questions. Private teacher hints, worked solutions and teaching notes are excluded from learner exam responses.
+- Moved webcam analysis to a dedicated **Python/OpenCV service on VPS**, using **YuNet and YOLOX-M** with temporal evidence and server-persisted warnings for teacher review.
+- Track per-question timing, answer revisions and guess indicators alongside Bloom-level question data to produce knowledge-gap reports and cached AI feedback.
+- Maintain draft autosave, additive migrations and retained rollback releases as the product evolves.
+- **Tech:** Next.js 16, React 19, TypeScript, Prisma, TiDB/MySQL, NextAuth, Gemini/Cohere, Python/OpenCV/ONNX, VPS/Nginx/PM2, Capacitor/PWA.
 
 ---
 
-### StudyStream (S2G / Sunstudy) | Fullstack Developer & Product Owner
-*Real-Time Virtual Study Community · Gamified Learning Ecosystem · Live Rooms*
+### S2G / SunStudy | Fullstack Developer & Product Owner
+*Study Community · Real-Time Focus Rooms · Social Accountability*
 [https://s2g.io.vn](https://s2g.io.vn) · [https://sunstudy.app](https://sunstudy.app)
 
-Built and actively maintain a full-featured virtual study community with **real active users**. Deployed across dual mirror domains (`s2g.io.vn` & `sunstudy.app`) to handle traffic surges with zero downtime. 20+ DB tables designed with Drizzle ORM on TiDB (MySQL).
+Build and operate a study community with subject timers, shared focus rooms, daily goals, streak recovery, teams, study couples and social features. **S2G and SunStudy run as separate deployments with separate databases.**
 
-**Real-Time Architecture:**
-- Architected a **dedicated Express + Socket.IO server** deployed on Render.com (separate from Next.js frontend on Vercel) handling: user registration/online presence, `timer_start`/`timer_ping` events, `join_room`/`leave_room`, real-time leaderboard updates, DMs with rate-limiting (20 msgs/min), friend requests, and post/comment broadcasting.
-- **Heartbeat Buffer Optimization:** Instead of writing to DB on every 90s `timer_ping` (which would be ~96,000 queries/day for 50 users), ping payloads are buffered in-memory (Map) and **batch-flushed to TiDB every 5 minutes** via `setInterval`.
-- **User Cache (TTL 5 min):** DB SELECT for user data cached in-memory Map, reducing DB reads per ping.
-- **Cross-Ping Keep-Alive:** WS server pings itself and the Vercel frontend every 14 minutes to prevent Render free-tier sleep (15-min timeout).
-- **Anti-Multi-Tab:** `activeWsSessionMap` (userId → sessionId + startedAt) blocks duplicate simultaneous WS timer sessions.
+**Production snapshot — 1 November 2026:**
 
-**Gamification System (from DB Schema):**
-- **Shop:** 17 rarity tiers: `common`, `rare`, `epic`, `legendary`, `event`, `bronze`, `silver`, `gold`, `platinum`, `diamond`, `mythic`, `celestial`, `infernal`, `toxic`, `void`, `cyber`, `frost`. Item types: `frame`, `title`, `streak_freeze`, `pet`, `timer_skin`, `utility`, `profile_effect`. Items have unlock requirements (`requiredStudySeconds`, `requiredSubjectKeyword`).
-- **League System:** 9 tiers (Rookie → Bronze → Silver → Gold → Platinum → Emerald → Diamond → Master → Challenger). Weekly `weeklyStudyPoints` reset with trophy awards (`goldTrophies`, `silverTrophies`, `bronzeTrophies`). League group assignments via `leagueGroupId`.
-- **Streak Engine:** Dual streaks: daily study streak + KPI streak. `streakRecoveriesLeft` (5/month, tracked by `lastRecoveryMonth`). `purchasedFreezes`. `kpi_daily_records` caches `goalSeconds` vs `achievedSeconds` per day with `isOffDay` support (configurable off-days JSON array).
-- **Teams:** Max 4 members, invite code join, `teamDailyRecords` with `bonusMultiplier` scoring.
-- **Other:** Quests (daily/weekly/achievement with `conditionType` + `conditionValue`), Todos with checklists and XP rewards, Daily Planners (mood, water, meals, schedule JSON), Event Future Letters (time-capsule feature).
+| Metric | S2G | SunStudy |
+| --- | ---: | ---: |
+| Registered accounts | **655** | **251** |
+| Study sessions with recorded time | **12,287** | **2,446** |
+| Recorded study hours | **13,227.97** | **3,170.20** |
+| Teams with members | **25** | **8** |
 
-**Active Timer Schema:** `active_timer_sessions` table tracks per-device state (`deviceId`, `deviceName`) for cross-device crash recovery and multi-tab detection.
+Three known QA accounts are excluded. Sessions must reference an existing account and have positive recorded duration. Account totals across deployments are not deduplicated; registered accounts are not MAU.
 
-**Production Operations:**
-- Self-maintained with real users: 50+ admin TypeScript & Python scripts for analytics, anti-spam detection, session audits, DB backup/restore, user buff/migration, and streak repairs.
-- **Tech:** Next.js 16, TypeScript, Drizzle ORM, TiDB/MySQL, Socket.IO, Express.js, NextAuth v5, LiveKit WebRTC, Zustand, Tailwind CSS v4, Framer Motion, Supabase Storage, Vercel Blob, Pusher, Capacitor, Vercel + Render.com
+**Engineering and operations:**
+- Build the Next.js client and a dedicated Express + Socket.IO runtime for presence, room events, direct messages and timer synchronization.
+- Buffer timer heartbeats and flush database writes every **60 seconds**; use server-time reconciliation, cross-tab/device safeguards and session recovery to handle reconnects and mobile sleep.
+- Maintain study-session audits, moderation and recovery tooling, along with daily goals, streaks, community posts and a rewards shop.
+- Support real-time room experiences and media workflows using Socket.IO and WebRTC integrations.
+- **In development on a test VPS:** Workspace tools with private mistake notebooks and exam roadmaps, shared room timers/music, Pass Live rooms and a revised competitive ranking system. These are separate from the production metrics above.
+- **Tech:** Next.js 16, React 19, TypeScript, Drizzle ORM, TiDB/MySQL, Express.js, Socket.IO, WebRTC (P2P), Zustand, Redis, NextAuth v5, Capacitor, VPS/Nginx/PM2, Supabase Storage.
 
 ---
 

@@ -9,11 +9,11 @@ const PRINCIPLES = [
   },
   {
     title: 'User-Centric Gamification',
-    description: 'Learning should be engaging. I build complex gamification systems (like 17-tier economies and real-time leaderboards) to keep users motivated.'
+    description: 'I design study goals, streaks, team challenges and rewards around the habits learners want to build, then use recorded study activity to guide improvements.'
   },
   {
     title: 'Resilient & Scalable Systems',
-    description: 'Building for real users means anticipating scale and edge cases. From implementing cross-ping strategies for Socket.IO servers to racing AI proxies for zero downtime, reliability is a core focus.'
+    description: 'I build for the failures that show up in daily use: interrupted timers, stale draft saves and unreliable connections. Server-side state, recovery tools and retained releases help me operate these products.'
   }
 ];
 

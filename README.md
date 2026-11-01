@@ -20,6 +20,18 @@ npm run lint
 npm run build
 ```
 
+### Project content and metrics
+
+The featured project copy and dated aggregate snapshots are in
+`src/data/featuredProjects.ts`, shared by Projects, Experience and the PDF resume.
+The downloadable Markdown resume is `public/TungLe_Resume.md`; update it when
+refreshing the snapshot. Definitions, exclusions and primary-source evidence are
+recorded in [CogniAssess research](docs/research/cogniassess.md) and
+[S2G / SunStudy research](docs/research/s2g-sunstudy.md).
+
+These are static snapshots. Portfolio requests do not connect to the project
+databases. Keep credentials and individual user records out of this repository.
+
 ### Deploy to Vercel (safe checklist)
 1. Push repo to GitHub.
 2. Import project in Vercel.

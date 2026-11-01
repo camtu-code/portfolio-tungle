@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ArrowRight, Mail, Download } from 'lucide-react';
-import ViewCounter from './ViewCounter';
+import { ArrowRight, Mail } from 'lucide-react';
 import DownloadResumeBtn from './DownloadResumeBtn';
 
 export default function Hero() {
@@ -13,9 +12,9 @@ export default function Hero() {
           Full-Stack Software Engineer
         </h1>
         <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed">
-          I build production-grade web applications with a focus on performance, 
-          scalability, and user experience. Final-year CS student with a background in 
-          pedagogy, passionate about crafting solid digital products from scratch.
+          I build and operate education products, from online assessment to real-time
+          study communities. I work across product design, full-stack development and
+          production operations, using learner activity to guide what I improve next.
         </p>
       </div>
 
@@ -34,7 +33,7 @@ export default function Hero() {
         </a>
       </div>
 
-      <div className="flex items-center gap-6 mt-8 pt-8 border-t-2 border-zinc-300 dark:border-zinc-700 w-full text-sm text-zinc-500 dark:text-zinc-400">
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-4 mt-8 pt-8 border-t-2 border-zinc-300 dark:border-zinc-700 w-full text-sm text-zinc-500 dark:text-zinc-400">
         <div className="flex items-center gap-2">
            <strong className="text-zinc-900 dark:text-zinc-100 font-semibold text-base">3+</strong>
            <span>Years Coding</span>

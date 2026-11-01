@@ -1,66 +1,66 @@
 import { renderToBuffer } from '@react-pdf/renderer';
 import type { DocumentProps } from '@react-pdf/renderer';
 import { NextResponse } from 'next/server';
-import { ResumePDF, ResumeData } from '@/lib/ResumePDF';
+import { ResumePDF, type ResumeData } from '@/lib/ResumePDF';
+import { COGNIASSESS, S2G, PROJECT_SNAPSHOT } from '@/data/featuredProjects';
 import React from 'react';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 
-// ─────────────────────────────────────────────
-// YOUR RESUME DATA — edit this to match your CV
-// ─────────────────────────────────────────────
 const RESUME_DATA: ResumeData = {
-  name: 'Lê Thanh Tùng',
-  title: 'Junior Fullstack Developer',
-  email: 'lethanhtung@example.com',
-  phone: '+84 xxx xxx xxx',
-  birthDate: '08/06/2003',
+  name: 'Tung Le',
+  title: 'Full-Stack Software Engineer',
+  email: 'lethanhtung6803@gmail.com',
+  phone: '+84 848 290 617',
   location: 'Hanoi, Vietnam',
-  github: 'github.com/lethanhtung',
-  linkedin: 'linkedin.com/in/lethanhtung',
   about:
-    'Bachelor graduate with hands-on fullstack development experience. I am applying for a role above intern level, where I can own features end-to-end and deliver stable, scalable products with clear business impact.',
+    `Full-stack developer building education products with a background in pedagogy. I own frontend, backend and production operations. Project metrics as of ${PROJECT_SNAPSHOT.label}.`,
   mainProject: {
-    name: 'edutech.AI',
-    role: 'Main Product Project - Fullstack Contributor',
-    description:
-      'Built and improved core modules for an AI-powered education platform, including learning workflows, API integration, and responsive dashboards. Focused on clean architecture, maintainable code, and measurable user experience improvements.',
+    name: COGNIASSESS.name,
+    role: COGNIASSESS.role,
+    description: COGNIASSESS.resumeDescription,
   },
   skills: [
     {
       category: 'Frontend',
-      items: ['React', 'Next.js', 'TypeScript', 'HTML5/CSS3', 'JavaScript ES6+'],
+      items: ['Next.js / React', 'TypeScript', 'Tailwind CSS', 'Zustand'],
     },
     {
-      category: 'Backend',
-      items: ['Node.js', 'Express', 'REST APIs', 'Auth & Access Control', 'Data Validation'],
+      category: 'Backend & AI',
+      items: ['Node.js / Express', 'Socket.IO / WebRTC', 'Python / OpenCV', 'Gemini / Cohere APIs'],
     },
     {
-      category: 'Database & Tools',
-      items: ['MySQL/PostgreSQL', 'Prisma ORM', 'Git/GitHub', 'Docker (Basic)'],
+      category: 'Database & Operations',
+      items: ['Prisma / Drizzle ORM', 'TiDB / MySQL', 'VPS / Nginx / PM2', 'Git / GitHub Actions'],
     },
   ],
   experience: [
     {
-      title: 'Fullstack Developer Intern',
-      company: 'Technology Company',
-      period: '2024 – 2025',
-      description:
-        'Delivered frontend and backend features for internal systems, collaborated with senior engineers to resolve production bugs, and integrated APIs for business-critical workflows.',
+      title: S2G.role,
+      company: S2G.name,
+      period: 'Ongoing',
+      description: S2G.resumeDescription,
     },
     {
-      title: 'Personal and Academic Projects',
-      company: 'Portfolio / Coursework',
-      period: '2022 – 2024',
+      title: 'Lead Fullstack Developer',
+      company: 'Prelynx (SunStudy Prep)',
+      period: 'Ongoing',
       description:
-        'Built small to medium fullstack applications using Next.js, Node.js, and relational databases, with emphasis on code quality, maintainability, and real deployment readiness.',
+        'Built an IELTS and Digital SAT preparation platform with diagnostic entry tests, practice roadmaps and learning analytics.',
+    },
+    {
+      title: 'Fullstack Developer / Founder',
+      company: 'OnlyGift.online',
+      period: 'Ongoing',
+      description:
+        'Built a platform for personalized web interfaces with VietQR payments and webhook-based order reconciliation.',
     },
   ],
   education: [
     {
-      degree: 'Bachelor Degree',
-      school: 'University in Hanoi',
-      year: 'Graduated',
+      degree: 'Information Technology',
+      school: 'University of Transport and Communications',
+      year: '',
     },
   ],
 };
