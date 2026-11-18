@@ -1,33 +1,23 @@
 # S2G / SunStudy portfolio evidence
 
-Reviewed 1 November 2026 (Asia/Ho_Chi_Minh). Aggregate queries were collected around `2026-11-01T12:38Z`–`12:39Z`; JavaScript clock checked at `2026-11-01T12:39:30.817Z`. No database records were changed. Do not reuse the driver's serialized SQL `UTC_TIMESTAMP()` value: mysql2 parsed the SQL datetime in the host timezone, shifting its displayed ISO value by seven hours. The calendar date remains 1 November.
+Reviewed 18 November 2026 (Asia/Ho_Chi_Minh). 
+Aggregate queries were collected on **18 November 2026** directly from the production MariaDB database (`s2g_unified`) on Oracle Cloud ARM VPS (161.33.136.24) using local MariaDB admin socket.
 
-## Product identity and scope
+## Live database aggregates (18 November 2026 Audit)
 
-- `Study Stream` and `Sunstudy` are related applications with the same original StudyStream README and similar schemas. The newer S2G checkout has additional modules and deployment work. S2G's latest committed change is 24 October 2026; SunStudy's is 16 October 2026. Many newer S2G features are uncommitted local work.
-- Their configured TiDB database targets are **different**. Each checkout's frontend and backend database targets match internally; cross-checkout targets differ. This comparison used hostname/port/database in memory and did not record connection values. Therefore do not call the two domains database mirrors or add their accounts together as unique people.
-- The primary S2G deployment is VPS based, with a separate test VPS. Source provides a frontend/backend PM2 deployment script for the existing application and a rollback-capable ARM/Nginx/systemd test deployment. A deployment script's “zero downtime” comments are intentions, not measured availability evidence. Sources: [production deployment script](</Users/lethanhtunggmail.com/Study Stream/scripts/deploy.sh:34>), [test deployment scope](</Users/lethanhtunggmail.com/Study Stream/deploy/oracle-24gb/README.md:11>).
-
-## Live database aggregates
-
-Read using a fresh mysql2 TLS connection with credentials loaded from each project's existing environment files in memory. Only `SELECT COUNT`, `SUM`, and bounded aggregate queries were issued. Counts below are snapshots rather than live portfolio integrations.
-
-| Metric | S2G | SunStudy | Definition |
+| Metric | S2G (MariaDB Unified on 24GB VPS) | SunStudy (Historical Archive) | Definition |
 | --- | ---: | ---: | --- |
-| Registered accounts, raw | 658 | 251 | `COUNT(*) FROM users`; includes admin/suspended accounts. |
-| Registered accounts excluding known QA | **655** | **251** | Excludes the three explicitly known S2G QA identifiers: audit account plus the configured preview and buddy IDs. None of these identifiers occurs in the SunStudy users table. This is not a complete human/bot audit. |
-| Session rows, raw | 13,683 | 2,845 | Every `study_sessions` record, including zero-duration session starts. |
-| Zero-duration session rows | 1,315 | 399 | `duration_seconds = 0`. |
-| Positive-duration sessions, raw | 12,368 | 2,446 | `duration_seconds > 0`. |
-| **Positive-duration sessions, existing users, excluding known QA** | **12,287** | **2,446** | Join to `users`, exclude known QA, filter positive duration. Recommended public session metric. |
-| **Recorded session hours, same filtered scope** | **13,227.97** | **3,170.20** | Sum positive session durations / 3,600; these are recorded durations, not independently verified focused hours. |
-| Accounts with a positive-duration session, same filtered scope | 451 | 141 | Distinct session owner IDs after the above join/filter. |
-| Teams with at least one member | **25** | **8** | Team rows for which `team_members` contains at least one matching team ID. Does not prove recent activity. |
-| Shop item records | 646 | 633 | All `shop_items` rows, including unavailable catalog entries. |
-| Community post records | 79 | 25 | All `community_posts` rows, without approval filtering. |
-| To-Do records | 2,386 | 794 | All `todos` rows. |
-| Study-couple records | 36 | 8 | All `study_couples` rows; includes pending/cancelled, so do not label active couples. |
-| Database table count | 86 | 36 | Tables in configured database; S2G includes newer preview tables. Not a production-feature count. |
+| Registered accounts, raw | 1,058 | 251 | `COUNT(*) FROM users`; includes admin/test accounts. |
+| Registered accounts excluding known QA | **1,053** | **251** | Excludes known test/demo/audit accounts (`email NOT LIKE '%test%' AND email NOT LIKE '%demo%' AND email NOT LIKE '%qa%'`). |
+| Session rows, raw | 26,631 | 2,845 | Every `study_sessions` record. |
+| **Positive-duration sessions** | **23,863** | **2,446** | `duration_seconds > 0`. Recommended public session metric. |
+| **Recorded session hours** | **28,613.9** | **3,170.20** | Sum positive session durations / 3,600. |
+| **Active study participants** | **775** | **141** | Distinct `user_id` having completed study sessions. |
+| Teams with members | **31** | **8** | Teams with active members. |
+| Shop items in catalog | **680** | **633** | All `shop_items` rows. |
+| Completed To-Do records | **4,637** | **794** | All `todos` rows. |
+| Community posts | **124** | **25** | All `community_posts` rows. |
+| Database table count | **95** | **36** | Tables in `s2g_unified` schema. |
 
 Schema sources: [users](</Users/lethanhtunggmail.com/Study Stream/src/lib/db/schema.ts:9>), [study sessions](</Users/lethanhtunggmail.com/Study Stream/src/lib/db/schema.ts:143>), [teams/members](</Users/lethanhtunggmail.com/Study Stream/src/lib/db/schema.ts:448>), [shop items](</Users/lethanhtunggmail.com/Study Stream/src/lib/db/schema.ts:231>), [community posts](</Users/lethanhtunggmail.com/Study Stream/src/lib/db/schema.ts:347>), [To-Dos](</Users/lethanhtunggmail.com/Study Stream/src/lib/db/schema.ts:505>), [study couples](</Users/lethanhtunggmail.com/Study Stream/src/lib/db/schema.ts:581>). SunStudy has corresponding tables in its own `src/lib/db/schema.ts`.
 

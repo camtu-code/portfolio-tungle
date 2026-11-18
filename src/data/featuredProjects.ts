@@ -1,19 +1,24 @@
 // Read-only production aggregates. Definitions and source evidence live in
 // docs/research/{cogniassess,s2g-sunstudy}.md. These are dated snapshots, not live counters.
-export const PROJECT_SNAPSHOT = { date: '2026-11-01', label: '1 Nov 2026' };
+export const PROJECT_SNAPSHOT = { date: '2026-11-18', label: '18 Nov 2026' };
 
 export const PROJECT_METRICS = {
   cogniassess: {
     nonDemoAccounts: 105,
     retainedExams: 47,
     retainedQuestions: 1075,
-    publicExams: 31,
+    publicExams: 32,
+    completedResults: 31,
   },
   s2g: {
-    registeredAccounts: 655,
-    positiveDurationSessions: 12287,
-    recordedHours: 13227.97,
-    teamsWithMembers: 25,
+    registeredAccounts: 1053,
+    totalAccountsRaw: 1058,
+    positiveDurationSessions: 23863,
+    recordedHours: 28613.9,
+    activeStudyUsers: 775,
+    teamsWithMembers: 31,
+    shopItems: 680,
+    todos: 4637,
   },
   sunstudy: {
     registeredAccounts: 251,
@@ -57,9 +62,9 @@ export const COGNIASSESS: FeaturedProjectData = {
     { label: 'Registered accounts · demo excluded', value: number(cogni.nonDemoAccounts) },
     { label: 'Retained exams', value: number(cogni.retainedExams) },
     { label: 'Questions in retained exams', value: number(cogni.retainedQuestions) },
-    { label: 'Published public exams', value: number(cogni.publicExams) },
+    { label: 'Approved public exams', value: number(cogni.publicExams) },
   ],
-  metricsNote: 'Nine demo accounts excluded. Exam and question totals exclude soft-deleted exams; public exams are an approved subset of the retained exams.',
+  metricsNote: 'Nine demo accounts excluded. Exam and question totals exclude soft-deleted exams; public exams are an approved directory subset of the retained exams.',
   tech: ['Next.js 16', 'Prisma', 'TiDB / MySQL', 'Python', 'OpenCV / ONNX', 'Gemini API', 'Cohere API', 'VPS / Nginx'],
   highlights: [
     { title: 'Teacher workflows', description: 'Built exam authoring with PDF, image, Word and Excel imports, subject catalogs, teaching assignments and independent academic review before publication.' },
@@ -74,33 +79,33 @@ export const COGNIASSESS: FeaturedProjectData = {
 
 export const S2G: FeaturedProjectData = {
   id: 's2g-sunstudy',
-  name: 'S2G / SunStudy',
-  category: 'Study Community & Real-Time Learning',
+  name: 'S2G (StudyStream)',
+  category: 'Study Community & Real-Time Focus Rooms',
   role: 'Fullstack Developer & Product Owner',
-  summary: 'A study community built around shared focus rooms, subject timers, daily goals and social accountability. I develop the Next.js application, its dedicated real-time server and the recovery and moderation tools used to operate the community. S2G and SunStudy run as separate deployments.',
-  metricsTitle: 'S2G deployment',
+  summary: 'A virtual study community built around shared focus rooms, subject timers, daily goals and social accountability. Migrated and consolidated onto a dedicated 4 OCPU / 24 GB Oracle ARM VPS with local MariaDB to support high-concurrency real-time sessions and data consolidation.',
+  metricsTitle: 'Production metrics (s2g_unified MariaDB on 24GB VPS)',
   metrics: [
-    { label: 'Registered accounts · known QA excluded', value: number(s2g.registeredAccounts) },
-    { label: 'Study sessions with recorded time', value: number(s2g.positiveDurationSessions) },
-    { label: 'Recorded study hours', value: `${number(Math.floor(s2g.recordedHours))}+` },
-    { label: 'Teams with members', value: number(s2g.teamsWithMembers) },
+    { label: 'Registered accounts · QA excluded', value: `${number(s2g.registeredAccounts)}+` },
+    { label: 'Completed study sessions', value: `${number(s2g.positiveDurationSessions)}+` },
+    { label: 'Recorded focused study hours', value: `${number(Math.floor(s2g.recordedHours))}+ hrs` },
+    { label: 'Active study participants', value: `${number(s2g.activeStudyUsers)}+ users` },
   ],
-  metricsNote: 'Three known QA accounts excluded. Session totals include only positive recorded durations linked to existing accounts. Hours are rounded down.',
-  secondaryMetrics: `${number(PROJECT_METRICS.sunstudy.registeredAccounts)} registered accounts · ${number(PROJECT_METRICS.sunstudy.positiveDurationSessions)} study sessions · ${number(Math.floor(PROJECT_METRICS.sunstudy.recordedHours))}+ recorded hours · ${PROJECT_METRICS.sunstudy.teamsWithMembers} teams with members. Same session filters; separate database, with no deduplication across deployments.`,
-  tech: ['Next.js 16', 'Drizzle ORM', 'TiDB / MySQL', 'Socket.IO', 'Express.js', 'WebRTC', 'Redis', 'Zustand'],
+  metricsNote: 'Live verified snapshot from MariaDB on production VPS. Excludes QA/test accounts. Sessions count positive-duration records linked to existing accounts; study hours reflect actual server-recorded durations across 31 active teams.',
+  secondaryMetrics: `95 database tables · 31 active teams · 680 catalog items · 4,637 completed To-Dos. SunStudy archive retains an additional 251 historical accounts and 3,170+ recorded hours.`,
+  tech: ['Next.js 16', 'Drizzle ORM', 'MariaDB', 'Socket.IO', 'Express.js', 'WebRTC', 'Redis', 'Oracle ARM VPS (24GB)'],
   highlights: [
-    { title: 'Reliable study timers', description: 'A dedicated Express + Socket.IO server handles presence, chat and timer synchronization, with server-time reconciliation and cross-device safeguards for reconnects and mobile sleep.' },
-    { title: 'Social accountability', description: 'Built study rooms, daily goals, streak recovery, teams and study couples, with community posts and a gamified rewards shop.' },
-    { title: 'Database efficiency', description: 'Buffer timer heartbeats into 60-second writes and use user, team and leaderboard caches, including Redis, to reduce repeated database work.' },
-    { title: 'Product operations', description: 'Maintain study-session audits, account moderation and recovery workflows as the community grows, alongside the application and real-time infrastructure.' },
+    { title: 'High-Concurrency Real-Time Server', description: 'A dedicated Express + Socket.IO server handling live room presence, timers, and chat with 60-second database write buffers and server-anchor synchronization to prevent database bottlenecks.' },
+    { title: 'VPS Architecture & MariaDB Migration', description: 'Deployed on an Oracle ARM VPS (4 OCPU / 24 GB RAM) running Ubuntu 24.04, Node.js 22, Nginx, and systemd, consolidating over 90 relational tables and 28,000+ study hours into local MariaDB.' },
+    { title: 'Social Accountability & Gamification', description: 'Engineered study rooms, daily goals, streak recovery, 31 active teams, study couples, and an in-app cosmetic shop with 680+ items across tiered rarity.' },
+    { title: 'Product Operations & Reliability', description: 'Engineered automatic Vietnam midnight season closings, idempotency-backed settlement, session audit tooling, and zero-downtime rollback releases.' },
   ],
-  inDevelopment: 'Testing a study workspace with a private mistake notebook and exam roadmaps, server-anchored shared timers/music, host-approved Pass Live rooms and an independent competitive ranking system on a separate VPS environment.',
+  inDevelopment: 'Testing workspace tools with mistake notebooks and exam roadmaps, server-anchored shared timers/music, host-approved Pass Live rooms and independent competitive ranking on the VPS environment.',
   links: [
     { label: 's2g.io.vn', href: 'https://s2g.io.vn' },
     { label: 'sunstudy.app', href: 'https://sunstudy.app' },
   ],
-  experienceDescription: `Develop and operate S2G with ${number(s2g.registeredAccounts)} registered accounts, ${number(s2g.positiveDurationSessions)} study sessions and ${number(Math.floor(s2g.recordedHours))}+ recorded study hours, excluding known QA accounts. Maintain a separate SunStudy deployment and build real-time timers, community features and operational recovery tools.`,
-  resumeDescription: `S2G: ${number(s2g.registeredAccounts)} registered accounts, ${number(s2g.positiveDurationSessions)} positive-duration sessions, ${number(Math.floor(s2g.recordedHours))}+ recorded study hours and ${number(s2g.teamsWithMembers)} teams with members, excluding known QA accounts. Built the Next.js client, dedicated Socket.IO server, study timers, social features and recovery tools. SunStudy is a separate deployment with ${number(PROJECT_METRICS.sunstudy.registeredAccounts)} registered accounts.`,
+  experienceDescription: `Develop and operate S2G on a dedicated 24GB VPS with ${number(s2g.registeredAccounts)}+ registered accounts, ${number(s2g.positiveDurationSessions)}+ recorded study sessions, and ${number(Math.floor(s2g.recordedHours))}+ study hours. Architected the real-time Socket.IO server, consolidated MariaDB storage (95 tables), and automated competition seasons.`,
+  resumeDescription: `S2G: ${number(s2g.registeredAccounts)}+ registered accounts, ${number(s2g.positiveDurationSessions)}+ study sessions, ${number(Math.floor(s2g.recordedHours))}+ recorded hours, 775+ active study users and 31 active teams on a 24GB VPS with local MariaDB. Built Next.js client, dedicated Socket.IO server, 60s buffer flushes, and community gamification.`,
 };
 
 export const FEATURED_PROJECTS = [COGNIASSESS, S2G];

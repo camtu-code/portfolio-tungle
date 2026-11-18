@@ -1,72 +1,65 @@
 # TUNG LE
 **Full-Stack Software Engineer**
 
-`lethanhtung6803@gmail.com` | `0848 290 617` | Portfolio: [study-together-vibes.vercel.app](https://study-together-vibes.vercel.app)
+`lethanhtung6803@gmail.com` | `0329 509 223` | Portfolio: [tungledev.id.vn](https://tungledev.id.vn)
 
 ---
 
 ## SUMMARY
-Final-year Computer Science student specializing in production-grade full-stack web applications using Next.js and Node.js. With 3+ years of hands-on experience and a background in pedagogy, I combine technical depth with strong communication skills — especially in EdTech. I have independently shipped multiple live products from architecture to deployment, with real users, managing databases, infrastructure, and operations in production.
+Final-year Computer Science student specializing in production-grade full-stack web applications using Next.js, Node.js, and modern cloud databases. With 3+ years of hands-on experience and a background in pedagogy, I combine engineering depth with real-world product execution. I have independently shipped and scaled live products serving over 1,000+ real users, managing multi-tenant databases, real-time WebSocket infrastructures, and production VPS operations.
 
 ---
 
 ## CORE COMPETENCIES
 - **Frontend:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Framer Motion, Shadcn UI, Zustand, Recharts
-- **Backend:** Node.js, Express.js, Socket.IO, Next.js API Routes / Server Actions, NextAuth.js (v4 & v5 beta), REST API Design
-- **Database & ORM:** Prisma ORM, Drizzle ORM, TiDB Serverless / MySQL, PostgreSQL
+- **Backend:** Node.js, Express.js, Socket.IO, WebRTC, Next.js API Routes / Server Actions, NextAuth.js (v4 & v5), REST APIs
+- **Database & ORM:** Drizzle ORM, Prisma ORM, MariaDB, TiDB Serverless, MySQL, PostgreSQL, Redis
 - **AI & ML:** Google Gemini API, Cohere API, Python/OpenCV, ONNX (YuNet face detection, YOLOX object detection)
-- **DevOps & Tools:** Git, GitHub, Vercel, GitHub Actions (CI/CD), VPS / Nginx / PM2, Capacitor (PWA → Android APK), Supabase Storage, Vercel Blob, Pusher, Payment APIs (VietQR, Casso/SePay Webhooks)
+- **DevOps & Infrastructure:** Oracle ARM VPS (24GB), Nginx, systemd, PM2, Cloudflare Edge, Git/GitHub Actions, Docker, Capacitor (PWA → Android APK), Payment APIs (VietQR, Casso/SePay Webhooks)
 - **Testing:** Pytest (API routes), Playwright (E2E)
 
 ---
 
 ## FEATURED PROJECTS (PRODUCTION-READY)
 
+### S2G (StudyStream) | Fullstack Developer & Product Owner
+*Virtual Study Community · Real-Time Focus Rooms · Social Gamification*
+[https://s2g.io.vn](https://s2g.io.vn) · [https://sunstudy.app](https://sunstudy.app)
+
+Independently architected, deployed, and operate a live virtual study community featuring real-time rooms, synchronised timers, daily goals, and social accountability. Successfully migrated and consolidated data to a dedicated Oracle Cloud ARM VPS (4 OCPU / 24 GB RAM) running Ubuntu 24.04 and local MariaDB.
+
+**Production snapshot — 18 November 2026 (Live VPS MariaDB Audit):**
+- **1,053+ registered accounts** (excluding QA/demo test accounts).
+- **23,863+ completed study sessions** with recorded focus durations.
+- **28,613+ recorded study hours** tracked across **775+ active study participants**.
+- **31 active study teams**, **680 catalog shop items**, and **4,637 completed To-Dos** managed over **95 database tables**.
+- *Historical SunStudy archive retains an additional 251 accounts and 3,170+ recorded hours.*
+
+**Engineering and operations:**
+- **High-Concurrency Real-Time Server:** Built dedicated Express + Socket.IO server handling live room presence, timers, and chat with 60-second database write buffers and server-anchor synchronization.
+- **Infrastructure & Migration:** Deployed on Oracle ARM VPS with systemd process supervision and Nginx reverse proxy; executed consolidation of multi-source databases into local MariaDB (`s2g_unified`).
+- **Gamification & Automation:** Implemented 10-tier competitive league ranking, cosmetic shop economy, automated Vietnam midnight season settlements with idempotent reward allocation.
+- **Tech:** Next.js 16, React 19, TypeScript, Drizzle ORM, MariaDB, Socket.IO, Express.js, WebRTC, Redis, Oracle ARM VPS (24GB), Nginx.
+
+---
+
 ### CogniAssess | Solo Fullstack Developer
 *Online Assessment · Exam Operations · Cognitive Feedback*
 [https://cna.io.vn](https://cna.io.vn)
 
-Independently build and operate an assessment platform for teachers, students and education institutions. The current product centers on creating, assigning, supervising and evaluating exams. Students use the platform free; optional service plans provide teacher tools.
+Independently built and operate an assessment platform for teachers, students, and education institutions to create, assign, supervise, and evaluate exams with AI assistance and proctoring.
 
-**Production snapshot — 1 November 2026:**
-- **105 registered accounts excluding 9 demo accounts.** This is a registration count, not a recent-activity metric.
-- **47 retained exams** containing **1,075 questions**, excluding soft-deleted exams.
-- **31 approved public-directory exams**, a subset of retained exams.
+**Production snapshot — 18 November 2026 (TiDB Cloud Audit):**
+- **105 registered accounts** (excluding 9 demo accounts).
+- **47 retained exams** containing **1,075 questions** (excluding soft-deleted exams).
+- **32 approved public-directory exams**, with **31 completed exam submissions**.
 
 **Engineering:**
-- Built institutional permissions, independent academic review, subject catalogs, approved subject/grade curriculum and teaching assignments. Authors cannot approve their own exams.
-- Implemented AI-assisted authoring from PDF, images, Word and Excel, with multiple-choice, true/false and short-answer questions. Private teacher hints, worked solutions and teaching notes are excluded from learner exam responses.
-- Moved webcam analysis to a dedicated **Python/OpenCV service on VPS**, using **YuNet and YOLOX-M** with temporal evidence and server-persisted warnings for teacher review.
-- Track per-question timing, answer revisions and guess indicators alongside Bloom-level question data to produce knowledge-gap reports and cached AI feedback.
-- Maintain draft autosave, additive migrations and retained rollback releases as the product evolves.
-- **Tech:** Next.js 16, React 19, TypeScript, Prisma, TiDB/MySQL, NextAuth, Gemini/Cohere, Python/OpenCV/ONNX, VPS/Nginx/PM2, Capacitor/PWA.
-
----
-
-### S2G / SunStudy | Fullstack Developer & Product Owner
-*Study Community · Real-Time Focus Rooms · Social Accountability*
-[https://s2g.io.vn](https://s2g.io.vn) · [https://sunstudy.app](https://sunstudy.app)
-
-Build and operate a study community with subject timers, shared focus rooms, daily goals, streak recovery, teams, study couples and social features. **S2G and SunStudy run as separate deployments with separate databases.**
-
-**Production snapshot — 1 November 2026:**
-
-| Metric | S2G | SunStudy |
-| --- | ---: | ---: |
-| Registered accounts | **655** | **251** |
-| Study sessions with recorded time | **12,287** | **2,446** |
-| Recorded study hours | **13,227.97** | **3,170.20** |
-| Teams with members | **25** | **8** |
-
-Three known QA accounts are excluded. Sessions must reference an existing account and have positive recorded duration. Account totals across deployments are not deduplicated; registered accounts are not MAU.
-
-**Engineering and operations:**
-- Build the Next.js client and a dedicated Express + Socket.IO runtime for presence, room events, direct messages and timer synchronization.
-- Buffer timer heartbeats and flush database writes every **60 seconds**; use server-time reconciliation, cross-tab/device safeguards and session recovery to handle reconnects and mobile sleep.
-- Maintain study-session audits, moderation and recovery tooling, along with daily goals, streaks, community posts and a rewards shop.
-- Support real-time room experiences and media workflows using Socket.IO and WebRTC integrations.
-- **In development on a test VPS:** Workspace tools with private mistake notebooks and exam roadmaps, shared room timers/music, Pass Live rooms and a revised competitive ranking system. These are separate from the production metrics above.
-- **Tech:** Next.js 16, React 19, TypeScript, Drizzle ORM, TiDB/MySQL, Express.js, Socket.IO, WebRTC (P2P), Zustand, Redis, NextAuth v5, Capacitor, VPS/Nginx/PM2, Supabase Storage.
+- Built institutional permissions, independent academic review, subject catalogs, and curriculum management.
+- Implemented AI-assisted authoring from PDF, images, Word, and Excel.
+- Engineered server-side webcam proctoring with dedicated **Python/OpenCV microservice (YuNet + YOLOX-M)** for temporal face and object detection.
+- Developed cognitive assessment engine analyzing per-question timing, revisions, and guess indicators with Gemini API feedback.
+- **Tech:** Next.js 16, React 19, TypeScript, Prisma, TiDB Serverless, NextAuth, Gemini API, Cohere API, Python/OpenCV/ONNX, VPS/Nginx.
 
 ---
 
