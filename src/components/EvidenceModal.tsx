@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Terminal, ShieldCheck, X, Database, Server, Calendar, TrendingUp, CheckCircle2 } from 'lucide-react';
 import { EVIDENCE_DATA, type ProjectEvidence } from '@/data/evidence';
 
@@ -12,6 +12,26 @@ interface EvidenceModalProps {
 export default function EvidenceModal({ projectId, projectName }: EvidenceModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const evidence: ProjectEvidence | undefined = EVIDENCE_DATA[projectId];
+
+  // Prevent background scrolling when modal is open (including Lenis and native body)
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      document.documentElement.classList.add('lenis-stopped');
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') setIsOpen(false);
+      };
+      window.addEventListener('keydown', handleKeyDown);
+
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        document.documentElement.classList.remove('lenis-stopped');
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [isOpen]);
 
   if (!evidence) return null;
 
@@ -31,12 +51,15 @@ export default function EvidenceModal({ projectId, projectName }: EvidenceModalP
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
+          data-lenis-prevent="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200 overflow-hidden"
           onClick={() => setIsOpen(false)}
         >
           <div
-            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl border border-zinc-200 bg-white p-6 shadow-2xl dark:border-zinc-800 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100"
+            data-lenis-prevent="true"
+            className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto overscroll-contain rounded-2xl border border-zinc-200 bg-white p-6 shadow-2xl dark:border-zinc-800 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100"
             onClick={(e) => e.stopPropagation()}
+            onWheel={(e) => e.stopPropagation()}
           >
             {/* Header */}
             <div className="flex items-start justify-between border-b border-zinc-200 pb-4 dark:border-zinc-800">
