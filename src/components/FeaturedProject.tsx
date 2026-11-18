@@ -1,14 +1,18 @@
 import { ExternalLink, LockKeyhole } from 'lucide-react';
 import { PROJECT_SNAPSHOT } from '@/data/featuredProjects';
 import type { FeaturedProjectData } from '@/data/featuredProjects';
+import EvidenceModal from './EvidenceModal';
 
 export default function FeaturedProject({ project }: { project: FeaturedProjectData }) {
   return (
     <article id={project.id} aria-labelledby={`${project.id}-title`} className="flex scroll-mt-24 flex-col gap-6">
       <div className="flex flex-col justify-between gap-3 border-b-2 border-zinc-300 pb-4 sm:flex-row sm:items-baseline dark:border-zinc-700">
-        <h3 id={`${project.id}-title`} className="text-xl font-medium text-zinc-900 dark:text-zinc-100">
-          {project.name}
-        </h3>
+        <div className="flex flex-wrap items-center gap-3">
+          <h3 id={`${project.id}-title`} className="text-xl font-medium text-zinc-900 dark:text-zinc-100">
+            {project.name}
+          </h3>
+          <EvidenceModal projectId={project.id} projectName={project.name} />
+        </div>
         <span className="text-sm text-zinc-500 dark:text-zinc-400">{project.category}</span>
       </div>
 
