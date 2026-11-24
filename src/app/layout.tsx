@@ -194,6 +194,7 @@ export default function RootLayout({
               <div className="flex items-center gap-6">
                 <nav className="hidden sm:flex gap-6 text-sm text-zinc-500 dark:text-zinc-400 font-medium">
                   <a href="#projects" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Projects</a>
+                  <a href="#case-studies" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Case Studies</a>
                   <a href="#skills" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Skills</a>
                   <a href="#philosophy" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Philosophy</a>
                   <a href="#experience" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Experience</a>
