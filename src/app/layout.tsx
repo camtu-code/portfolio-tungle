@@ -14,11 +14,87 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Tung Le | Fullstack Developer",
-  description: "Portfolio of Tung Le, a Fullstack Developer building modern web applications.",
+  metadataBase: new URL("https://tungledev.id.vn"),
+  title: {
+    default: "Lê Thanh Tùng (Tung Le) | Fullstack Software Engineer & AI Builder",
+    template: "%s | Lê Thanh Tùng",
+  },
+  description:
+    "Portfolio của Lê Thanh Tùng (TungLeDev) - Kỹ sư phần mềm Fullstack & AI tại Hà Nội. Tác giả & vận hành S2G Study (1.000+ users), Carevia AI Y tế (VinUni AI Cohort 5), CogniAssess & Prelynx.",
+  keywords: [
+    "Lê Thanh Tùng",
+    "Le Thanh Tung",
+    "Tung Le",
+    "TungLeDev",
+    "tungledev.id.vn",
+    "Lập trình viên Fullstack",
+    "Fullstack Software Engineer",
+    "AI Engineer Vietnam",
+    "S2G Study",
+    "StudyStream",
+    "s2g.io.vn",
+    "Carevia",
+    "VinUni AI Thực Chiến",
+    "CogniAssess",
+    "cna.io.vn",
+    "Next.js Developer Vietnam",
+    "Lập trình viên Hà Nội",
+  ],
+  authors: [{ name: "Lê Thanh Tùng", url: "https://tungledev.id.vn" }],
+  creator: "Lê Thanh Tùng",
+  publisher: "Lê Thanh Tùng",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "https://tungledev.id.vn",
+  },
+  openGraph: {
+    type: "profile",
+    firstName: "Tùng",
+    lastName: "Lê Thanh",
+    username: "tungledev",
+    gender: "male",
+    locale: "vi_VN",
+    url: "https://tungledev.id.vn",
+    title: "Lê Thanh Tùng (Tung Le) | Fullstack Software Engineer & AI Builder",
+    description:
+      "Khám phá portfolio và các sản phẩm công nghệ thực tế phục vụ 1.000+ người dùng của Lê Thanh Tùng: S2G StudyStream, Carevia AI VinUni, CogniAssess.",
+    siteName: "TungLeDev Portfolio",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1405,
+        height: 378,
+        alt: "Lê Thanh Tùng - Fullstack Software Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lê Thanh Tùng (Tung Le) | Fullstack Software Engineer & AI Builder",
+    description:
+      "Portfolio của Lê Thanh Tùng - Kỹ sư phần mềm Fullstack & AI. Vận hành S2G Study (1.000+ users), Carevia AI VinUni.",
+    images: ["/logo.png"],
+    creator: "@tungledev",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: "/icon.png",
+    apple: "/icon.png",
+    shortcut: "/favicon.ico",
   },
   verification: {
     google: "HMGUbvZwqyZSQxVKguq0d8YvE32AJHIZmFAiZP1o5aU",
@@ -31,7 +107,69 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} scroll-smooth`} data-theme="dark">
+    <html lang="vi" className={`${inter.variable} scroll-smooth`} data-theme="dark">
+      <head>
+        {/* JSON-LD Schema Structured Data for Google Knowledge Graph & Rich Snippets */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Person",
+                  "@id": "https://tungledev.id.vn/#person",
+                  "name": "Lê Thanh Tùng",
+                  "alternateName": ["Tung Le", "TungLeDev"],
+                  "jobTitle": "Fullstack Software Engineer & AI Builder",
+                  "url": "https://tungledev.id.vn",
+                  "image": "https://tungledev.id.vn/logo.png",
+                  "sameAs": [
+                    "https://github.com/camtu-code",
+                    "https://github.com/griin-03/P-033"
+                  ],
+                  "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Hà Nội",
+                    "addressCountry": "VN"
+                  },
+                  "alumniOf": [
+                    {
+                      "@type": "EducationalOrganization",
+                      "name": "Đại học Giao thông Vận tải"
+                    },
+                    {
+                      "@type": "EducationalOrganization",
+                      "name": "Cao đẳng Bách khoa Việt Nam"
+                    }
+                  ],
+                  "knowsAbout": [
+                    "Fullstack Development",
+                    "Next.js",
+                    "React",
+                    "Node.js",
+                    "FastAPI",
+                    "Python",
+                    "LangGraph",
+                    "Artificial Intelligence",
+                    "Oracle Cloud VPS",
+                    "MariaDB"
+                  ]
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://tungledev.id.vn/#website",
+                  "url": "https://tungledev.id.vn",
+                  "name": "TungLeDev - Portfolio Lê Thanh Tùng",
+                  "description": "Portfolio của Lê Thanh Tùng, lập trình viên Fullstack & AI tại Hà Nội.",
+                  "publisher": { "@id": "https://tungledev.id.vn/#person" },
+                  "inLanguage": "vi-VN"
+                }
+              ]
+            }),
+          }}
+        />
+      </head>
       <body className="antialiased min-h-screen selection:bg-zinc-800 selection:text-zinc-100 relative">
         <div className="fixed inset-0 z-[-1] bg-grid-pattern opacity-30 dark:opacity-20 pointer-events-none" />
         <SmoothScroll>
