@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
+import Image from "next/image";
 import PageViewTracker from "@/components/PageViewTracker";
 import SmoothScroll from "@/components/SmoothScroll";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -15,6 +16,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Tung Le | Fullstack Developer",
   description: "Portfolio of Tung Le, a Fullstack Developer building modern web applications.",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -33,7 +38,18 @@ export default function RootLayout({
           
           <header className="sticky top-0 z-50 w-full border-b border-zinc-200/50 dark:border-zinc-800/50 bg-white/70 dark:bg-zinc-950/70 backdrop-blur-md">
             <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
-              <a href="#" className="font-semibold text-lg tracking-tight text-zinc-900 dark:text-zinc-100">Tung Le</a>
+              <a href="#" className="flex items-center gap-2.5 group transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                <div className="relative h-9 w-auto flex items-center overflow-hidden rounded-md">
+                  <Image 
+                    src="/logo.png" 
+                    alt="Tùng Lê Logo" 
+                    width={135} 
+                    height={40} 
+                    className="h-9 w-auto object-contain dark:brightness-105" 
+                    priority
+                  />
+                </div>
+              </a>
               <div className="flex items-center gap-6">
                 <nav className="hidden sm:flex gap-6 text-sm text-zinc-500 dark:text-zinc-400 font-medium">
                   <a href="#projects" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Projects</a>
