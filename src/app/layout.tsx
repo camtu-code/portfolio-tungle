@@ -37,15 +37,15 @@ export default function RootLayout({
           </Suspense>
           
           <header className="sticky top-0 z-50 w-full border-b border-zinc-200/50 dark:border-zinc-800/50 bg-white/70 dark:bg-zinc-950/70 backdrop-blur-md">
-            <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 h-20 md:h-24 flex items-center justify-between">
-              <a href="#" className="flex items-center gap-3 group transition-transform hover:scale-105 active:scale-95">
-                <div className="relative h-14 md:h-16 w-auto flex items-center">
+            <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
+              <a href="#" className="flex items-center group transition-transform hover:scale-105 active:scale-95">
+                <div className="relative h-9 md:h-10 w-auto flex items-center">
                   <Image 
                     src="/logo.png" 
                     alt="Tùng Lê Logo" 
-                    width={240} 
-                    height={160} 
-                    className="h-14 md:h-16 w-auto object-contain dark:brightness-110 drop-shadow-sm" 
+                    width={180} 
+                    height={48} 
+                    className="h-9 md:h-10 w-auto object-contain dark:brightness-110 drop-shadow-sm" 
                     priority
                   />
                 </div>
