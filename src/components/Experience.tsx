@@ -62,14 +62,14 @@ export default function Experience() {
         </div>
         <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 group">
           <span className="text-sm text-zinc-400 dark:text-zinc-500 min-w-[120px] pt-1">
-            Expected 2025
+            Expected 2026
           </span>
           <div className="flex flex-col gap-2">
             <h3 className="text-base font-medium text-zinc-900 dark:text-zinc-100">
               Information Technology <span className="text-zinc-400 dark:text-zinc-500 font-normal">· University of Transport and Communications</span>
             </h3>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xl">
-              Final-year IT student. Hold a professional Pedagogical Certificate, enabling a unique combination of technical engineering and effective educational product design.
+              Final-year IT student (Graduation: 2026). Also graduated as an IT Engineer from Vietnam Polytechnic College. Hold a professional Pedagogical Certificate, enabling a unique combination of technical engineering and effective educational product design.
             </p>
           </div>
         </div>

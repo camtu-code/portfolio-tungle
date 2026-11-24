@@ -74,8 +74,8 @@ export default function FeaturedProject({ project }: { project: FeaturedProjectD
                 {link.label} <ExternalLink size={14} aria-hidden="true" />
               </a>
             ))}
-            <span className="inline-flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
-              Private Repo <LockKeyhole size={14} aria-hidden="true" />
+            <span className="inline-flex items-center gap-1.5 text-zinc-400 dark:text-zinc-500 text-xs" title="Private source code due to active production & proprietary operations. Available upon request during technical interview.">
+              Private Source <LockKeyhole size={13} aria-hidden="true" />
             </span>
           </div>
         </div>

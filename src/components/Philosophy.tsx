@@ -8,12 +8,12 @@ const PRINCIPLES = [
     description: 'Combining an educational background with strong engineering skills to build EdTech products that genuinely improve how people learn, rather than just writing code.'
   },
   {
-    title: 'User-Centric Gamification',
-    description: 'I design study goals, streaks, team challenges and rewards around the habits learners want to build, then use recorded study activity to guide improvements.'
+    title: 'User-Centric Gamification & Data',
+    description: 'I design study goals, streaks, team challenges and rewards around the habits learners want to build, then use recorded telemetry and database audits to guide iterative improvements.'
   },
   {
-    title: 'Resilient & Scalable Systems',
-    description: 'I build for the failures that show up in daily use: interrupted timers, stale draft saves and unreliable connections. Server-side state, recovery tools and retained releases help me operate these products.'
+    title: 'Operational Resilience & Team Readiness',
+    description: 'I build for real-world failures: interrupted timers, state desync and reconnection recovery with zero-downtime releases. Ready to bring this production mindset and rigorous accountability into enterprise engineering teams.'
   }
 ];
 
