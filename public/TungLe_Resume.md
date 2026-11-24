@@ -22,6 +22,22 @@ Final-year Computer Science student specializing in production-grade full-stack 
 
 ## FEATURED PROJECTS (PRODUCTION-READY)
 
+### Carevia (AI Healthcare Assistant) | Lead Infrastructure & Backend Developer
+*Enterprise AI · Healthcare Administration · VinUni AI Thực Chiến (Cohort 5 / Project P-033)*
+[https://vinas.sunstudy.app](https://vinas.sunstudy.app) · GitHub: [https://github.com/griin-03/P-033](https://github.com/griin-03/P-033)
+
+Architected backend infrastructure and safety pipeline in a 4-engineer team for an enterprise AI assistant helping patients and hospital staff navigate Health Insurance (BHYT) regulations (Dispatch 2275/BHXH-CSYT) and estimate hospital costs.
+
+**Engineering Highlights & Quality Metrics:**
+- **Automated Testing & CI/CD:** Built a full test suite with **107+ passing tests** covering FastAPI routes, LangGraph nodes, guardrail safety, and deterministic calculation rules.
+- **Grounded Citations & Zero Hallucination:** Designed a retrieval pipeline (FTS5 + LangGraph) that forces exact verbatim excerpt matching with SHA-256 and page verification; rejects hallucinated citations.
+- **Deterministic Copay Engine:** Engineered an exact Decimal calculation engine for insurance co-payments based on official hospital tariffs, entirely independent of LLMs.
+- **Enterprise Token Accounting:** Implemented atomic daily token reservation in TiDB across key pools (3.5M tokens/day) to safeguard against rate-limit bursts.
+- **Team Collaboration:** Operated via strict GitHub PR reviews, branching workflows, and automated GitHub Actions CI runners.
+- **Tech:** Python 3.11, FastAPI, LangGraph, Mistral Small 4, TiDB Cloud (TLS), FTS5, Pytest, Docker, Nginx, GitHub Actions.
+
+---
+
 ### S2G (StudyStream) | Fullstack Developer & Product Owner
 *Virtual Study Community · Real-Time Focus Rooms · Social Gamification*
 [https://s2g.io.vn](https://s2g.io.vn) · [https://sunstudy.app](https://sunstudy.app)

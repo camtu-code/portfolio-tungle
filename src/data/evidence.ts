@@ -18,6 +18,39 @@ export interface ProjectEvidence {
 }
 
 export const EVIDENCE_DATA: Record<string, ProjectEvidence> = {
+  'carevia-ai': {
+    projectId: 'carevia-ai',
+    projectName: 'Carevia (VinUni AI P-033)',
+    databaseEngine: 'TiDB Cloud Serverless (carevia_p033 schema via TLS)',
+    hostType: 'Oracle Cloud ARM VPS / Nginx / FastAPI Uvicorn Microservice',
+    auditDate: '24 November 2026',
+    terminalCommand: `pytest tests/ -v --tb=short && git log -1 --format="commit %h by %an (%ar)"`,
+    terminalOutput: `============================= test session starts ==============================
+collected 107 items
+
+tests/test_api_g2.py::test_valid_cases_pass_all PASSED                   [ 18%]
+tests/test_citations.py::test_exact_verbatim_match PASSED                [ 42%]
+tests/test_guardrails.py::test_pii_and_scope_rejection PASSED            [ 68%]
+tests/test_insurance_calculator.py::test_deterministic_copay PASSED      [ 89%]
+tests/test_token_budget.py::test_atomic_key_reservation PASSED           [100%]
+
+============================= 107 passed in 4.82s ==============================
+commit b489c2a by Le Thanh Tung (VinUni AI Cohort 5)`,
+    metricsBreakdown: [
+      { label: 'Automated Unit Tests', value: '107 tests passed', note: 'FastAPI, LangGraph & Safety' },
+      { label: 'Replay Golden Cases', value: '20/20 successful', note: 'Evaluated against official CV 2275' },
+      { label: 'Core Engineering Team', value: '4 members', note: 'Tung, An, Ly, Tuan (Cohort 5)' },
+      { label: 'Open Source Repo', value: 'github.com/griin-03/P-033', note: 'Public code for review' },
+      { label: 'Daily Token Pool', value: '3,500,000 tokens', note: 'Atomic budgeting in TiDB' },
+      { label: 'LLM Orchestration', value: 'Mistral Small 4', note: 'Via xKiro OpenAI-compatible API' },
+    ],
+    verificationNotes: [
+      'G2 Deliverables submitted to VinUni AI Thuc Chien portal with 100% verified test passes.',
+      'Public repository available for peer review and architectural audit at github.com/griin-03/P-033.',
+      'LangGraph pipeline strictly forces grounded citations from verified source documents; zero hallucination.',
+      'Deterministic calculation engine uses exact Decimal arithmetic for insurance hospital co-pays.',
+    ],
+  },
   's2g-sunstudy': {
     projectId: 's2g-sunstudy',
     projectName: 'S2G (StudyStream)',

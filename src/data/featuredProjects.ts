@@ -108,4 +108,34 @@ export const S2G: FeaturedProjectData = {
   resumeDescription: `S2G: ${number(s2g.registeredAccounts)}+ registered accounts, ${number(s2g.positiveDurationSessions)}+ study sessions, ${number(Math.floor(s2g.recordedHours))}+ recorded hours, 775+ active study users and 31 active teams on a 24GB VPS with local MariaDB. Built Next.js client, dedicated Socket.IO server, 60s buffer flushes, and community gamification.`,
 };
 
-export const FEATURED_PROJECTS = [COGNIASSESS, S2G];
+export const CAREVIA: FeaturedProjectData = {
+  id: 'carevia-ai',
+  name: 'Carevia (AI Healthcare Assistant)',
+  category: 'Enterprise AI & Medical Administration (VinUni AI Cohort 5)',
+  role: 'Lead Infrastructure & Backend Developer (Team of 4)',
+  summary: 'An intelligent medical administration assistant built for VinUni AI Thuc Chien (Project P-033, Cohort 5). Enables patients and medical staff to query Health Insurance regulations (Dispatch 2275/BHXH-CSYT) with verbatim grounded citations and transparent medical price estimations.',
+  metricsTitle: 'VinUni AI Evaluation & System Metrics',
+  metrics: [
+    { label: 'Test Suite Coverage', value: '107+ tests' },
+    { label: 'API & Golden Case Accuracy', value: '100% (20/20)' },
+    { label: 'Active Team Collaborators', value: '4 Engineers' },
+    { label: 'Enterprise Token Budgeting', value: '3.5M / day' },
+  ],
+  metricsNote: 'Live deployment on dedicated ARM VPS. 100% of tested valid queries cite source CV 2275/BHXH-CSYT verbatim with page/SHA-256 validation. Team code reviewed via Pull Requests and GitHub Actions CI.',
+  secondaryMetrics: `FastAPI & LangGraph workflow · TiDB Cloud TLS · FTS5 retrieval · Mistral Small 4 LLM · Automated CI/CD runner.`,
+  tech: ['FastAPI', 'Python 3.11', 'LangGraph', 'Mistral Small 4', 'TiDB Cloud (TLS)', 'FTS5 Retrieval', 'GitHub Actions CI', 'VPS Ubuntu / Nginx'],
+  highlights: [
+    { title: 'Grounded Citation & Safety Guardrails', description: 'Engineered a LangGraph pipeline that extracts verbatim excerpts from official Ministry regulations, rejecting hallucinated IDs and executing PII/medical safety checks before contacting LLMs.' },
+    { title: 'Deterministic Pricing & Insurance Logic', description: 'Built an exact-math calculation engine for hospital co-pays based on official medical tariffs, completely independent of LLMs to guarantee zero calculation error.' },
+    { title: 'Team Collaboration & Engineering Rigor', description: 'Lead infrastructure, deployment, and testing across a 4-person team (Tung, An, Ly, Tuan). Maintained strict Git workflows, code reviews, and automated CI pipelines.' },
+    { title: 'Token Accounting & Daily Quota Guard', description: 'Architected atomic daily token budgeting in TiDB across API key pools to ensure predictable inference cost and prevent rate-limit exhaustion.' },
+  ],
+  links: [
+    { label: 'Live Demo (vinas.sunstudy.app)', href: 'https://vinas.sunstudy.app/' },
+    { label: 'Public Repo (P-033)', href: 'https://github.com/griin-03/P-033' },
+  ],
+  experienceDescription: `Lead infrastructure and backend for Carevia (VinUni AI Thuc Chien Cohort 5, Project P-033). Developed FastAPI & LangGraph RAG pipeline, TiDB TLS persistence, and automated CI/CD for a 4-engineer team.`,
+  resumeDescription: `Carevia (vinas.sunstudy.app): Enterprise AI medical assistant (VinUni AI Cohort 5, Team P-033). Built FastAPI, LangGraph workflow, TiDB storage, and strict CI/CD with 107+ automated tests. Public repo at github.com/griin-03/P-033.`,
+};
+
+export const FEATURED_PROJECTS = [CAREVIA, S2G, COGNIASSESS];
