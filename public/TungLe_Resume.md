@@ -122,6 +122,7 @@ Built and operate a synchronized Discord bot and web portal for a study communit
 ---
 
 ## EDUCATION & CERTIFICATIONS
-- **B.S. in Computer Science (Ongoing)** — University of Transport and Communications (UTC), Hanoi
-  *Final-year student, transitioning from a 3-year College degree in the same field.*
-- **Vocational Teaching Certificate** — *Certified in Pedagogy (College/Intermediate Level), demonstrating strong presentation, communication, and mentoring capabilities.*
+- **AI Thực Chiến (3-Month Intensive Program)** — VinUni & Vingroup (Cohort 5), *11/2026 – 01/2027*
+- **Information Technology (Ongoing)** — University of Transport and Communications (UTC), Hanoi, *2024 – 2026 (Expected)*
+- **Pedagogical Certificate (Chứng chỉ Nghiệp vụ Sư phạm)** — *2024 – 2025*
+- **Information Technology (Graduated with Distinction / Loại Giỏi)** — Vietnam Polytechnic College (Cao đẳng Bách khoa), *2021 – 2024*

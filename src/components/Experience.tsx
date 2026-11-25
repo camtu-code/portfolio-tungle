@@ -70,18 +70,61 @@ export default function Experience() {
 
       <div className="flex flex-col gap-8 mt-8 pt-8 border-t-2 border-zinc-300 dark:border-zinc-700">
         <div className="flex flex-col gap-2">
-          <h2 className="text-2xl font-semibold tracking-tight">Education</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">Education &amp; Training</h2>
         </div>
+
         <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 group">
-          <span className="text-sm text-zinc-400 dark:text-zinc-500 min-w-[120px] pt-1">
-            Expected 2026
+          <span className="text-sm text-zinc-400 dark:text-zinc-500 min-w-[140px] pt-1">
+            11/2026 – 01/2027
           </span>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1.5">
             <h3 className="text-base font-medium text-zinc-900 dark:text-zinc-100">
-              Information Technology <span className="text-zinc-400 dark:text-zinc-500 font-normal">· University of Transport and Communications</span>
+              AI Thực Chiến (3-Month Intensive) <span className="text-zinc-400 dark:text-zinc-500 font-normal">· VinUni &amp; Vingroup (Cohort 5)</span>
             </h3>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xl">
-              Final-year IT student (Graduation: 2026). Also graduated as an IT Engineer from Vietnam Polytechnic College. Hold a professional Pedagogical Certificate, enabling a unique combination of technical engineering and effective educational product design.
+              Intensive 3-month applied AI engineering program following SFIA standards, building and deploying enterprise AI systems in a 4-engineer team (Project P-033 Carevia).
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 group">
+          <span className="text-sm text-zinc-400 dark:text-zinc-500 min-w-[140px] pt-1">
+            2024 – 2026
+          </span>
+          <div className="flex flex-col gap-1.5">
+            <h3 className="text-base font-medium text-zinc-900 dark:text-zinc-100">
+              Information Technology <span className="text-zinc-400 dark:text-zinc-500 font-normal">· University of Transport and Communications (UTC)</span>
+            </h3>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xl">
+              Final-year IT student (Expected graduation: 2026). Transitioned directly from college degree to pursue deeper software engineering and systems architecture.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 group">
+          <span className="text-sm text-zinc-400 dark:text-zinc-500 min-w-[140px] pt-1">
+            2024 – 2025
+          </span>
+          <div className="flex flex-col gap-1.5">
+            <h3 className="text-base font-medium text-zinc-900 dark:text-zinc-100">
+              Pedagogical Certificate <span className="text-zinc-400 dark:text-zinc-500 font-normal">· Nghiệp vụ Sư phạm</span>
+            </h3>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xl">
+              Completed formal pedagogical training, combining technical engineering with instructional design, clear communication, and mentoring.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 group">
+          <span className="text-sm text-zinc-400 dark:text-zinc-500 min-w-[140px] pt-1">
+            2021 – 2024
+          </span>
+          <div className="flex flex-col gap-1.5">
+            <h3 className="text-base font-medium text-zinc-900 dark:text-zinc-100">
+              Information Technology <span className="text-zinc-400 dark:text-zinc-500 font-normal">· Vietnam Polytechnic College (Cao đẳng Bách khoa)</span>
+            </h3>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xl">
+              Graduated with Distinction (Loại Giỏi). Built strong foundations in programming, databases, and full-stack web development.
             </p>
           </div>
         </div>

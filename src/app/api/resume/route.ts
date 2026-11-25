@@ -58,9 +58,24 @@ const RESUME_DATA: ResumeData = {
   ],
   education: [
     {
+      degree: 'AI Thực Chiến (3-Month Intensive Program)',
+      school: 'VinUni & Vingroup (Cohort 5)',
+      year: '11/2026 – 01/2027',
+    },
+    {
       degree: 'Information Technology',
-      school: 'University of Transport and Communications',
-      year: '',
+      school: 'University of Transport and Communications (UTC)',
+      year: '2024 – 2026 (Expected)',
+    },
+    {
+      degree: 'Pedagogical Certificate (Nghiệp vụ Sư phạm)',
+      school: 'Certified Vocational Pedagogy',
+      year: '2024 – 2025',
+    },
+    {
+      degree: 'Information Technology (Graduated with Distinction)',
+      school: 'Vietnam Polytechnic College (Cao đẳng Bách khoa)',
+      year: '2021 – 2024',
     },
   ],
 };

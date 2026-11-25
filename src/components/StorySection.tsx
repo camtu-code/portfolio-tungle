@@ -26,10 +26,10 @@ const GROWTH_STATS = [
 
 const JOURNEY_STEPS = [
   {
-    period: '2023 · Foundation',
-    title: 'From Student Assignments to Real Problems',
+    period: '2021–2024 · Foundation',
+    title: 'From IT College (Distinction) to Real Problems',
     description:
-      'Started coding in 2023 while studying IT (graduated Vietnam Polytechnic College, now final-year at University of Transport and Communications) alongside a Pedagogical Certificate. Instead of stopping at class demos, I focused on business logic and shipping end-to-end products to real learners.',
+      'Graduated with Distinction (Loại Giỏi) in IT at Vietnam Polytechnic College (2021–2024), then continued to University of Transport and Communications (UTC, 2024–2026) while completing a Pedagogical Certificate (2024–2025). Started shipping real products instead of stopping at class demos.',
   },
   {
     period: '2024–2025 · Shipping & Iterating',
@@ -38,10 +38,10 @@ const JOURNEY_STEPS = [
       'Built CogniAssess (105 non-demo accounts, 1,075 questions), OnlyGift.online, and Life of Study (364 active Discord members, 2,501+ voice hours). Real users exposed real bottlenecks—like cutting 35 sequential Supabase reads down to 3 queries and moving webcam proctoring to Python/OpenCV on VPS.',
   },
   {
-    period: '2026 · Scale & Team Engineering',
-    title: '9.2x Community Growth & VinUni AI Team',
+    period: '2026–01/2027 · Scale & VinUni AI',
+    title: '9.2x Community Growth & VinUni AI Thực Chiến',
     description:
-      'S2G grew from 116 clean users in August 2026 to 1,073 by November, pushing me to consolidate 95 tables onto local MariaDB on a 24 GB Oracle ARM VPS. Simultaneously joined a 4-engineer team for Carevia (VinUni AI Cohort 5, P-033), adopting PR reviews, 107+ pytest checks, and CI/CD.',
+      'S2G grew from 116 clean users in August 2026 to 1,073 by November, pushing me to consolidate 95 tables onto local MariaDB on a 24 GB Oracle ARM VPS. Simultaneously joined VinUni AI Thực Chiến (11/2026–01/2027) in a 4-engineer team for Carevia (P-033), adopting PR reviews, 107+ pytest checks, and CI/CD.',
   },
 ];
 
