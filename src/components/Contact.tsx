@@ -161,15 +161,32 @@ export default function Contact() {
               {/* Honeypot anti-spam field */}
               <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
-              {/* Bilingual guide for students & teammates */}
-              <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-3 text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                <p className="font-medium text-emerald-700 dark:text-emerald-300 mb-1">
-                  Gợi ý viết nhận xét (có thể viết bằng tiếng Việt):
+              {/* Complete guide for both students & teammates */}
+              <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-3.5 text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed space-y-2.5">
+                <p className="font-semibold text-emerald-700 dark:text-emerald-300">
+                  Gợi ý viết nhận xét thật tế (có thể viết hoàn toàn bằng tiếng Việt):
                 </p>
-                <ul className="list-disc pl-4 space-y-0.5 text-[11px] text-zinc-500 dark:text-zinc-400">
-                  <li>Bạn/em đã dùng sản phẩm nào (S2G, Life of Study, CogniAssess...) hoặc làm chung dự án nào?</li>
-                  <li>Điểm ổn định/hữu ích nhất là gì? (VD: giữ giờ khi rớt mạng, thi mượt, bot nhắc KPI đúng giờ, xử lý bug nhanh...)</li>
-                </ul>
+
+                <div>
+                  <p className="font-medium text-zinc-800 dark:text-zinc-200 text-[11px] mb-1">
+                    1. Dành cho Học sinh / Sinh viên / Người dùng:
+                  </p>
+                  <ul className="list-disc pl-4 space-y-0.5 text-[11px] text-zinc-500 dark:text-zinc-400">
+                    <li>Em/bạn đã dùng sản phẩm nào của Tùng (S2G, Life of Study, CogniAssess, Prelynx...) và dùng khoảng bao lâu?</li>
+                    <li>Điểm nào em thấy ổn định hoặc hữu ích nhất? (VD: đếm giờ không bị mất khi rớt mạng, phòng học mượt, nhắc KPI đúng giờ...)</li>
+                    <li>Khi web/bot gặp lỗi, tốc độ Tùng hỗ trợ và sửa lỗi như thế nào? Có điều gì cần cải thiện thêm không?</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <p className="font-medium text-zinc-800 dark:text-zinc-200 text-[11px] mb-1">
+                    2. Dành cho Đồng đội / Mentor làm việc chung:
+                  </p>
+                  <ul className="list-disc pl-4 space-y-0.5 text-[11px] text-zinc-500 dark:text-zinc-400">
+                    <li>Khi làm việc chung (VD: dự án Carevia P-033...), Tùng có điểm mạnh và điểm yếu / điểm cần cải thiện gì?</li>
+                    <li>Ấn tượng về khả năng triển khai thực tế, xử lý sự cố và phối hợp nhóm ra sao?</li>
+                  </ul>
+                </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
