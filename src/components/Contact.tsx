@@ -9,6 +9,7 @@ export default function Contact() {
   const [tab, setTab] = useState<'contact' | 'guestbook'>('contact');
   const [contactStatus, setContactStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [guestStatus, setGuestStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [guestError, setGuestError] = useState<string>('');
   
   const contactFormRef = useRef<HTMLFormElement>(null);
   const guestFormRef = useRef<HTMLFormElement>(null);
@@ -37,20 +38,23 @@ export default function Contact() {
   async function handleGuestSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setGuestStatus('loading');
+    setGuestError('');
     try {
       const formData = new FormData(e.currentTarget);
-      formData.set('rating', '5'); // Default to 5 stars since we removed the custom Star component for minimal UI
+      formData.set('rating', '5');
       const res = await submitTestimonial(formData);
       if (res.success) {
         setGuestStatus('success');
         guestFormRef.current?.reset();
         setTimeout(() => setGuestStatus('idle'), 5000);
       } else {
+        setGuestError(res.error || 'Error submitting.');
         setGuestStatus('error');
-        setTimeout(() => setGuestStatus('idle'), 5000);
+        setTimeout(() => setGuestStatus('idle'), 6000);
       }
     } catch (error) {
       console.error(error);
+      setGuestError('Error submitting.');
       setGuestStatus('error');
       setTimeout(() => setGuestStatus('idle'), 5000);
     }
@@ -154,35 +158,74 @@ export default function Contact() {
             </form>
           ) : (
             <form ref={guestFormRef} className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300" onSubmit={handleGuestSubmit}>
+              {/* Honeypot anti-spam field */}
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+
+              {/* Bilingual guide for students & teammates */}
+              <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-3 text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                <p className="font-medium text-emerald-700 dark:text-emerald-300 mb-1">
+                  Gợi ý viết nhận xét (có thể viết bằng tiếng Việt):
+                </p>
+                <ul className="list-disc pl-4 space-y-0.5 text-[11px] text-zinc-500 dark:text-zinc-400">
+                  <li>Bạn/em đã dùng sản phẩm nào (S2G, Life of Study, CogniAssess...) hoặc làm chung dự án nào?</li>
+                  <li>Điểm ổn định/hữu ích nhất là gì? (VD: giữ giờ khi rớt mạng, thi mượt, bot nhắc KPI đúng giờ, xử lý bug nhanh...)</li>
+                </ul>
+              </div>
+
               <div className="flex flex-col sm:flex-row gap-4">
                 <input 
                   type="text" 
                   name="name"
-                  placeholder="Your Name *" 
+                  placeholder="Tên của bạn / Your Name *" 
                   required
                   className="w-full px-4 py-2 bg-transparent border border-zinc-200 dark:border-zinc-800 rounded-md text-sm placeholder:text-zinc-400 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors"
                 />
                 <input 
                   type="text" 
+                  name="inviteCode"
+                  placeholder="Mã mời (Invite Code) *" 
+                  required
+                  className="w-full px-4 py-2 bg-transparent border border-zinc-200 dark:border-zinc-800 rounded-md text-sm placeholder:text-zinc-400 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors font-mono"
+                />
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <select
+                  name="product"
+                  defaultValue=""
+                  required
+                  className="w-full px-4 py-2 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-md text-sm text-zinc-700 dark:text-zinc-200 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors"
+                >
+                  <option value="" disabled>Chọn sản phẩm / ngữ cảnh *</option>
+                  <option value="S2G Study (s2g.io.vn)">S2G Study (s2g.io.vn)</option>
+                  <option value="Life of Study (focus.sunstudy.app)">Life of Study (focus.sunstudy.app)</option>
+                  <option value="CogniAssess (cna.io.vn)">CogniAssess (cna.io.vn)</option>
+                  <option value="Carevia AI (VinUni P-033)">Carevia AI (VinUni P-033)</option>
+                  <option value="Prelynx (pre.sunstudy.app)">Prelynx (pre.sunstudy.app)</option>
+                  <option value="Teammate / Mentor">Đồng đội / Mentor kỹ thuật</option>
+                </select>
+                <input 
+                  type="text" 
                   name="role"
-                  placeholder="Role / Title" 
+                  placeholder="Vai trò (VD: Học sinh THPT, SV, Teammate)" 
                   className="w-full px-4 py-2 bg-transparent border border-zinc-200 dark:border-zinc-800 rounded-md text-sm placeholder:text-zinc-400 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors"
                 />
               </div>
+
               <input 
                 type="text" 
                 name="company"
-                placeholder="Company (Optional)" 
+                placeholder="Trường / Team / Số giờ học (VD: 65h trên S2G, Team P-033)" 
                 className="w-full px-4 py-2 bg-transparent border border-zinc-200 dark:border-zinc-800 rounded-md text-sm placeholder:text-zinc-400 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors"
               />
               <textarea 
                 name="message"
-                placeholder="Your Testimonial *" 
+                placeholder="Chia sẻ trải nghiệm thực tế của bạn (tối thiểu 20 ký tự) *" 
                 rows={4}
                 required
                 className="w-full px-4 py-2 bg-transparent border border-zinc-200 dark:border-zinc-800 rounded-md text-sm placeholder:text-zinc-400 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors resize-none"
               ></textarea>
-              <div className="flex items-center gap-4">
+              <div className="flex flex-wrap items-center gap-4">
                 <button 
                   type="submit" 
                   disabled={guestStatus === 'loading'}
@@ -190,8 +233,8 @@ export default function Contact() {
                 >
                   <MessageSquareHeart size={16} /> {guestStatus === 'loading' ? 'Submitting...' : 'Submit Testimonial'}
                 </button>
-                {guestStatus === 'success' && <span className="text-sm text-green-600 dark:text-green-500 font-medium">Testimonial submitted!</span>}
-                {guestStatus === 'error' && <span className="text-sm text-red-600 dark:text-red-500 font-medium">Error submitting.</span>}
+                {guestStatus === 'success' && <span className="text-sm text-green-600 dark:text-green-500 font-medium">Đã gửi! Chờ admin duyệt hiển thị.</span>}
+                {guestStatus === 'error' && <span className="text-sm text-red-600 dark:text-red-500 font-medium">{guestError || 'Error submitting.'}</span>}
               </div>
             </form>
           )}
