@@ -29,7 +29,7 @@ const JOURNEY_STEPS = [
     period: '2021–2024 · Foundation',
     title: 'From IT College (Distinction) to Real Problems',
     description:
-      'Graduated with Distinction (Loại Giỏi) in IT at Vietnam Polytechnic College (2021–2024), then continued to University of Transport and Communications (UTC, 2024–2026) while completing a Pedagogical Certificate (2024–2025). Started shipping real products instead of stopping at class demos.',
+      'Graduated with Distinction in IT at Vietnam Polytechnic College (2021–2024), then continued to University of Transport and Communications (UTC, 2024–2026) while completing a Pedagogical Certificate (2024–2025). Started shipping real products instead of stopping at class demos.',
   },
   {
     period: '2024–2025 · Shipping & Iterating',
@@ -39,9 +39,9 @@ const JOURNEY_STEPS = [
   },
   {
     period: '2026–01/2027 · Scale & VinUni AI',
-    title: '9.2x Community Growth & VinUni AI Thực Chiến',
+    title: '9.2x Community Growth & VinUni AI Program',
     description:
-      'S2G grew from 116 clean users in August 2026 to 1,073 by November, pushing me to consolidate 95 tables onto local MariaDB on a 24 GB Oracle ARM VPS. Simultaneously joined VinUni AI Thực Chiến (11/2026–01/2027) in a 4-engineer team for Carevia (P-033), adopting PR reviews, 107+ pytest checks, and CI/CD.',
+      'S2G grew from 116 clean users in August 2026 to 1,073 by November, pushing me to consolidate 95 tables onto local MariaDB on a 24 GB Oracle ARM VPS. Simultaneously joined VinUni Applied AI Program (11/2026–01/2027) in a 4-engineer team for Carevia (P-033), adopting PR reviews, 107+ pytest checks, and CI/CD.',
   },
 ];
 

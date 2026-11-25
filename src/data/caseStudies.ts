@@ -19,106 +19,106 @@ export interface CaseStudy {
 export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: 'oracle-vps-24gb-mariadb-production-architecture',
-    title: 'Hợp nhất & Di trú CSDL S2G về MariaDB cục bộ trên Oracle ARM 24GB VPS',
-    excerpt: 'Chuyển đổi từ Cloud DB phân tách sang local MariaDB (s2g_unified, 95 bảng) trên VPS Oracle ARM 4 OCPU / 24 GB RAM phục vụ 1.073+ tài khoản sạch.',
-    readTime: '6 phút đọc',
+    title: 'Consolidating S2G onto Local MariaDB on an Oracle ARM 24GB VPS',
+    excerpt: 'Migrating 95 relational tables from separate cloud databases to local MariaDB (s2g_unified) on a 4 OCPU / 24 GB Oracle ARM VPS serving 1,073+ clean accounts.',
+    readTime: '6 min read',
     date: '2026-11-20',
     tags: ['DevOps', 'Oracle Cloud VPS', 'MariaDB', 'Nginx', 'systemd'],
     searchKeywords: [
-      'cấu hình vps oracle 24gb',
-      'triển khai mariadb ubuntu 24.04',
-      'tối ưu csdl cho hệ thống người dùng lớn',
-      'kinh nghiệm vận hành vps thực tế'
+      'oracle arm 24gb vps mariadb',
+      'nextjs mariadb production ubuntu 24.04',
+      'database consolidation migration',
+      'self-hosted production operations'
     ],
-    summary: 'Hợp nhất dữ liệu từ các bản cũ về schema s2g_unified chạy trên MariaDB cục bộ tại Oracle ARM VPS (4 OCPU / 24 GB RAM, Ubuntu 24.04, Nginx, systemd).',
+    summary: 'Consolidated multi-source study platform schemas into s2g_unified running on local MariaDB 11.4 LTS on an Oracle ARM VPS (4 OCPU / 24 GB RAM, Ubuntu 24.04, Nginx, systemd).',
     architecture: {
-      problem: 'Trước ngày 12/11/2026, S2G và SunStudy chạy trên các TiDB Cloud database tách biệt; khi lượng người dùng S2G tăng từ 116 (08/2026) lên hơn 1.000 tài khoản, việc phụ thuộc hoàn toàn vào database ngoài làm tăng độ phức tạp khi hợp nhất dữ liệu và đối soát season.',
-      decision: 'Cấu hình MariaDB cục bộ (`s2g_unified`, `DATABASE_MODE=local-mariadb`) ngay trên Oracle ARM VPS (4 OCPU / 24 GB RAM), giữ nguyên các schema snapshot `archive_s2g_20261112` và `archive_sunstudy_20261112` để đối chiếu, chạy app Next.js + Express qua Nginx và systemd.',
-      tradeOff: 'Chấp nhận tự vận hành và sao lưu/rollback database trên một node VPS thay vì dùng managed serverless DB đa vùng; đổi lại không còn phụ thuộc cấu hình fallback TiDB cũ và kiểm soát trực tiếp toàn bộ quá trình migrate.',
-      result: 'Hệ thống đang vận hành ổn định 95 bảng dữ liệu với 1.073 tài khoản (loại test/QA), 23.865+ phiên học hợp lệ (28.617+ giờ học), truy vấn thống kê trực tiếp trên MariaDB chỉ mất 0.012 giây.'
+      problem: 'Prior to 12 Nov 2026, S2G and SunStudy ran on separate TiDB Cloud databases. As S2G grew from 116 clean accounts (Aug 2026) to over 1,000 accounts, relying solely on external databases complicated cross-deployment consolidation and monthly season settlements.',
+      decision: 'Provisioned local MariaDB (s2g_unified, DATABASE_MODE=local-mariadb) on the Oracle ARM 24 GB VPS, retained full snapshot schemas (archive_s2g_20261112 and archive_sunstudy_20261112) for reconciliation, and served Next.js + Express via Nginx and systemd.',
+      tradeOff: 'Accepted single-node VPS database operations and manual backup/rollback responsibility instead of managed multi-region serverless scaling; in return, eliminated external TiDB fallback dependencies and gained full control over migrations.',
+      result: 'Stable operation across 95 tables with 1,073 clean registered accounts, 23,865+ positive-duration study sessions (28,617+ recorded hours), and 0.012s aggregate audit queries.'
     },
     keyTakeaways: [
-      'Luôn giữ schema archive snapshot trước khi cutover (`archive_s2g_20261112`) để đảm bảo khả năng kiểm chứng dữ liệu.',
-      'Tách riêng môi trường thử nghiệm và chỉ chạy migration cộng thêm (additive) sau khi review kỹ.',
-      'Đo đạc trực tiếp bằng read-only aggregate SQL giúp kiểm soát đúng số liệu thực tế.'
+      'Always retain pre-cutover archive schemas (archive_s2g_20261112) to verify data integrity and enable safe reconciliation.',
+      'Keep test environments isolated and apply only reviewed, additive migrations in production.',
+      'Verify production growth and engagement with read-only aggregate SQL rather than landing-page estimates.'
     ]
   },
   {
     slug: 'socket-io-realtime-buffer-study-rooms',
-    title: 'Cơ chế 60s Write Buffer & Server-Anchor cho Socket.IO phòng học Real-time',
-    excerpt: 'Tách WebSocket server riêng (Express + Socket.IO), gom heartbeat ghi DB mỗi 60 giây kết hợp Redis cache và đồng bộ thời gian chống lệch khi rớt mạng.',
-    readTime: '5 phút đọc',
+    title: '60s Write Buffering & Server-Anchored Timers for Real-Time Study Rooms',
+    excerpt: 'Separating the Express + Socket.IO server, buffering timer heartbeats into 60-second DB flushes with Redis caching, and handling mobile sleep & reconnects.',
+    readTime: '5 min read',
     date: '2026-11-15',
     tags: ['WebSocket', 'Socket.IO', 'Node.js', 'Redis', 'Real-time'],
     searchKeywords: [
-      'tối ưu websocket socket.io tải cao',
-      'giải pháp ghi csdl định kỳ buffer',
-      'lập trình phòng học ảo realtime',
-      'đồng bộ thời gian server client nodejs'
+      'socket.io heartbeat write buffer',
+      'realtime study room architecture',
+      'server time reconciliation nodejs',
+      'redis leaderboard caching'
     ],
-    summary: 'Thiết kế Express + Socket.IO server độc lập với cơ chế gom nhịp tim (heartbeat buffering) 60 giây, server-time reconciliation và Redis cache.',
+    summary: 'Built a dedicated Express + Socket.IO runtime using 60-second heartbeat write buffering, server-time reconciliation, and Redis caching to keep live timers smooth without overloading MariaDB.',
     architecture: {
-      problem: 'Trong phòng học ảo real-time, hàng trăm học viên bật timer Pomodoro/Stopwatch cùng lúc. Nếu ghi thẳng mọi nhịp heartbeat xuống database hoặc tính giờ dựa vào đồng hồ thiết bị người dùng, CSDL sẽ chịu áp lực ghi liên tục và dễ lệch giờ khi điện thoại sleep hoặc mất mạng.',
-      decision: 'Tách tiến trình Express + Socket.IO riêng, buffer các nhịp heartbeat và flush xuống DB theo chu kỳ 60 giây, kết hợp Redis cache cho user/team/leaderboard và đối soát mốc thời gian (server-time reconciliation) + cross-tab safeguard.',
-      tradeOff: 'Nếu tiến trình bị ngắt đột ngột giữa chu kỳ 60 giây, phần delta chưa flush có thể cần phục hồi qua cơ chế session recovery; chấp nhận độ trễ ghi đĩa tối đa 60 giây để tránh ghi dồn dập vào bảng `study_sessions`.',
-      result: 'Vận hành ổn định cho 723 học viên đã kích hoạt (67.4% conversion từ tài khoản đăng ký), đạt đỉnh 468 người học active và 11.131 phiên (13.045,9 giờ) trong tháng 10/2026.'
+      problem: 'In real-time study rooms, hundreds of learners run Pomodoro and Stopwatch timers concurrently. Writing every heartbeat directly to the database or trusting client device clocks causes continuous write pressure and drift when mobile screens sleep or connections drop.',
+      decision: 'Isolated a dedicated Express + Socket.IO server that buffers timer heartbeats in memory and flushes database writes every 60 seconds, paired with Redis caches for user/team/leaderboard lookups and server-anchored time reconciliation.',
+      tradeOff: 'If the Node.js process crashes unexpectedly mid-cycle, up to 60 seconds of un-flushed heartbeat delta may require session recovery; accepted this bounded window to avoid continuous row writes to study_sessions.',
+      result: 'Sustained 723 activated learners (67.4% activation from clean registrations), peaking at 468 active learners and 11,131 sessions (13,045.9 recorded hours) in Oct 2026.'
     },
     keyTakeaways: [
-      'Buffer heartbeat theo chu kỳ 60s kết hợp Redis cache giúp giảm lặp lại truy vấn lên CSDL chính.',
-      'Dùng server-time reconciliation thay vì tin tưởng hoàn toàn vào đồng hồ phía client.',
-      'Tách riêng bản ghi `duration_seconds = 0` (lúc bấm start) để không tính nhầm vào thống kê giờ học thực tế.'
+      'Buffer timer heartbeats into 60s flushes and pair with Redis caches to reduce repeated relational DB work.',
+      'Use server-time reconciliation instead of trusting client clocks across mobile sleep and tab switches.',
+      'Filter out zero-duration timer starts (duration_seconds = 0) when reporting completed study sessions.'
     ]
   },
   {
     slug: 'supabase-query-latency-optimization-life-of-study',
-    title: 'Giảm độ trễ Dashboard từ 24 giây (35 queries) xuống 2–3 giây trên Supabase',
-    excerpt: 'Case study thực tế ở Life of Study (focus.sunstudy.app): tái hiện lỗi waterfall 35 lượt đọc qua Session Pooler eu-west-1, gộp còn 3 câu SQL và sửa race condition Voice.',
-    readTime: '6 phút đọc',
+    title: 'Cutting Dashboard Latency from 24s (35 Queries) to ~2.5s on Supabase',
+    excerpt: 'Real optimization case study on Life of Study (focus.sunstudy.app): diagnosing 35 sequential Session Pooler reads, consolidating to 3 SQL queries, and fixing voice race conditions.',
+    readTime: '6 min read',
     date: '2026-11-24',
     tags: ['PostgreSQL', 'Supabase', 'FastAPI', 'Performance', 'discord.py'],
     searchKeywords: [
-      'tối ưu truy vấn supabase chậm',
-      'giảm độ trễ postgresql python',
-      'discord bot voice tracking',
-      'sửa lỗi waterfall query'
+      'supabase session pooler latency',
+      'postgresql query consolidation python',
+      'discord.py voice tracking',
+      'fastapi performance optimization'
     ],
-    summary: 'Khắc phục độ chậm 23,7–24,1 giây trên dashboard web và lỗi ngắt nhạc/checkpoint cho bot Discord phục vụ 364 thành viên active (2.501+ giờ Voice) trên VPS 1 GB RAM.',
+    summary: 'Resolved 23.7–24.1s dashboard load times and Discord voice/music race conditions for Life of Study (364 active members, 2,501+ voice hours) running on a 1 GB RAM VPS.',
     architecture: {
-      problem: 'Dashboard ban đầu thực hiện khoảng 35 lượt đọc Supabase tuần tự; mỗi lượt qua Session Pooler (`eu-west-1`) từ VPS mất ~0,7 giây, kéo tổng thời gian tải lên 23,7–24,1 giây. Ngoài ra khi token làm mới, request cũ bị chồng và hủy.',
-      decision: 'Gộp toàn bộ KPI 4 kỳ, biểu đồ và các mục cá nhân trong một câu PostgreSQL repeatable-read snapshot, giảm xuống còn 3 lượt đọc DB cho API dashboard. Phía client dùng sequence + abort để loại phản hồi cũ, đồng thời đưa logic kiểm tra idle_cleanup vào trong lock của Voice.',
-      tradeOff: 'Câu SQL gộp phức tạp hơn và yêu cầu Web lẫn Bot phải dùng chung đúng một bộ tính toán KPI/percent/missing/rank (đã đối soát khớp 100% trên 149 thành viên ở cùng snapshot).',
-      result: 'API dashboard giảm từ 23,7–24,1 giây xuống còn 2,0–2,9 giây (đo lại thực tế trên VPS: 2,7–3,1 giây gồm 3 lượt đọc DB); BXH tuần bot còn 0,733 giây; 171 ca pytest và kiểm thử Chrome desktop/mobile đều đạt.'
+      problem: 'The initial dashboard issued ~35 sequential Supabase reads; each round-trip from the VPS to the eu-west-1 Session Pooler took ~0.7s, totaling 23.7–24.1s. Token refreshes also triggered overlapping requests that canceled each other.',
+      decision: 'Consolidated all 4 KPI periods, charts, and personal summaries into a single repeatable-read PostgreSQL snapshot, reducing dashboard API reads to 3 queries total. Added request sequence + AbortController on the client and moved voice idle_cleanup checks inside per-member locks.',
+      tradeOff: 'Consolidated SQL CTEs are harder to maintain and require Web and Discord Bot to share identical KPI/rank calculation logic (verified 100% consistent across 149 members in the same snapshot).',
+      result: 'Dashboard API latency dropped from 23.7–24.1s to 2.0–2.9s (2.7–3.1s measured on VPS with 3 DB reads), weekly bot leaderboard reads dropped to 0.733s, and all 171 pytest tests plus Chrome checks pass.'
     },
     keyTakeaways: [
-      'Round-trip xuyên vùng (~0,7s/query) sẽ nhân lên thành hơn 24 giây nếu để xảy ra 35 truy vấn tuần tự.',
-      'Web và Bot bắt buộc dùng chung nguồn công thức và snapshot để tránh lệch số liệu hiển thị.',
-      'Các tác vụ Voice bất đồng bộ cần lock riêng và `playback_id` để tránh callback cũ hủy nhầm bài mới.'
+      'Cross-region round-trips (~0.7s/query) compound into 24s+ stalls under sequential query patterns.',
+      'Web portals and bots must share one source of truth for KPI calculations and repeatable-read snapshots.',
+      'Async voice tasks need per-member locks and playback IDs so stale callbacks never cancel new tracks.'
     ]
   },
   {
     slug: 'ai-medical-rag-langgraph-fastapi-vinuni',
-    title: 'Xây dựng trợ lý AI Y tế (Carevia) trích dẫn nguyên văn với LangGraph & Decimal Engine',
-    excerpt: 'Thiết kế hệ thống tại VinUni AI Thực Chiến (P-033): LLM chỉ chọn passage ID từ FTS5, tính tiền BHYT bằng Python Decimal thuần và giữ ngân sách Token trên TiDB.',
-    readTime: '7 phút đọc',
+    title: 'Zero-Hallucination Medical AI (Carevia) with LangGraph & Deterministic Pricing',
+    excerpt: 'Engineering architecture from VinUni Applied AI Program (P-033): constraining Mistral Small 4 to FTS5 passage IDs, pure Python Decimal co-pay math, and atomic TiDB token budgets.',
+    readTime: '7 min read',
     date: '2026-11-22',
     tags: ['AI Engineering', 'LangGraph', 'FastAPI', 'RAG', 'VinUni AI'],
     searchKeywords: [
-      'xây dựng rag với langgraph fastapi',
-      'bài toán ai y tế bhyt',
-      'vinuni ai thực chiến cohort 5',
-      'kỹ thuật kiểm soát token quota llm'
+      'langgraph fastapi grounded rag',
+      'deterministic calculator llm guardrail',
+      'vinuni ai cohort 5 p-033',
+      'atomic token budgeting tidb'
     ],
-    summary: 'Kiến trúc hai lớp cho trợ lý hành chính y tế trong team 4 thành viên: tách hoàn toàn bước tính toán viện phí khỏi LLM và khóa trích dẫn theo SHA-256.',
+    summary: 'Two-layer architecture built in a 4-engineer team: LLM selects verified passage IDs from official Health Insurance regulations while pure Decimal logic computes co-pay estimates.',
     architecture: {
-      problem: 'Tra cứu quy định BHYT (Công văn 2275/BHXH-CSYT) và ước tính đồng chi trả (ngưỡng 379.500đ từ 01/07/2026) không cho phép LLM tự bịa số liệu, tự suy luận ngoài nguồn hoặc làm tràn hạn mức token trên pool key dùng chung.',
-      decision: 'Dùng SQLite FTS5 truy xuất đoạn nguồn đang hiệu lực; Mistral Small 4 qua LangGraph chỉ chọn mã đoạn (`passage ID`), tối đa 1 lần sửa định dạng rồi backend tự lấy nguyên văn kèm trang/SHA-256. Luồng tra giá chạy bộ tính Python Decimal xác định (không gọi AI), kèm hạch toán token nguyên tử theo ngày UTC trên TiDB (`3,5 triệu/ngày`).',
-      tradeOff: 'Hệ thống từ chối trả lời bằng kiến thức tự nhớ của LLM và chuyển sang luồng hỗ trợ nhân viên khi câu hỏi thiếu căn cứ trong 2 trang Công văn 2275; đánh đổi độ "linh hoạt trả lời mọi thứ" để giữ tính chính xác nguồn.',
-      result: 'Bản G2 ngày 18/11 đạt 107 unit test, 20/20 ca API, 7/7 ca tiếng Việt/thiếu nguồn và 7/7 ca replay thực tế với sự phối hợp review chéo trong team 4 thành viên.'
+      problem: 'Health Insurance regulation queries (Dispatch 2275/BHXH-CSYT) and co-pay calculations (379,500 VND threshold from 01/07/2026) cannot tolerate LLM-invented quotes, arithmetic errors, or unguarded token exhaustion on shared API key pools.',
+      decision: 'Built an in-memory SQLite FTS5 retriever; Mistral Small 4 via LangGraph only selects passage IDs (with at most 1 format retry) and the backend returns verbatim text with page/SHA-256 metadata. Built a separate Python Decimal pricing engine (zero LLM calls) and atomic daily UTC token reservations in TiDB (3.5M/day).',
+      tradeOff: 'The assistant refuses to answer from parametric LLM memory and hands off to human staff whenever queries fall outside the 2-page source corpus—trading open-ended "always-answer" fluency for strict source accuracy.',
+      result: 'G2 release passed 107 unit tests, 20/20 API test cases, 7/7 Vietnamese/missing-source edge cases, and 7/7 live replay cases through PR reviews and GitHub Actions CI across a 4-engineer team.'
     },
     keyTakeaways: [
-      'Tách rời phép tính số học/nghiệp vụ khỏi LLM bằng deterministic Decimal engine.',
-      'Để chống bịa trích dẫn, chỉ để LLM chọn ID và để backend trả nguyên văn từ corpus đã kiểm SHA-256.',
-      'Guardrail kiểm tra định danh/phạm vi và giữ ngân sách token nguyên tử giúp kiểm soát chi phí lẫn an toàn dữ liệu.'
+      'Never delegate financial or insurance arithmetic to an LLM; isolate it in a deterministic Decimal engine.',
+      'Prevent citation hallucinations by having the model output passage IDs while the server fetches verbatim text.',
+      'Run PII/scope guardrails and atomic token budget reservations before invoking external model endpoints.'
     ]
   }
 ];

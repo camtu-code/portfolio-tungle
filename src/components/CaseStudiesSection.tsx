@@ -1,11 +1,30 @@
 'use client';
 
-import React, { useState } from 'react';
-import { BookOpen, Sparkles, Terminal, ChevronRight, X, ArrowUpRight, Cpu, Layers, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Sparkles, ChevronRight, X, CheckCircle2 } from 'lucide-react';
 import { CASE_STUDIES, type CaseStudy } from '@/data/caseStudies';
 
 export default function CaseStudiesSection() {
   const [selectedCase, setSelectedCase] = useState<CaseStudy | null>(null);
+
+  useEffect(() => {
+    if (selectedCase) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      document.documentElement.classList.add('lenis-stopped');
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') setSelectedCase(null);
+      };
+      window.addEventListener('keydown', handleKeyDown);
+
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        document.documentElement.classList.remove('lenis-stopped');
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [selectedCase]);
 
   return (
     <section id="case-studies" className="flex flex-col gap-8 scroll-mt-24">
@@ -13,13 +32,13 @@ export default function CaseStudiesSection() {
         <div className="flex flex-col gap-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/20 text-xs font-medium w-fit">
             <Sparkles size={13} className="text-indigo-500" />
-            <span>Engineering Insights & Case Studies</span>
+            <span>Engineering Insights &amp; Case Studies</span>
           </div>
           <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Bài viết Kỹ thuật &amp; Kiến trúc Thực chiến
+            Technical Deep Dives &amp; Architecture Trade-offs
           </h2>
           <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-2xl">
-            Tổng hợp kinh nghiệm thực tế về xử lý tải cao, quản trị hạ tầng VPS và xây dựng mô hình AI an toàn được đúc kết qua quá trình phát triển sản phẩm thật.
+            Root causes, engineering decisions, trade-offs, and measured results from operating live production systems.
           </p>
         </div>
       </div>
@@ -53,7 +72,7 @@ export default function CaseStudiesSection() {
                 ))}
               </div>
               <div className="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 dark:text-indigo-400 group-hover:translate-x-1 transition-transform">
-                <span>Đọc chi tiết kiến trúc</span>
+                <span>Read architecture breakdown</span>
                 <ChevronRight size={14} />
               </div>
             </div>
@@ -100,7 +119,7 @@ export default function CaseStudiesSection() {
 
             <div className="mt-6 flex flex-col gap-6 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
               <div className="rounded-xl bg-zinc-50 p-4 border border-zinc-200 dark:bg-zinc-900/60 dark:border-zinc-800">
-                <div className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">Tóm tắt giải pháp</div>
+                <div className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">Summary</div>
                 <p className="text-zinc-800 dark:text-zinc-200 font-medium">{selectedCase.summary}</p>
               </div>
 
@@ -109,7 +128,7 @@ export default function CaseStudiesSection() {
                 <div className="p-4 rounded-xl border border-rose-500/20 bg-rose-50/30 dark:bg-rose-950/20">
                   <div className="font-semibold text-rose-700 dark:text-rose-400 text-xs mb-1.5 flex items-center gap-1.5">
                     <span className="h-2 w-2 rounded-full bg-rose-500"></span>
-                    1. Vấn đề gặp phải (Root Cause)
+                    1. Root Cause (Problem)
                   </div>
                   <p className="text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">{selectedCase.architecture.problem}</p>
                 </div>
@@ -117,7 +136,7 @@ export default function CaseStudiesSection() {
                 <div className="p-4 rounded-xl border border-indigo-500/20 bg-indigo-50/30 dark:bg-indigo-950/20">
                   <div className="font-semibold text-indigo-700 dark:text-indigo-400 text-xs mb-1.5 flex items-center gap-1.5">
                     <span className="h-2 w-2 rounded-full bg-indigo-500"></span>
-                    2. Quyết định kỹ thuật (Decision)
+                    2. Technical Decision
                   </div>
                   <p className="text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">{selectedCase.architecture.decision}</p>
                 </div>
@@ -125,7 +144,7 @@ export default function CaseStudiesSection() {
                 <div className="p-4 rounded-xl border border-amber-500/20 bg-amber-50/30 dark:bg-amber-950/20">
                   <div className="font-semibold text-amber-700 dark:text-amber-400 text-xs mb-1.5 flex items-center gap-1.5">
                     <span className="h-2 w-2 rounded-full bg-amber-500"></span>
-                    3. Đánh đổi chấp nhận (Trade-off)
+                    3. Engineering Trade-off
                   </div>
                   <p className="text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">{selectedCase.architecture.tradeOff}</p>
                 </div>
@@ -133,7 +152,7 @@ export default function CaseStudiesSection() {
                 <div className="p-4 rounded-xl border border-emerald-500/20 bg-emerald-50/30 dark:bg-emerald-950/20">
                   <div className="font-semibold text-emerald-700 dark:text-emerald-400 text-xs mb-1.5 flex items-center gap-1.5">
                     <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
-                    4. Kết quả đo đạc (Measured Result)
+                    4. Measured Result
                   </div>
                   <p className="text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">{selectedCase.architecture.result}</p>
                 </div>
@@ -143,7 +162,7 @@ export default function CaseStudiesSection() {
               <div>
                 <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2.5 flex items-center gap-2">
                   <CheckCircle2 size={16} className="text-emerald-500" />
-                  Kinh nghiệm &amp; Bài học rút ra
+                  Key Engineering Takeaways
                 </h4>
                 <ul className="space-y-2 text-xs">
                   {selectedCase.keyTakeaways.map((note, idx) => (
@@ -157,7 +176,7 @@ export default function CaseStudiesSection() {
 
               {/* Search Keywords Tag Cloud */}
               <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800">
-                <div className="text-xs text-zinc-400 dark:text-zinc-500 mb-2 font-mono">Từ khóa tìm kiếm liên quan (SEO Queries):</div>
+                <div className="text-xs text-zinc-400 dark:text-zinc-500 mb-2 font-mono">Related Topics:</div>
                 <div className="flex flex-wrap gap-2">
                   {selectedCase.searchKeywords.map((kw) => (
                     <span key={kw} className="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-mono">

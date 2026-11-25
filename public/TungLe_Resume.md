@@ -122,7 +122,7 @@ Built and operate a synchronized Discord bot and web portal for a study communit
 ---
 
 ## EDUCATION & CERTIFICATIONS
-- **AI Thực Chiến (3-Month Intensive Program)** — VinUni & Vingroup (Cohort 5), *11/2026 – 01/2027*
+- **Applied AI Training Program (3 Months)** — VinUni & Vingroup (Cohort 5), *11/2026 – 01/2027*
 - **Information Technology (Ongoing)** — University of Transport and Communications (UTC), Hanoi, *2024 – 2026 (Expected)*
-- **Pedagogical Certificate (Chứng chỉ Nghiệp vụ Sư phạm)** — *2024 – 2025*
-- **Information Technology (Graduated with Distinction / Loại Giỏi)** — Vietnam Polytechnic College (Cao đẳng Bách khoa), *2021 – 2024*
+- **Pedagogical Certificate (Vocational Teaching Qualification)** — *2024 – 2025*
+- **Information Technology (Graduated with Distinction)** — Vietnam Polytechnic College, *2021 – 2024*

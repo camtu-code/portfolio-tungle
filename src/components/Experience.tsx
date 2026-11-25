@@ -79,7 +79,7 @@ export default function Experience() {
           </span>
           <div className="flex flex-col gap-1.5">
             <h3 className="text-base font-medium text-zinc-900 dark:text-zinc-100">
-              AI Thực Chiến (3-Month Intensive) <span className="text-zinc-400 dark:text-zinc-500 font-normal">· VinUni &amp; Vingroup (Cohort 5)</span>
+              Applied AI Training Program (3 Months) <span className="text-zinc-400 dark:text-zinc-500 font-normal">· VinUni &amp; Vingroup (Cohort 5)</span>
             </h3>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xl">
               Intensive 3-month applied AI engineering program following SFIA standards, building and deploying enterprise AI systems in a 4-engineer team (Project P-033 Carevia).
@@ -107,7 +107,7 @@ export default function Experience() {
           </span>
           <div className="flex flex-col gap-1.5">
             <h3 className="text-base font-medium text-zinc-900 dark:text-zinc-100">
-              Pedagogical Certificate <span className="text-zinc-400 dark:text-zinc-500 font-normal">· Nghiệp vụ Sư phạm</span>
+              Pedagogical Certificate <span className="text-zinc-400 dark:text-zinc-500 font-normal">· Vocational Teaching Qualification</span>
             </h3>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xl">
               Completed formal pedagogical training, combining technical engineering with instructional design, clear communication, and mentoring.
@@ -121,10 +121,10 @@ export default function Experience() {
           </span>
           <div className="flex flex-col gap-1.5">
             <h3 className="text-base font-medium text-zinc-900 dark:text-zinc-100">
-              Information Technology <span className="text-zinc-400 dark:text-zinc-500 font-normal">· Vietnam Polytechnic College (Cao đẳng Bách khoa)</span>
+              Information Technology <span className="text-zinc-400 dark:text-zinc-500 font-normal">· Vietnam Polytechnic College</span>
             </h3>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xl">
-              Graduated with Distinction (Loại Giỏi). Built strong foundations in programming, databases, and full-stack web development.
+              Graduated with Distinction. Built strong foundations in programming, databases, and full-stack web development.
             </p>
           </div>
         </div>
