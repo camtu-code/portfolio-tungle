@@ -6,7 +6,7 @@ import { submitContactMessage } from '@/app/actions';
 import { submitTestimonial } from '@/app/actions/testimonial';
 
 export default function Contact() {
-  const [tab, setTab] = useState<'contact' | 'guestbook'>('contact');
+  const [tab, setTab] = useState<'guestbook' | 'contact'>('guestbook');
   const [contactStatus, setContactStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [guestStatus, setGuestStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [guestError, setGuestError] = useState<string>('');
@@ -97,16 +97,6 @@ export default function Contact() {
           {/* Tabs */}
           <div className="flex items-center gap-1 p-1 bg-zinc-100 dark:bg-zinc-900/50 rounded-lg w-fit">
             <button
-              onClick={() => setTab('contact')}
-              className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md transition-all ${
-                tab === 'contact' 
-                  ? 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm' 
-                  : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
-              }`}
-            >
-              <Send size={14} /> Send Message
-            </button>
-            <button
               onClick={() => setTab('guestbook')}
               className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md transition-all ${
                 tab === 'guestbook' 
@@ -115,6 +105,16 @@ export default function Contact() {
               }`}
             >
               <MessageSquareHeart size={14} /> Leave Testimonial
+            </button>
+            <button
+              onClick={() => setTab('contact')}
+              className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                tab === 'contact' 
+                  ? 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm' 
+                  : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
+              }`}
+            >
+              <Send size={14} /> Send Message
             </button>
           </div>
 
