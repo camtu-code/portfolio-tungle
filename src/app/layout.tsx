@@ -6,6 +6,7 @@ import Image from "next/image";
 import PageViewTracker from "@/components/PageViewTracker";
 import SmoothScroll from "@/components/SmoothScroll";
 import ThemeToggle from "@/components/ThemeToggle";
+import MobileNav from "@/components/MobileNav";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -201,12 +202,15 @@ export default function RootLayout({
                   <a href="#experience" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Experience</a>
                   <a href="#contact" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Contact</a>
                 </nav>
-                <ThemeToggle />
+                <div className="flex items-center gap-3">
+                  <ThemeToggle />
+                  <MobileNav />
+                </div>
               </div>
             </div>
           </header>
 
-          <main className="w-full max-w-[1440px] mx-auto px-6 md:px-12 py-12 md:py-24 flex flex-col gap-24 relative">
+          <main className="w-full max-w-[1440px] mx-auto px-6 md:px-12 py-12 md:py-24 pb-24 sm:pb-24 flex flex-col gap-24 relative">
             {children}
           </main>
         </SmoothScroll>
