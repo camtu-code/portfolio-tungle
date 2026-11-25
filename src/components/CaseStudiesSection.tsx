@@ -24,7 +24,7 @@ export default function CaseStudiesSection() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {CASE_STUDIES.map((item) => (
           <div
             key={item.slug}
@@ -104,30 +104,38 @@ export default function CaseStudiesSection() {
                 <p className="text-zinc-800 dark:text-zinc-200 font-medium">{selectedCase.summary}</p>
               </div>
 
-              {/* Architecture 3-step breakdown */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {/* Architecture 4-step breakdown: Problem -> Decision -> Trade-off -> Result */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div className="p-4 rounded-xl border border-rose-500/20 bg-rose-50/30 dark:bg-rose-950/20">
                   <div className="font-semibold text-rose-700 dark:text-rose-400 text-xs mb-1.5 flex items-center gap-1.5">
                     <span className="h-2 w-2 rounded-full bg-rose-500"></span>
-                    Vấn đề (Problem)
+                    1. Vấn đề gặp phải (Root Cause)
                   </div>
-                  <p className="text-xs text-zinc-700 dark:text-zinc-300">{selectedCase.architecture.problem}</p>
+                  <p className="text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">{selectedCase.architecture.problem}</p>
                 </div>
 
                 <div className="p-4 rounded-xl border border-indigo-500/20 bg-indigo-50/30 dark:bg-indigo-950/20">
                   <div className="font-semibold text-indigo-700 dark:text-indigo-400 text-xs mb-1.5 flex items-center gap-1.5">
                     <span className="h-2 w-2 rounded-full bg-indigo-500"></span>
-                    Giải pháp kỹ thuật (Solution)
+                    2. Quyết định kỹ thuật (Decision)
                   </div>
-                  <p className="text-xs text-zinc-700 dark:text-zinc-300">{selectedCase.architecture.solution}</p>
+                  <p className="text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">{selectedCase.architecture.decision}</p>
+                </div>
+
+                <div className="p-4 rounded-xl border border-amber-500/20 bg-amber-50/30 dark:bg-amber-950/20">
+                  <div className="font-semibold text-amber-700 dark:text-amber-400 text-xs mb-1.5 flex items-center gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-amber-500"></span>
+                    3. Đánh đổi chấp nhận (Trade-off)
+                  </div>
+                  <p className="text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">{selectedCase.architecture.tradeOff}</p>
                 </div>
 
                 <div className="p-4 rounded-xl border border-emerald-500/20 bg-emerald-50/30 dark:bg-emerald-950/20">
                   <div className="font-semibold text-emerald-700 dark:text-emerald-400 text-xs mb-1.5 flex items-center gap-1.5">
                     <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
-                    Kết quả thực tế (Result)
+                    4. Kết quả đo đạc (Measured Result)
                   </div>
-                  <p className="text-xs text-zinc-700 dark:text-zinc-300">{selectedCase.architecture.result}</p>
+                  <p className="text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">{selectedCase.architecture.result}</p>
                 </div>
               </div>
 
