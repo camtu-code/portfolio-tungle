@@ -125,4 +125,34 @@ SELECT
       'Camera proctoring telemetry uses dedicated server-side YuNet face detection & YOLOX models on VPS.',
     ],
   },
+  'life-of-study': {
+    projectId: 'life-of-study',
+    projectName: 'Life of Study (focus.sunstudy.app)',
+    databaseEngine: 'Supabase PostgreSQL (isolated studybot schema, RLS enabled)',
+    hostType: 'Ubuntu 24.04 x86_64 VPS (161.33.185.169) · Nginx + systemd',
+    auditDate: '25 November 2026',
+    terminalCommand: `SELECT COUNT(*) FILTER (WHERE active = 1) AS active_members, COUNT(*) AS total_members,
+  (SELECT COUNT(*) FROM studybot.segments) AS voice_segments,
+  (SELECT ROUND((COALESCE(SUM("end" - start), 0) / 3600.0)::numeric, 1) FROM studybot.segments) AS total_hours,
+  (SELECT COUNT(*) FROM studybot.focus_sessions) AS web_focus_sessions
+FROM studybot.members;`,
+    terminalOutput: ` active_members | total_members | voice_segments | total_hours | web_focus_sessions 
+----------------+---------------+----------------+-------------+--------------------
+            364 |           448 |           4704 |      2501.1 |                113
+(1 row)`,
+    metricsBreakdown: [
+      { label: 'Active Members', value: '364 members', note: '448 total records across 3 guilds' },
+      { label: 'Voice Study Segments', value: '4,704 segments', note: 'Camera/Share-verified intervals' },
+      { label: 'Recorded Study Hours', value: '2,501.1 hrs', note: 'Accumulated server-tracked time' },
+      { label: 'Web Focus Sessions', value: '113 sessions', note: 'Synced Pomodoro & goals (28)' },
+      { label: 'Discord Slash Commands', value: '43 commands', note: '25 student no-arg + admin flows' },
+      { label: 'Test Suite', value: '171 passed', note: 'Pytest + Playwright browser checks' },
+    ],
+    verificationNotes: [
+      'Direct read-only aggregate query executed against production Supabase PostgreSQL via VPS.',
+      'Only counts voice segments when Camera OR Screen Share is active; excluded game/event channels.',
+      'Reduced dashboard DB reads from 35 sequential queries (~24s) to 3 consolidated queries (2.0–2.9s).',
+      '171 pytest tests covering voice tracking, KPI math, leave voting, music playback, and web-bot sync.',
+    ],
+  },
 };

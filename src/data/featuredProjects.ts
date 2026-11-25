@@ -26,6 +26,15 @@ export const PROJECT_METRICS = {
     recordedHours: 3170.20,
     teamsWithMembers: 8,
   },
+  lifeOfStudy: {
+    activeMembers: 364,
+    totalMembers: 448,
+    guilds: 3,
+    segments: 4704,
+    recordedHours: 2501.1,
+    focusSessions: 113,
+    tables: 19,
+  },
 };
 
 const number = (value: number) => new Intl.NumberFormat('en-US').format(value);
@@ -138,4 +147,33 @@ export const CAREVIA: FeaturedProjectData = {
   resumeDescription: `Carevia (vinas.sunstudy.app): Enterprise AI medical assistant (VinUni AI Cohort 5, Team P-033). Built FastAPI, LangGraph workflow, TiDB storage, and strict CI/CD with 107+ automated tests. Public repo at github.com/griin-03/P-033.`,
 };
 
-export const FEATURED_PROJECTS = [CAREVIA, S2G, COGNIASSESS];
+const los = PROJECT_METRICS.lifeOfStudy;
+
+export const LIFE_OF_STUDY: FeaturedProjectData = {
+  id: 'life-of-study',
+  name: 'Life of Study (Discord Bot & Web)',
+  category: 'Discord Study Tracking & KPI Web Platform',
+  role: 'Fullstack & Bot Developer',
+  summary: 'A synchronized Discord bot and web dashboard for study communities. Tracks real-time voice/camera study sessions, enforces 2-day/weekly/monthly KPIs, manages leave/KPI-reduction approvals with multi-admin voting, and streams music in Discord voice channels.',
+  metricsTitle: 'Production metrics (Supabase PostgreSQL · studybot schema)',
+  metrics: [
+    { label: 'Active tracked members', value: `${number(los.activeMembers)}` },
+    { label: 'Voice study segments', value: `${number(los.segments)}` },
+    { label: 'Recorded voice study hours', value: `${number(Math.floor(los.recordedHours))}+ hrs` },
+    { label: 'Automated pytest coverage', value: '171 tests' },
+  ],
+  metricsNote: 'Live snapshot from Supabase PostgreSQL (studybot schema with RLS) via VPS. Tracks 448 total member records across 3 Discord guilds, 113 web Pomodoro sessions, and 43 Discord slash commands.',
+  secondaryMetrics: `19 PostgreSQL tables · 43 Discord slash commands · 113 web focus sessions · 28 goals & 20 leave/KPI requests · Single-SQL dashboard read (reduced from 35 queries to 3).`,
+  tech: ['Python 3.12', 'discord.py[voice]', 'FastAPI', 'React 19', 'Vite 8', 'Supabase PostgreSQL', 'asyncpg', 'Nginx / systemd'],
+  highlights: [
+    { title: 'Real-Time Voice & Camera Tracking', description: 'Monitors Discord Voice states (Camera/Share Screen required), sends 300s inactivity warnings with 120s grace periods, and merges contiguous 10s checkpoints while excluding game/event channels.' },
+    { title: 'Query Latency Optimization', description: 'Refactored dashboard reads from 35 sequential Supabase queries (~24s) down to 3 consolidated PostgreSQL queries (2.0–2.9s) using repeatable-read snapshots.' },
+    { title: 'Web-Bot Transaction Sync', description: 'Built React 19 + FastAPI portal with Discord OAuth, shared KPI/leaderboard math, and transactional outbox jobs so web approvals update Discord embeds in place.' },
+    { title: 'Reliable Voice Music & Quotas', description: 'Fixed FFmpegOpusAudio metadata leaks and race conditions in voice cleanup, plus PostgreSQL transaction locks enforcing 20 MiB / 10 uploads per day limits.' },
+  ],
+  links: [{ label: 'focus.sunstudy.app', href: 'https://focus.sunstudy.app' }],
+  experienceDescription: `Built and operate Life of Study (focus.sunstudy.app), a Discord bot + FastAPI/React 19 web platform tracking ${number(los.activeMembers)} active members, ${number(los.segments)} voice study segments, and ${number(Math.floor(los.recordedHours))}+ study hours on Supabase PostgreSQL.`,
+  resumeDescription: `Life of Study (focus.sunstudy.app): Python discord.py + FastAPI + React 19 + Supabase PostgreSQL. Tracks ${number(los.activeMembers)} active members, ${number(los.segments)} voice segments, ${number(Math.floor(los.recordedHours))}+ study hours, 43 slash commands, and 171 passing pytest tests.`,
+};
+
+export const FEATURED_PROJECTS = [CAREVIA, S2G, COGNIASSESS, LIFE_OF_STUDY];

@@ -1,5 +1,5 @@
 import React from 'react';
-import { COGNIASSESS, S2G, PROJECT_SNAPSHOT } from '@/data/featuredProjects';
+import { COGNIASSESS, S2G, LIFE_OF_STUDY, PROJECT_SNAPSHOT } from '@/data/featuredProjects';
 
 const TIMELINE = [
   {
@@ -7,6 +7,12 @@ const TIMELINE = [
     title: 'Lead Infrastructure & Backend Developer',
     company: 'Carevia · VinUni AI Thực Chiến (P-033)',
     description: 'Lead backend and infrastructure for an enterprise AI medical assistant in a 4-engineer team. Built FastAPI & LangGraph RAG pipeline, TiDB TLS persistence, and automated CI/CD with 107+ tests. Public repo at github.com/griin-03/P-033.'
+  },
+  {
+    year: '2025 - Present',
+    title: 'Fullstack & Bot Developer',
+    company: 'Life of Study (focus.sunstudy.app)',
+    description: LIFE_OF_STUDY.experienceDescription
   },
   {
     year: '2024 - Present',

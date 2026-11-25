@@ -79,6 +79,24 @@ Independently built and operate an assessment platform for teachers, students, a
 
 ---
 
+### Life of Study (Discord Bot & Web) | Fullstack & Bot Developer
+*Discord Study Community · Voice/Camera Tracking · KPI & Web Dashboard*
+[https://focus.sunstudy.app](https://focus.sunstudy.app)
+
+Built and operate a synchronized Discord bot and web portal for a study community, tracking voice/camera study sessions, enforcing multi-period KPIs, and managing leave/KPI approvals.
+
+**Production snapshot — 25 November 2026 (Supabase PostgreSQL Audit):**
+- **364 active tracked members** (448 total records across 3 Discord guilds).
+- **4,704 voice study segments** totaling **2,501+ recorded study hours**, plus **113 web Pomodoro sessions**.
+- **171 automated pytest tests** and **43 Discord slash commands** in production.
+
+**Engineering:**
+- **Query Optimization:** Refactored dashboard reads from 35 sequential Supabase queries (~24s) down to 3 consolidated PostgreSQL queries (2.0–2.9s).
+- **Voice & Audio Reliability:** Implemented 10s checkpoint merging, 300s/120s inactivity grace logic, and fixed FFmpegOpusAudio metadata leaks.
+- **Tech:** Python 3.12, discord.py[voice], FastAPI, React 19, Vite 8, Supabase PostgreSQL, asyncpg, Nginx, systemd.
+
+---
+
 ### Prelynx (SunStudy Prep) | Lead Fullstack Developer
 *Intelligent IELTS & Digital SAT Learning Platform*
 [https://pre.sunstudy.app](https://pre.sunstudy.app)
