@@ -178,7 +178,7 @@ export default function RootLayout({
             <PageViewTracker />
           </Suspense>
           
-          <header className="sticky top-0 z-50 w-full border-b border-zinc-200/50 dark:border-zinc-800/50 bg-white/70 dark:bg-zinc-950/70 backdrop-blur-md">
+          <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-zinc-200/50 dark:border-zinc-800/50 bg-white/85 dark:bg-zinc-950/85 backdrop-blur-md">
             <div className="w-full max-w-[1440px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
               <a href="#" className="flex items-center group transition-transform hover:scale-105 active:scale-95">
                 <div className="relative h-9 md:h-10 w-auto flex items-center">
@@ -210,7 +210,7 @@ export default function RootLayout({
             </div>
           </header>
 
-          <main className="w-full max-w-[1440px] mx-auto px-6 md:px-12 py-12 md:py-24 pb-24 sm:pb-24 flex flex-col gap-24 relative">
+          <main className="w-full max-w-[1440px] mx-auto px-6 md:px-12 pt-24 md:pt-28 pb-32 sm:pb-24 flex flex-col gap-24 relative">
             {children}
           </main>
         </SmoothScroll>
